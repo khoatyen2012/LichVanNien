@@ -9,14 +9,17 @@ import android.widget.TextView;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.widget.ViewFlipper;
 
 import tana.daithanh.adapter.FrameAdapter;
 
 public class MainActivity extends FragmentActivity {
 
-    private TextView mTextMessage;
+   // private TextView mTextMessage;
     ViewPager viewpager;
     FrameAdapter adapter;
+
+    ViewFlipper vfHome;
 
 
 
@@ -27,13 +30,16 @@ public class MainActivity extends FragmentActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                   // mTextMessage.setText(R.string.title_home);
+                    vfHome.setDisplayedChild(0);
                     return true;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                   // mTextMessage.setText(R.string.title_dashboard);
+                    vfHome.setDisplayedChild(1);
                     return true;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                   // mTextMessage.setText(R.string.title_notifications);
+                    vfHome.setDisplayedChild(2);
                     return true;
             }
             return false;
@@ -45,9 +51,18 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        vfHome=(ViewFlipper) findViewById(R.id.viewFliper);
+
+        viewpager = (ViewPager) findViewById(R.id.viewpager);
+        adapter = new FrameAdapter(getSupportFragmentManager());
+        adapter.setmCount(5);
+        viewpager.setAdapter(adapter);
+        viewpager.setCurrentItem(0);
+
+       // mTextMessage = (TextView) findViewById(R.id.message);
 
 
-        mTextMessage = (TextView) findViewById(R.id.message);
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }

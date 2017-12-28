@@ -27,6 +27,8 @@ public class FrameAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int arg0) {
         // TODO Auto-generated method stub
+
+
         for (int i = 0; i < mCount; i++) {
             if(i==arg0)
             {

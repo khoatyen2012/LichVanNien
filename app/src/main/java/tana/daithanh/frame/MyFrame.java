@@ -39,7 +39,7 @@ public class MyFrame extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.frm_layout, container, false);
 
-        TextView txtView=(TextView)view.findViewById(R.id.tv);
+        TextView txtView=(TextView)view.findViewById(R.id.tvDay);
         txtView.setText(""+namefarme);
 
         return view;
