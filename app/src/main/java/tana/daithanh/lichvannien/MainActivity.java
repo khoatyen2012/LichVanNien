@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.support.v4.app.FragmentActivity;
@@ -12,6 +13,7 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.widget.ViewFlipper;
 
 import tana.daithanh.adapter.FrameAdapter;
+import tana.daithanh.thaotac.AmDuong;
 
 public class MainActivity extends FragmentActivity {
 
@@ -21,7 +23,7 @@ public class MainActivity extends FragmentActivity {
 
     ViewFlipper vfHome;
 
-
+   //AmDuong amDuong;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -55,9 +57,15 @@ public class MainActivity extends FragmentActivity {
 
         viewpager = (ViewPager) findViewById(R.id.viewpager);
         adapter = new FrameAdapter(getSupportFragmentManager());
-        adapter.setmCount(5);
+        adapter.setmCount(60);
         viewpager.setAdapter(adapter);
-        viewpager.setCurrentItem(0);
+        viewpager.setCurrentItem(30);
+
+
+//        amDuong=new AmDuong();
+//
+//        int a[]= amDuong.convertSolar2Lunar(9,9,1989,7);
+//        Log.e("xam",""+a[0]+"--"+a[1]+"--"+a[2]);
 
        // mTextMessage = (TextView) findViewById(R.id.message);
 

@@ -17,7 +17,13 @@
             android:background="#b80000"
             android:layout_height="0dp">
 
-
+            <ImageButton
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/homnay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
 
         </RelativeLayout>
@@ -34,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:text="Tháng 12 năm 2017"
+                android:text="Tháng 1 năm 2016"
                 android:textColor="@android:color/holo_red_light"
                 android:layout_centerHorizontal="true"
                 android:textAlignment="center"
@@ -234,7 +240,7 @@ Nghĩa mẹ như nước trong nguồn chảy ra"
 
                         android:layout_centerInParent="true"
                         android:text="Tháng"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                 </RelativeLayout>

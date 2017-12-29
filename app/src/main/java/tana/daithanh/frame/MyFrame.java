@@ -23,24 +23,30 @@ import tana.daithanh.lichvannien.R;
 public class MyFrame extends Fragment {
 
 
-    String namefarme;
+    Integer ngayduong;
+    Integer thangduong;
+    Integer namduong;
     public MyFrame()
     {
         super();
     }
 
     @SuppressLint("ValidFragment")
-    public MyFrame(String namefarme) {
+    public MyFrame(Integer ngayduong,Integer thangduong,Integer namduong) {
         super();
-        this.namefarme = namefarme;
+        this.ngayduong = ngayduong;
+        this.thangduong=thangduong;
+        this.namduong=namduong;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.frm_layout, container, false);
 
-        TextView txtView=(TextView)view.findViewById(R.id.tvDay);
-        txtView.setText(""+namefarme);
+        TextView txtNgayDuong=(TextView)view.findViewById(R.id.tvDay);
+        txtNgayDuong.setText(""+ngayduong);
+        TextView txtThangDuong=(TextView)view.findViewById(R.id.tvMonthYear);
+        txtThangDuong.setText("Tháng "+thangduong+" Năm "+namduong);
 
         return view;
     }
