@@ -57,9 +57,10 @@ public class MainActivity extends FragmentActivity {
 
         viewpager = (ViewPager) findViewById(R.id.viewpager);
         adapter = new FrameAdapter(getSupportFragmentManager());
-        adapter.setmCount(60);
+        adapter.setmCount(360);
         viewpager.setAdapter(adapter);
-        viewpager.setCurrentItem(30);
+        viewpager.setCurrentItem(183);
+
 
 
 //        amDuong=new AmDuong();
