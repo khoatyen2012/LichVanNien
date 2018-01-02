@@ -14,16 +14,34 @@
 
             android:layout_weight="1"
             android:layout_width="match_parent"
-            android:background="#b80000"
+            android:background="@android:color/holo_red_light"
             android:layout_height="0dp">
 
             <ImageButton
+                android:id="@+id/ibToDay"
+
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_alignParentLeft="true"
                 android:background="@drawable/homnay"
+                android:onClick="OnClick_HomNay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvTitleVanNien"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/ibToDay"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="serif"
+
+                android:text="Tân Á Đại Thành"
+                android:textColor="@android:color/white"
+                android:textSize="30dp"
+                android:textStyle="bold"
+               />
 
 
         </RelativeLayout>

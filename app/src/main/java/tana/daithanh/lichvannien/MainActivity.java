@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -47,6 +48,12 @@ public class MainActivity extends FragmentActivity {
             return false;
         }
     };
+
+    public void OnClick_HomNay(View view)
+    {
+
+        viewpager.setCurrentItem(183);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

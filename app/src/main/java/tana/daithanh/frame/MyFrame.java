@@ -1,6 +1,7 @@
 package tana.daithanh.frame;
 
 import android.annotation.SuppressLint;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebSettings.LayoutAlgorithm;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -32,6 +34,18 @@ public class MyFrame extends Fragment {
     Integer namduong;
     Integer ViTri;
     AmDuong amDuong=new AmDuong();
+
+    TextView txtGio;
+    TextView tvSangChieu;
+    TextView txtNgayDuong;
+    TextView txtThangDuong;
+    TextView tvNgayAm;
+    TextView tvThangAm;
+    ImageButton ibToDay;
+    TextView tvTitleVannien;
+
+
+
     public MyFrame()
     {
         super();
@@ -47,33 +61,91 @@ public class MyFrame extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.frm_layout, container, false);
+    public void onResume() {
+
 
         c = Calendar.getInstance();
-        Log.e("Gio:",":"+c.get(Calendar.HOUR_OF_DAY)+":"+c.get(Calendar.MINUTE));
+        // Log.e("Gio:",":"+c.get(Calendar.HOUR_OF_DAY)+":"+c.get(Calendar.MINUTE));
+        Integer dGio=c.get(Calendar.HOUR_OF_DAY);
+        String dPhut=""+c.get(Calendar.MINUTE);
+        String dQuyTime="";
+
+        if(dGio<=10)
+        {
+            dQuyTime="Giờ Sáng";
+        }else  if(dGio<=13)
+        {
+            dQuyTime="Giờ Chưa";
+        }else  if(dGio<=17)
+        {
+            dQuyTime="Giờ Chiều";
+        }else {
+            dQuyTime="Giờ Tối";
+        }
+
+        if(dGio>12)
+        {
+            dGio=dGio-12;
+        }
+
+        if(dPhut.length()==1)
+        {
+            dPhut="0"+dPhut;
+        }
+
+
+        txtGio.setText(""+dGio+":"+dPhut);
+
+
+        tvSangChieu.setText(""+dQuyTime);
+
+
+
         if(ViTri==183)
         {
-
+            ibToDay.setVisibility(View.GONE);
+            tvTitleVannien.setText("Lịch Vạn Niên");
         }else
         {
+            ibToDay.setVisibility(View.VISIBLE);
+
             int tam=ViTri-183;
             c.add(Calendar.DATE,tam);
+            tvTitleVannien.setText("Tân Á Đại Thành");
         }
         ngayduong= c.get(Calendar.DAY_OF_MONTH);
         thangduong= c.get(Calendar.MONTH)+1;
         namduong = c.get(Calendar.YEAR);
 
-        TextView txtNgayDuong=(TextView)view.findViewById(R.id.tvDay);
+
         txtNgayDuong.setText(""+ngayduong);
-        TextView txtThangDuong=(TextView)view.findViewById(R.id.tvMonthYear);
+
         txtThangDuong.setText("Tháng "+thangduong+" Năm "+namduong);
 
-        TextView tvNgayAm =(TextView) view.findViewById(R.id.tvNgayAm);
-        TextView tvThangAm =(TextView) view.findViewById(R.id.tvThangAm);
+
         int am[]= amDuong.convertSolar2Lunar(ngayduong,thangduong,namduong,7);
         tvNgayAm.setText(""+am[0]);
         tvThangAm.setText(am[1]+"/"+am[2]);
+
+        super.onResume();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.frm_layout, container, false);
+
+
+         txtGio=(TextView)view.findViewById(R.id.tvGio);
+         tvSangChieu=(TextView)view.findViewById(R.id.tvSangChieu);
+         txtNgayDuong=(TextView)view.findViewById(R.id.tvDay);
+         txtThangDuong=(TextView)view.findViewById(R.id.tvMonthYear);
+         tvNgayAm =(TextView) view.findViewById(R.id.tvNgayAm);
+         tvThangAm =(TextView) view.findViewById(R.id.tvThangAm);
+         ibToDay=(ImageButton)view.findViewById(R.id.ibToDay);
+        tvTitleVannien=(TextView)view.findViewById(R.id.tvTitleVanNien);
+
+
+
 
         return view;
     }
