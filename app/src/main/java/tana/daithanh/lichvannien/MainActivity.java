@@ -13,7 +13,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.widget.ViewFlipper;
 
+import java.util.ArrayList;
+
 import tana.daithanh.adapter.FrameAdapter;
+import tana.daithanh.database.DanhNgon;
+import tana.daithanh.database.DataSourceDanhNgon;
 import tana.daithanh.thaotac.AmDuong;
 
 public class MainActivity extends FragmentActivity {
@@ -23,8 +27,9 @@ public class MainActivity extends FragmentActivity {
     FrameAdapter adapter;
 
     ViewFlipper vfHome;
-
+    private DataSourceDanhNgon datasource;
    //AmDuong amDuong;
+   private ArrayList<DanhNgon> lstVN;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -60,15 +65,19 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        datasource = new DataSourceDanhNgon(this);
+        datasource.open();
+        lstVN = new ArrayList<DanhNgon>();
+
         vfHome=(ViewFlipper) findViewById(R.id.viewFliper);
 
         viewpager = (ViewPager) findViewById(R.id.viewpager);
-        adapter = new FrameAdapter(getSupportFragmentManager());
+        adapter = new FrameAdapter(getSupportFragmentManager(),lstVN);
         adapter.setmCount(360);
         viewpager.setAdapter(adapter);
         viewpager.setCurrentItem(183);
 
-
+        threadLoadData();
 
 //        amDuong=new AmDuong();
 //
@@ -81,6 +90,58 @@ public class MainActivity extends FragmentActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+
+    /*
+Lay du lieu do vao arraylist
+*/
+    private void threadLoadData() {
+
+
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+
+
+                    getDefaultDataOffline();
+
+
+                } catch (Exception e) {
+
+                }
+
+            }
+        }).start();
+    }
+
+    /*
+Load du lieu vao arraylist
+*/
+    public void getDefaultDataOffline() {
+        try {
+            ArrayList<Object> values = datasource.getAllNews();
+
+            for (Object item : values) {
+                DanhNgon n1 = new DanhNgon();
+
+
+                n1.setId(((DanhNgon) item).getId().trim());
+                n1.setContent(((DanhNgon) item).getContent().trim());
+                n1.setAuthor(((DanhNgon) item).getAuthor().trim());
+
+
+                lstVN.add(n1);
+
+            }
+
+            datasource.close();
+            viewpager.getAdapter().notifyDataSetChanged();
+        } catch (Exception ex) {
+
+        }
+
+
     }
 
 }

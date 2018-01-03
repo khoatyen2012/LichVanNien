@@ -17,8 +17,11 @@ import android.webkit.WebSettings.LayoutAlgorithm;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Random;
 
+import tana.daithanh.database.DanhNgon;
 import tana.daithanh.lichvannien.R;
 import tana.daithanh.thaotac.AmDuong;
 
@@ -33,7 +36,10 @@ public class MyFrame extends Fragment {
     Integer thangduong;
     Integer namduong;
     Integer ViTri;
+    String content="Phồn vinh cuộc sống việt";
+    String author="Tân Á Đại Thành";
     AmDuong amDuong=new AmDuong();
+    ArrayList<DanhNgon> lstVN;
 
     TextView txtGio;
     TextView tvSangChieu;
@@ -43,6 +49,8 @@ public class MyFrame extends Fragment {
     TextView tvThangAm;
     ImageButton ibToDay;
     TextView tvTitleVannien;
+    TextView tvCadao;
+    TextView tvAuthor;
 
 
 
@@ -52,10 +60,11 @@ public class MyFrame extends Fragment {
     }
 
     @SuppressLint("ValidFragment")
-    public MyFrame(Integer ViTri) {
+    public MyFrame(Integer ViTri,ArrayList<DanhNgon> lstVN) {
         super();
 
           this.ViTri=ViTri;
+        this.lstVN=lstVN;
 
 
     }
@@ -119,13 +128,25 @@ public class MyFrame extends Fragment {
 
 
         txtNgayDuong.setText(""+ngayduong);
-
         txtThangDuong.setText("Tháng "+thangduong+" Năm "+namduong);
 
 
         int am[]= amDuong.convertSolar2Lunar(ngayduong,thangduong,namduong,7);
         tvNgayAm.setText(""+am[0]);
         tvThangAm.setText(am[1]+"/"+am[2]);
+        if(lstVN.size()>0)
+        {
+
+
+            Integer chon=am[0]*am[1];
+            content=""+lstVN.get(chon).getContent();
+            author=""+lstVN.get(chon).getAuthor();
+        }
+
+
+        tvCadao.setText(""+content);
+        tvAuthor.setText(""+author);
+
 
         super.onResume();
     }
@@ -143,8 +164,8 @@ public class MyFrame extends Fragment {
          tvThangAm =(TextView) view.findViewById(R.id.tvThangAm);
          ibToDay=(ImageButton)view.findViewById(R.id.ibToDay);
         tvTitleVannien=(TextView)view.findViewById(R.id.tvTitleVanNien);
-
-
+        tvCadao=(TextView)view.findViewById(R.id.tvCadao);
+        tvAuthor=(TextView)view.findViewById(R.id.tvAuthor);
 
 
         return view;
