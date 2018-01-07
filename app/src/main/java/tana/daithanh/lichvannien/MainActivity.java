@@ -16,6 +16,8 @@ import android.widget.ViewFlipper;
 import java.util.ArrayList;
 
 import tana.daithanh.adapter.FrameAdapter;
+
+import tana.daithanh.adapter.FrameAdapterMonth;
 import tana.daithanh.database.DanhNgon;
 import tana.daithanh.database.DataSourceDanhNgon;
 import tana.daithanh.thaotac.AmDuong;
@@ -23,8 +25,11 @@ import tana.daithanh.thaotac.AmDuong;
 public class MainActivity extends FragmentActivity {
 
    // private TextView mTextMessage;
-    ViewPager viewpager;
-    FrameAdapter adapter;
+    ViewPager viewpagerNgay;
+    FrameAdapter adapterNgay;
+
+    ViewPager viewpagerThang;
+    FrameAdapterMonth adapterThang;
 
     ViewFlipper vfHome;
     private DataSourceDanhNgon datasource;
@@ -57,7 +62,7 @@ public class MainActivity extends FragmentActivity {
     public void OnClick_HomNay(View view)
     {
 
-        viewpager.setCurrentItem(183);
+        viewpagerNgay.setCurrentItem(183);
     }
 
     @Override
@@ -71,11 +76,17 @@ public class MainActivity extends FragmentActivity {
 
         vfHome=(ViewFlipper) findViewById(R.id.viewFliper);
 
-        viewpager = (ViewPager) findViewById(R.id.viewpager);
-        adapter = new FrameAdapter(getSupportFragmentManager(),lstVN);
-        adapter.setmCount(360);
-        viewpager.setAdapter(adapter);
-        viewpager.setCurrentItem(183);
+        viewpagerNgay = (ViewPager) findViewById(R.id.viewpagerNgay);
+        adapterNgay = new FrameAdapter(getSupportFragmentManager(),lstVN);
+        adapterNgay.setmCount(360);
+        viewpagerNgay.setAdapter(adapterNgay);
+        viewpagerNgay.setCurrentItem(183);
+
+        viewpagerThang = (ViewPager) findViewById(R.id.viewpagerThang);
+        adapterThang = new FrameAdapterMonth(getSupportFragmentManager());
+        adapterThang.setmCount(72);
+        viewpagerThang.setAdapter(adapterThang);
+        viewpagerThang.setCurrentItem(36);
 
         threadLoadData();
 
@@ -136,7 +147,7 @@ Load du lieu vao arraylist
             }
 
             datasource.close();
-            viewpager.getAdapter().notifyDataSetChanged();
+            viewpagerNgay.getAdapter().notifyDataSetChanged();
         } catch (Exception ex) {
 
         }

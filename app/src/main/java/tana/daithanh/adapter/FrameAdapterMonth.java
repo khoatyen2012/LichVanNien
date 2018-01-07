@@ -1,27 +1,28 @@
 package tana.daithanh.adapter;
 
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
 
-import tana.daithanh.database.DanhNgon;
-import  tana.daithanh.frame.MyFrame;
-
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Random;
 
-public class FrameAdapter extends FragmentPagerAdapter {
+import tana.daithanh.database.DanhNgon;
+import tana.daithanh.frame.MyFrame;
+import tana.daithanh.frame.MyFrameMonth;
+
+/**
+ * Created by Manh on 1/6/2018.
+ */
+
+public class FrameAdapterMonth extends FragmentPagerAdapter {
 
     int mCount;
-    ArrayList<DanhNgon> lstVN;
 
 
 
-  //  Date date = new Date();
+
+    //  Date date = new Date();
     public int getmCount() {
         return mCount;
     }
@@ -30,15 +31,15 @@ public class FrameAdapter extends FragmentPagerAdapter {
         this.mCount = mCount;
     }
 
-    public FrameAdapter(FragmentManager fm,ArrayList<DanhNgon> lstVN) {
+    public FrameAdapterMonth(FragmentManager fm) {
         super(fm);
         // TODO Auto-generated constructor stub
-        this.lstVN=lstVN;
 
     }
 
     @Override
     public int getItemPosition(Object object) {
+
 
         return POSITION_NONE;
     }
@@ -48,7 +49,10 @@ public class FrameAdapter extends FragmentPagerAdapter {
         // TODO Auto-generated method stub
 
 
-            return new MyFrame(arg0,lstVN);
+
+
+        return new MyFrameMonth(""+arg0);
+
 
 
     }
