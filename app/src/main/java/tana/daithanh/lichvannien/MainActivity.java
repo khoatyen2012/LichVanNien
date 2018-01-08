@@ -59,6 +59,12 @@ public class MainActivity extends FragmentActivity {
         }
     };
 
+    public void OnClick_HomNayThang(View view)
+    {
+
+        viewpagerThang.setCurrentItem(36);
+    }
+
     public void OnClick_HomNay(View view)
     {
 

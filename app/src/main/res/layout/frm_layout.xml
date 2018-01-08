@@ -79,6 +79,21 @@
                 android:textAllCaps="true"
                 android:textSize="130dp"
                 android:textStyle="normal|bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/tvThuMay"
+                android:fontFamily="sans-serif"
+              android:layout_below="@+id/tvDay"
+                android:textColor="@android:color/holo_red_light"
+android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:text="Thứ ?"
+                android:layout_height="wrap_content" />
+
             <TextView
                 android:id="@+id/tvCadao"
                 android:layout_width="match_parent"

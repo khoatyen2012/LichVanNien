@@ -46,11 +46,21 @@ public class MonthAdapter extends BaseAdapter {
             gridView=inflater.inflate(R.layout.item_month, null);
 
             TextView textDuong=(TextView) gridView.findViewById(R.id.tvDuong);
-            textDuong.setText(lstMonth.get(position).get_MonthDuong());
+
+
             if(position==6||position==13||position==20||position==27)
             {
                 textDuong.setTextColor(Color.parseColor("#FF4500"));
             }
+
+            String duongTMG=lstMonth.get(position).get_MonthDuong();
+            if(duongTMG.contains("n"))
+            {
+                duongTMG=duongTMG.substring(1);
+                textDuong.setTextColor(Color.parseColor("#C71585"));
+            }
+            textDuong.setText(duongTMG);
+
 
 
             TextView textAm=(TextView) gridView.findViewById(R.id.tvAm);

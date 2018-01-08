@@ -51,6 +51,7 @@ public class MyFrame extends Fragment {
     TextView tvTitleVannien;
     TextView tvCadao;
     TextView tvAuthor;
+    TextView tvThu;
 
 
 
@@ -103,7 +104,12 @@ public class MyFrame extends Fragment {
         }
 
 
-        txtGio.setText(""+dGio+":"+dPhut);
+        if(dGio<10) {
+            txtGio.setText("0" + dGio + ":" + dPhut);
+        }else
+        {
+            txtGio.setText("" + dGio + ":" + dPhut);
+        }
 
 
         tvSangChieu.setText(""+dQuyTime);
@@ -122,6 +128,18 @@ public class MyFrame extends Fragment {
             c.add(Calendar.DATE,tam);
             tvTitleVannien.setText("Tân Á Đại Thành");
         }
+
+
+        int thumay=c.get(Calendar.DAY_OF_WEEK);
+       if(thumay==1)
+       {
+           tvThu.setText("Chủ Nhật");
+       }else
+       {
+           tvThu.setText("Thứ "+thumay);
+       }
+
+
         ngayduong= c.get(Calendar.DAY_OF_MONTH);
         thangduong= c.get(Calendar.MONTH)+1;
         namduong = c.get(Calendar.YEAR);
@@ -166,6 +184,7 @@ public class MyFrame extends Fragment {
         tvTitleVannien=(TextView)view.findViewById(R.id.tvTitleVanNien);
         tvCadao=(TextView)view.findViewById(R.id.tvCadao);
         tvAuthor=(TextView)view.findViewById(R.id.tvAuthor);
+        tvThu=(TextView)view.findViewById(R.id.tvThuMay);
 
 
         return view;

@@ -51,7 +51,7 @@ public class FrameAdapterMonth extends FragmentPagerAdapter {
 
 
 
-        return new MyFrameMonth(""+arg0);
+        return new MyFrameMonth(arg0);
 
 
 

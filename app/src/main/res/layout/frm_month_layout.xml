@@ -34,7 +34,7 @@ android:background="#F0F8FF"
             android:id="@+id/ibToDayMonth"
             android:layout_centerHorizontal="true"
             android:layout_above="@+id/llThu"
-
+android:onClick="OnClick_HomNayThang"
 android:layout_marginBottom="5dp"
       android:background="@drawable/logo"
 
@@ -49,8 +49,19 @@ android:layout_marginBottom="5dp"
             android:background="#0099FF"
             android:layout_height="wrap_content">
 
+
             <TextView
+                android:text="CN"
+                android:layout_weight="1"
+                android:textColor="#FF4500"
                 android:layout_marginLeft="15dp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:textSize="20dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+
                 android:text="T2"
                 android:textSize="20dp"
                 android:layout_weight="1"
@@ -109,14 +120,7 @@ android:layout_marginBottom="5dp"
                 android:layout_height="wrap_content" />
 
 
-            <TextView
-                android:text="CN"
-                android:layout_weight="1"
-                android:textColor="#FF4500"
-                android:textStyle="bold"
-                android:layout_width="0dp"
-                android:textSize="20dp"
-                android:layout_height="wrap_content" />
+
 
 
         </LinearLayout>
