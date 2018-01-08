@@ -1,6 +1,7 @@
 package tana.daithanh.frame;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
@@ -15,6 +16,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebSettings.LayoutAlgorithm;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -52,6 +54,7 @@ public class MyFrame extends Fragment {
     TextView tvCadao;
     TextView tvAuthor;
     TextView tvThu;
+    RelativeLayout rlTitleTop;
 
 
 
@@ -134,9 +137,51 @@ public class MyFrame extends Fragment {
        if(thumay==1)
        {
            tvThu.setText("Chủ Nhật");
+           tvThu.setTextColor(Color.parseColor("#FF0000"));
+           txtNgayDuong.setTextColor(Color.parseColor("#FF0000"));
+           txtThangDuong.setTextColor(Color.parseColor("#FF0000"));
+           rlTitleTop.setBackgroundColor(Color.parseColor("#FF0000"));
        }else
        {
            tvThu.setText("Thứ "+thumay);
+           if(thumay==2)
+           {
+               tvThu.setTextColor(Color.parseColor("#00AA00"));
+               txtNgayDuong.setTextColor(Color.parseColor("#00AA00"));
+               txtThangDuong.setTextColor(Color.parseColor("#00AA00"));
+               rlTitleTop.setBackgroundColor(Color.parseColor("#00AA00"));
+           }else if(thumay==3)
+           {
+               tvThu.setTextColor(Color.parseColor("#0099FF"));
+               txtNgayDuong.setTextColor(Color.parseColor("#0099FF"));
+               txtThangDuong.setTextColor(Color.parseColor("#0099FF"));
+               rlTitleTop.setBackgroundColor(Color.parseColor("#0099FF"));
+           }else if(thumay==4)
+           {
+               tvThu.setTextColor(Color.parseColor("#009966"));
+               txtNgayDuong.setTextColor(Color.parseColor("#009966"));
+               txtThangDuong.setTextColor(Color.parseColor("#009966"));
+               rlTitleTop.setBackgroundColor(Color.parseColor("#009966"));
+           }else if(thumay==5)
+           {
+               tvThu.setTextColor(Color.parseColor("#CC0099"));
+               txtNgayDuong.setTextColor(Color.parseColor("#CC0099"));
+               txtThangDuong.setTextColor(Color.parseColor("#CC0099"));
+               rlTitleTop.setBackgroundColor(Color.parseColor("#CC0099"));
+           }else if(thumay==6)
+           {
+               tvThu.setTextColor(Color.parseColor("#CD853F"));
+               txtNgayDuong.setTextColor(Color.parseColor("#CD853F"));
+               txtThangDuong.setTextColor(Color.parseColor("#CD853F"));
+               rlTitleTop.setBackgroundColor(Color.parseColor("#CD853F"));
+           }else if(thumay==7)
+           {
+               tvThu.setTextColor(Color.parseColor("#FF6A6A"));
+               txtNgayDuong.setTextColor(Color.parseColor("#FF6A6A"));
+               txtThangDuong.setTextColor(Color.parseColor("#FF6A6A"));
+               rlTitleTop.setBackgroundColor(Color.parseColor("#FF6A6A"));
+           }
+
        }
 
 
@@ -185,6 +230,7 @@ public class MyFrame extends Fragment {
         tvCadao=(TextView)view.findViewById(R.id.tvCadao);
         tvAuthor=(TextView)view.findViewById(R.id.tvAuthor);
         tvThu=(TextView)view.findViewById(R.id.tvThuMay);
+        rlTitleTop=(RelativeLayout)view.findViewById(R.id.rlTitleTop);
 
 
         return view;
