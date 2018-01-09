@@ -197,13 +197,136 @@ public class MyFrame extends Fragment {
         int am[]= amDuong.convertSolar2Lunar(ngayduong,thangduong,namduong,7);
         tvNgayAm.setText(""+am[0]);
         tvThangAm.setText(am[1]+"/"+am[2]);
-        if(lstVN.size()>0)
+
+
+        if(am[0]==1 && am[1]==1)
         {
+         content="Chúc mừng năm mới. Ngày mùng 1 tết cố truyền dân tộc";
+         author="Xuân đã về";
+        }else  if(am[0]==2 && am[1]==1)
+        {
+            content="Mùng 1 tết cha mùng 2 tết mẹ mùng 3 tết thầy";
+            author="Mùng 2 tết";
+        }else  if(am[0]==3 && am[1]==1)
+        {
+            content="Mùng 3 tết thầy";
+            author="Mùng 3 tết";
+        }else  if(am[0]==15 && am[1]==1)
+        {
+            content="Ngày dằm tháng giêng";
+            author="Tết nguyên tiêu";
+        }else  if(am[0]==3 && am[1]==3)
+        {
+            content="Tết bánh trôi bánh tray";
+            author="Tết hàn thực";
+        }else  if(am[0]==10 && am[1]==3)
+        {
+            content="Ngày dỗ tổ hùng vương";
+            author="Vua Hùng";
+        }else  if(am[0]==15 && am[1]==4)
+        {
+            content="Ngày lễ phật đản";
+            author="A di đà phật";
+        }else  if(am[0]==5 && am[1]==5)
+        {
+            content="Ngày tết đoan ngọ";
+            author="Tết đoan ngọ";
+        }else  if(am[0]==15 && am[1]==7)
+        {
+            content="Ngày lễ vu lan";
+            author="Chức nữ";
+        }else  if(am[0]==15 && am[1]==8)
+        {
+            content="Ngày tết trung thu";
+            author="Chị hằng";
+        }else  if(am[0]==9 && am[1]==9)
+        {
+            content="Ngày tết cửu trùng";
+            author="Diệt sâu bọ";
+        }else  if(am[0]==10 && am[1]==10)
+        {
+            content="Ngày tết thường tân";
+            author="tết";
+        }else  if(am[0]==15 && am[1]==10)
+        {
+            content="Ngày tết hạ nguyên";
+            author="Nguyên";
+        }else  if(am[0]==23 && am[1]==12)
+        {
+            content="Tiễn Ông Công Ông Táo Về Trời";
+            author="Táo quân";
+        }else  if(ngayduong==1 && thangduong==1)
+        {
+            content="Ngày tết dương lịch";
+            author="Happy new year";
+        }else  if(ngayduong==14 && thangduong==2)
+        {
+            content="Ngày lễ tình nhân";
+            author="Valentine";
+        }else  if(ngayduong==27 && thangduong==2)
+        {
+            content="Ngày thầy thuốc Việt Nam";
+            author="Lương y như từ mẫu";
+        }else  if(ngayduong==8 && thangduong==3)
+        {
+            content="Ngày quốc tế phụ nữ";
+            author="Yêu thương";
+        }else  if(ngayduong==26 && thangduong==3)
+        {
+            content="Ngày thành lập Đoàn TNCS Hồ Chí Minh";
+            author="Hồ Chí Minh";
+        }else  if(ngayduong==1 && thangduong==4)
+        {
+            content="Ngày cá tháng 4";
+            author="Nói dối";
+        }else  if(ngayduong==30 && thangduong==4)
+        {
+            content="GIẢI PHÓNG MIỀN NAM";
+            author="Giải Phóng";
+        }else  if(ngayduong==1 && thangduong==5)
+        {
+            content="Ngày quốc tế lao động";
+            author="Lao động";
+        }else  if(ngayduong==7 && thangduong==5)
+        {
+            content="Ngày chiến thắng điện biên phủ";
+            author="Đừng ngủ quên trên chiến thắng";
+        }else  if(ngayduong==13 && thangduong==5)
+        {
+            content="Ngày của mẹ !";
+            author="Mẹ yêu";
+        }else  if(ngayduong==19 && thangduong==5)
+        {
+            content="Ngày sinh chủ tịch Hồ Chí Minh";
+            author="Sinh nhật bác";
+        }else  if(ngayduong==1 && thangduong==6)
+        {
+            content="Ngày quốc tế thiếu nhi";
+            author="Trẻ em hôm nay";
+        }else  if(ngayduong==17 && thangduong==6)
+        {
+            content="Ngày của cha";
+            author="Nợ cha 1 sự nghiệp";
+        }
+        else  if(ngayduong==21 && thangduong==6)
+        {
+            content="Ngày báo chí Việt Nam";
+            author="Balo";
+        }else  if(ngayduong==28 && thangduong==6)
+        {
+            content="Ngày gia đình Việt nam";
+            author="Gia Đình";
+        }
+        else {
+
+            if(lstVN.size()>0)
+            {
 
 
-            Integer chon=am[0]*am[1];
-            content=""+lstVN.get(chon).getContent();
-            author=""+lstVN.get(chon).getAuthor();
+                Integer chon=am[0]*am[1];
+                content=""+lstVN.get(chon).getContent();
+                author=""+lstVN.get(chon).getAuthor();
+            }
         }
 
 
