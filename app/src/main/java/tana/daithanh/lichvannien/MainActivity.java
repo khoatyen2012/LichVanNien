@@ -59,6 +59,12 @@ public class MainActivity extends FragmentActivity {
         }
     };
 
+
+    public  void  OnClick_DoiNgay(View view)
+    {
+        vfHome.setDisplayedChild(3);
+    }
+
     public void OnClick_HomNayThang(View view)
     {
 

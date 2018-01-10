@@ -137,10 +137,10 @@ public class MyFrame extends Fragment {
        if(thumay==1)
        {
            tvThu.setText("Chủ Nhật");
-           tvThu.setTextColor(Color.parseColor("#FF0000"));
-           txtNgayDuong.setTextColor(Color.parseColor("#FF0000"));
-           txtThangDuong.setTextColor(Color.parseColor("#FF0000"));
-           rlTitleTop.setBackgroundColor(Color.parseColor("#FF0000"));
+           tvThu.setTextColor(Color.parseColor("#FF6A6A"));
+           txtNgayDuong.setTextColor(Color.parseColor("#FF6A6A"));
+           txtThangDuong.setTextColor(Color.parseColor("#FF6A6A"));
+           rlTitleTop.setBackgroundColor(Color.parseColor("#FF6A6A"));
        }else
        {
            tvThu.setText("Thứ "+thumay);
@@ -150,7 +150,7 @@ public class MyFrame extends Fragment {
                txtNgayDuong.setTextColor(Color.parseColor("#00AA00"));
                txtThangDuong.setTextColor(Color.parseColor("#00AA00"));
                rlTitleTop.setBackgroundColor(Color.parseColor("#00AA00"));
-           }else if(thumay==3)
+           }else if(thumay==3||thumay==7)
            {
                tvThu.setTextColor(Color.parseColor("#0099FF"));
                txtNgayDuong.setTextColor(Color.parseColor("#0099FF"));
@@ -174,12 +174,6 @@ public class MyFrame extends Fragment {
                txtNgayDuong.setTextColor(Color.parseColor("#CD853F"));
                txtThangDuong.setTextColor(Color.parseColor("#CD853F"));
                rlTitleTop.setBackgroundColor(Color.parseColor("#CD853F"));
-           }else if(thumay==7)
-           {
-               tvThu.setTextColor(Color.parseColor("#FF6A6A"));
-               txtNgayDuong.setTextColor(Color.parseColor("#FF6A6A"));
-               txtThangDuong.setTextColor(Color.parseColor("#FF6A6A"));
-               rlTitleTop.setBackgroundColor(Color.parseColor("#FF6A6A"));
            }
 
        }
@@ -314,8 +308,84 @@ public class MyFrame extends Fragment {
             author="Balo";
         }else  if(ngayduong==28 && thangduong==6)
         {
-            content="Ngày gia đình Việt nam";
+            content="Ngày gia đình Việt Nam";
             author="Gia Đình";
+        }else  if(ngayduong==11 && thangduong==7)
+        {
+            content="Ngày dân số thế giới";
+            author="Kế Hoạch Hóa Gia Đình";
+        }else  if(ngayduong==27 && thangduong==7)
+        {
+            content="Ngày thương binh liệt sĩ";
+            author="Tổ quốc ghi công";
+        }else  if(ngayduong==28 && thangduong==7)
+        {
+            content="Ngày công đoàn Việt nam";
+            author="Đoàn kết";
+        }else  if(ngayduong==19 && thangduong==8)
+        {
+            content="Ngày tổng khởi nghĩa";
+            author="Cách mạng tháng 8";
+        }else  if(ngayduong==2 && thangduong==9)
+        {
+            content="Ngày quốc khánh";
+            author="Cờ đỏ";
+        }else  if(ngayduong==10 && thangduong==9)
+        {
+            content="Ngày thành lập mặt trận tổ quốc Việt nam";
+            author="Việt Nam";
+        }else  if(ngayduong==1 && thangduong==10)
+        {
+            content="Ngày quốc tế người cao tuổi";
+            author="Kĩnh lão đắc thọ";
+        }else  if(ngayduong==10 && thangduong==10)
+        {
+            content="Ngày giải phóng Thủ Đô";
+            author="Hà Nội";
+        }else  if(ngayduong==13 && thangduong==10)
+        {
+            content="Ngày doanh nhân Việt Nam";
+            author="Startup";
+        }else  if(ngayduong==20 && thangduong==10)
+        {
+            content="Ngày phụ nữ Việt Nam";
+            author="Hoa Hồng Có Gai";
+        }else  if(ngayduong==31 && thangduong==10)
+        {
+            content="Ngày Hallowen";
+            author="Bí Ngô";
+        }else  if(ngayduong==9 && thangduong==11)
+        {
+            content="Ngày pháp luật Việt Nam";
+            author="pháp luật";
+        }else  if(ngayduong==20 && thangduong==11)
+        {
+            content="Ngày Nhà Giáo Việt Nam";
+            author="Bụi phấn";
+        }else  if(ngayduong==23 && thangduong==11)
+        {
+            content="Ngày thành lập hội chữ thập đỏ Việt Nam";
+            author="Cộng đồng";
+        }else  if(ngayduong==1 && thangduong==12)
+        {
+            content="Ngày toàn thế giới chống xi-đa";
+            author="HIV AIDS";
+        }else  if(ngayduong==19 && thangduong==12)
+        {
+            content="Ngày toàn quốc kháng chiến";
+            author="Cách mạng tháng 12";
+        }else  if(ngayduong==22 && thangduong==12)
+        {
+            content="Ngày thành lập quân đội nhân dân Việt Nam";
+            author="CF";
+        }else  if(ngayduong==24 && thangduong==12)
+        {
+            content="Ngày lễ giáng sinh";
+            author="Noel";
+        }else  if(ngayduong==25 && thangduong==12)
+        {
+            content="Giáng sinh an lành";
+            author="Noel";
         }
         else {
 
