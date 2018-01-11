@@ -48,7 +48,7 @@ public class MonthAdapter extends BaseAdapter {
             TextView textDuong=(TextView) gridView.findViewById(R.id.tvDuong);
 
 
-            if(position==6||position==13||position==20||position==27)
+            if(position==0||position==7||position==14||position==21||position==28||position==35)
             {
                 textDuong.setTextColor(Color.parseColor("#FF4500"));
             }
