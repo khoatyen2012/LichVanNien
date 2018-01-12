@@ -55,6 +55,8 @@ public class MyFrame extends Fragment {
     TextView tvAuthor;
     TextView tvThu;
     RelativeLayout rlTitleTop;
+    RelativeLayout rlBg;
+    Random rd=new Random();
 
 
 
@@ -396,7 +398,23 @@ public class MyFrame extends Fragment {
                 Integer chon=am[0]*am[1];
                 content=""+lstVN.get(chon).getContent();
                 author=""+lstVN.get(chon).getAuthor();
+
+                chon=rd.nextInt(7);
+                if(chon==1)
+                {
+                    rlBg.setBackgroundResource(R.drawable.nenmua);
+                }else if(chon==2)
+                {
+                    rlBg.setBackgroundResource(R.drawable.nentuyet);
+                }else if(chon==3)
+                {
+                    rlBg.setBackgroundResource(R.drawable.nenxanh);
+                }else
+                {
+                    rlBg.setBackgroundResource(R.drawable.nennang);
+                }
             }
+
         }
 
 
@@ -424,6 +442,7 @@ public class MyFrame extends Fragment {
         tvAuthor=(TextView)view.findViewById(R.id.tvAuthor);
         tvThu=(TextView)view.findViewById(R.id.tvThuMay);
         rlTitleTop=(RelativeLayout)view.findViewById(R.id.rlTitleTop);
+        rlBg=(RelativeLayout)view.findViewById(R.id.rlBg);
 
 
         return view;

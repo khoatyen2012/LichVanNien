@@ -47,9 +47,10 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rlBg"
             android:layout_weight="7"
             android:layout_width="match_parent"
-            android:background="@drawable/nennang"
+            android:background="@drawable/nenxanh"
             android:layout_height="0dp">
 
             <TextView
@@ -83,12 +84,14 @@
                android:layout_centerVertical="true"
                 android:src="@drawable/nudodam"
 android:layout_alignParentRight="true"
+                android:layout_marginRight="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <ImageView
                 android:layout_centerVertical="true"
                 android:src="@drawable/namdodam"
+                android:layout_marginLeft="2dp"
                 android:layout_alignParentLeft="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
