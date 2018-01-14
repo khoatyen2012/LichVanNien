@@ -24,6 +24,7 @@ import tana.daithanh.lichvannien.MainActivity;
 import tana.daithanh.lichvannien.R;
 import tana.daithanh.mode.MonthCalender;
 import tana.daithanh.thaotac.AmDuong;
+import tana.daithanh.thaotac.LunarYearTools;
 
 /**
  * Created by Manh on 1/6/2018.
@@ -44,7 +45,8 @@ public class MyFrameMonth extends Fragment {
     Integer ViTri;
     TextView txtTitle;
     ImageButton ibToDayMonth;
-    AmDuong amDuong=new AmDuong();
+   // AmDuong amDuong=new AmDuong();
+    LunarYearTools amDuong=new LunarYearTools();
     public MyFrameMonth()
     {
         super();
@@ -146,6 +148,8 @@ public class MyFrameMonth extends Fragment {
        }
         monthAdapter=new MonthAdapter(context,lst);
 
+
+       //int ddd[]=amDuong.convertLunar2Solar(10,8,1989,0,7);
 
 
         gridView.setAdapter(monthAdapter);

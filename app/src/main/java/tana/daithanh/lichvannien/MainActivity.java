@@ -7,13 +7,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.TextView;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import tana.daithanh.adapter.FrameAdapter;
 
@@ -21,6 +24,7 @@ import tana.daithanh.adapter.FrameAdapterMonth;
 import tana.daithanh.database.DanhNgon;
 import tana.daithanh.database.DataSourceDanhNgon;
 import tana.daithanh.thaotac.AmDuong;
+import tana.daithanh.thaotac.LunarYearTools;
 
 public class MainActivity extends FragmentActivity {
 
@@ -35,6 +39,10 @@ public class MainActivity extends FragmentActivity {
     private DataSourceDanhNgon datasource;
    //AmDuong amDuong;
    private ArrayList<DanhNgon> lstVN;
+
+   DatePicker dpDuong;
+   DatePicker dpAm;
+   LunarYearTools amDuong=new LunarYearTools();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -60,10 +68,10 @@ public class MainActivity extends FragmentActivity {
     };
 
 
-    public  void  OnClick_DoiNgay(View view)
-    {
-        vfHome.setDisplayedChild(3);
-    }
+//    public  void  OnClick_DoiNgay(View view)
+//    {
+//        vfHome.setDisplayedChild(3);
+//    }
 
     public void OnClick_HomNayThang(View view)
     {
@@ -99,6 +107,27 @@ public class MainActivity extends FragmentActivity {
         adapterThang.setmCount(72);
         viewpagerThang.setAdapter(adapterThang);
         viewpagerThang.setCurrentItem(36);
+
+        dpDuong=(DatePicker)findViewById(R.id.dpDuong);
+        dpAm=(DatePicker)findViewById(R.id.dpCDAm);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        dpDuong.init(
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH),
+                new DatePicker.OnDateChangedListener(){
+
+                    @Override
+                    public void onDateChanged(DatePicker view,
+                                              int year, int monthOfYear,int dayOfMonth) {
+
+
+                          int tam[]=amDuong.convertSolar2Lunar(dayOfMonth,monthOfYear+1,year,7);
+                        dpAm.updateDate(tam[2],tam[1],tam[0]);
+
+                    }});
 
         threadLoadData();
 

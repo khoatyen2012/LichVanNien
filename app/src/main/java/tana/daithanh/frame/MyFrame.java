@@ -26,6 +26,7 @@ import java.util.Random;
 import tana.daithanh.database.DanhNgon;
 import tana.daithanh.lichvannien.R;
 import tana.daithanh.thaotac.AmDuong;
+import tana.daithanh.thaotac.LunarYearTools;
 
 /**
  * Created by Administrator on 23/12/2017.
@@ -40,7 +41,8 @@ public class MyFrame extends Fragment {
     Integer ViTri;
     String content="Phồn vinh cuộc sống việt";
     String author="Tân Á Đại Thành";
-    AmDuong amDuong=new AmDuong();
+    //AmDuong amDuong=new AmDuong();
+    LunarYearTools amDuong=new LunarYearTools();
     ArrayList<DanhNgon> lstVN;
 
     TextView txtGio;

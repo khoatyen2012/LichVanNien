@@ -1,58 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@drawable/bgmonth"
+    android:background="@drawable/nennang"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-        <Button
-            android:layout_centerHorizontal="true"
-            android:id="@+id/btDoiNgay"
-            android:layout_width="wrap_content"
-            android:text="Đổi Ngày"
-            android:textSize="25dp"
-            android:onClick="OnClick_DoiNgay"
-            android:textColor="@android:color/white"
-           android:background="@drawable/bt_vong"
-            android:fontFamily="serif"
-            android:textStyle="bold"
-            android:padding="10dp"
-            android:layout_height="wrap_content" />
-        <Button
-            android:id="@+id/btAltp"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/btDoiNgay"
-            android:layout_width="wrap_content"
-            android:padding="10dp"
-            android:text="Giải Trí"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="serif"
-            android:textColor="@android:color/white"
-            android:background="@drawable/bt_vong"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/btLogin"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/btAltp"
-            android:layout_width="wrap_content"
-            android:text="Đăng Nhập"
-            android:fontFamily="serif"
-            android:padding="15dp"
-            android:layout_centerHorizontal="true"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:background="@drawable/bt_vong"
-            android:layout_height="wrap_content" />
-
-
-    </RelativeLayout>
 
 </RelativeLayout>

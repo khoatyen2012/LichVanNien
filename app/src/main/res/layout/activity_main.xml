@@ -27,11 +27,12 @@
 
         <include
             android:id="@+id/lnOu3"
-            layout="@layout/altp_layout" />
+            layout="@layout/doingay_layout" />
 
         <include
             android:id="@+id/lnOu4"
-            layout="@layout/doingay_layout" />
+            layout="@layout/altp_layout"
+            />
 
     </ViewFlipper>
 

@@ -4,8 +4,21 @@
     android:background="@drawable/nennang"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_marginTop="5dp"
+        android:id="@+id/tvCDuong"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:text="Ngày Dương"
+        android:textSize="25dp"
+        android:fontFamily="serif"
+        android:textStyle="bold"
+        android:textColor="#0099FF"
+        android:layout_height="wrap_content" />
+
     <DatePicker
-        android:id="@+id/timePicker1"
+        android:layout_below="@+id/tvCDuong"
+        android:id="@+id/dpDuong"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:datePickerMode="spinner"
@@ -14,6 +27,39 @@
 
         android:layout_centerHorizontal="true"
          />
+
+    <ImageView
+        android:id="@+id/ivConvert"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/convert"
+        android:layout_below="@+id/dpDuong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <DatePicker
+        android:layout_below="@+id/ivConvert"
+        android:id="@+id/dpCDAm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
+        android:spinnersShown="true"
+
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:layout_below="@+id/dpCDAm"
+        android:layout_marginTop="5dp"
+        android:id="@+id/tvCAm"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:text="Ngày Âm"
+        android:textSize="25dp"
+        android:fontFamily="serif"
+        android:textStyle="bold"
+        android:textColor="#0099FF"
+        android:layout_height="wrap_content" />
 
 
 </RelativeLayout>

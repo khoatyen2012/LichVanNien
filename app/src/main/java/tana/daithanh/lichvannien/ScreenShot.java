@@ -1,6 +1,7 @@
 package tana.daithanh.lichvannien;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -10,6 +11,7 @@ public class ScreenShot extends AppCompatActivity {
 
     private DataSourceDanhNgon datasource;
     int trangthai=0;
+    Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +22,22 @@ public class ScreenShot extends AppCompatActivity {
 
 
 
+        handler.postDelayed(myLoad, 3100);
 
-        Intent myIten=new Intent(ScreenShot.this,MainActivity.class);
-        startActivity(myIten);
 
     }
+
+    /*
+  Run khan gia
+   */
+    Runnable myLoad = new Runnable() {
+        @Override
+        public void run() {
+
+            Intent myIten=new Intent(ScreenShot.this,MainActivity.class);
+            startActivity(myIten);
+        }
+    };
 
     @Override
     protected void onResume() {

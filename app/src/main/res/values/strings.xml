@@ -2,5 +2,5 @@
     <string name="app_name">LichVanNien</string>
     <string name="title_home">Lịch Ngày</string>
     <string name="title_dashboard">Lịch Tháng</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_notifications">Tiện Ích</string>
 </resources>
