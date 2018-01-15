@@ -44,6 +44,8 @@ public class MainActivity extends FragmentActivity {
    DatePicker dpAm;
    LunarYearTools amDuong=new LunarYearTools();
 
+Boolean ok=true;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -113,6 +115,28 @@ public class MainActivity extends FragmentActivity {
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
+
+        int am[]= amDuong.convertSolar2Lunar(calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.YEAR),7);
+        dpAm.init(
+                am[2],
+                am[1]-1,
+               am[0],
+                new DatePicker.OnDateChangedListener(){
+
+                    @Override
+                    public void onDateChanged(DatePicker view,
+                                              int year, int monthOfYear,int dayOfMonth) {
+
+if(ok) {
+    ok=false;
+    int tam[] = amDuong.convertLunar2Solar(dayOfMonth, monthOfYear + 1, year, 0, 7);
+    dpDuong.updateDate(tam[2], tam[1] - 1, tam[0]);
+    ok = true;
+}
+
+
+                    }});
+
         dpDuong.init(
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
@@ -123,11 +147,15 @@ public class MainActivity extends FragmentActivity {
                     public void onDateChanged(DatePicker view,
                                               int year, int monthOfYear,int dayOfMonth) {
 
-
+                        if(ok) {
+                            ok = false;
                           int tam[]=amDuong.convertSolar2Lunar(dayOfMonth,monthOfYear+1,year,7);
-                        dpAm.updateDate(tam[2],tam[1],tam[0]);
+                        dpAm.updateDate(tam[2],tam[1]-1,tam[0]);
+                            ok = true;
+                        }
 
                     }});
+
 
         threadLoadData();
 

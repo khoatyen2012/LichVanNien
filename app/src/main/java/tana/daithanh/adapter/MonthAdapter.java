@@ -57,7 +57,7 @@ public class MonthAdapter extends BaseAdapter {
             if(duongTMG.contains("n"))
             {
                 duongTMG=duongTMG.substring(1);
-                textDuong.setTextColor(Color.parseColor("#C71585"));
+                textDuong.setTextColor(Color.parseColor("#00CC00"));
             }
             textDuong.setText(duongTMG);
 

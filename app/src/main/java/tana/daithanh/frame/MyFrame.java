@@ -16,6 +16,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebSettings.LayoutAlgorithm;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -59,6 +60,8 @@ public class MyFrame extends Fragment {
     RelativeLayout rlTitleTop;
     RelativeLayout rlBg;
     Random rd=new Random();
+    ImageView ivNam;
+    ImageView ivNu;
 
 
 
@@ -415,6 +418,45 @@ public class MyFrame extends Fragment {
                 {
                     rlBg.setBackgroundResource(R.drawable.nennang);
                 }
+
+
+                Integer chonNam=rd.nextInt(10);
+                Integer chonNu=rd.nextInt(10);
+                switch (chonNam)
+                {
+                    case 0:
+                        ivNam.setImageResource(R.drawable.namdodam);
+                        break;
+                    case 1:
+                        ivNam.setImageResource(R.drawable.namtim);
+                        break;
+                    case 2:
+                        ivNam.setImageResource(R.drawable.namxanhduong);
+                        break;
+                    case 3:
+                        ivNam.setImageResource(R.drawable.namve);
+                        break;
+                        default:
+                            ivNam.setImageResource(R.drawable.namkysu);
+                            break;
+                }
+
+
+                switch (chonNu)
+                {
+                    case 0:
+                        ivNu.setImageResource(R.drawable.nudodam);
+                        break;
+
+                    case 1:
+                        ivNu.setImageResource(R.drawable.nutim);
+                        break;
+
+                    default:
+                        ivNu.setImageResource(R.drawable.nuvanphong);
+                        break;
+                }
+
             }
 
         }
@@ -445,6 +487,8 @@ public class MyFrame extends Fragment {
         tvThu=(TextView)view.findViewById(R.id.tvThuMay);
         rlTitleTop=(RelativeLayout)view.findViewById(R.id.rlTitleTop);
         rlBg=(RelativeLayout)view.findViewById(R.id.rlBg);
+        ivNam=(ImageView)view.findViewById(R.id.ivNam);
+        ivNu=(ImageView)view.findViewById(R.id.ivNu);
 
 
         return view;

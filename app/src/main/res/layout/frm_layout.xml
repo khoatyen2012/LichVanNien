@@ -81,16 +81,18 @@
                 android:textSize="130dp"
                 android:textStyle="normal|bold" />
             <ImageView
+                android:id="@+id/ivNu"
                android:layout_centerVertical="true"
-                android:src="@drawable/nudodam2"
+                android:src="@drawable/nudodam"
 android:layout_alignParentRight="true"
                 android:layout_marginRight="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <ImageView
+                android:id="@+id/ivNam"
                 android:layout_centerVertical="true"
-                android:src="@drawable/namdodam"
+                android:src="@drawable/namxanhduong"
                 android:layout_marginLeft="2dp"
                 android:layout_alignParentLeft="true"
                 android:layout_width="wrap_content"

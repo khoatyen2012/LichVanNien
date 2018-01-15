@@ -22,7 +22,7 @@ public class ScreenShot extends AppCompatActivity {
 
 
 
-        handler.postDelayed(myLoad, 3100);
+        handler.postDelayed(myLoad, 1800);
 
 
     }
