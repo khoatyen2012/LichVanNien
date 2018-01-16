@@ -88,6 +88,13 @@ Boolean ok=true;
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        viewpagerThang.setCurrentItem(36);
+        viewpagerNgay.setCurrentItem(183);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

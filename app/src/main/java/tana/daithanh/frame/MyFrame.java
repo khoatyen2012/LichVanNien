@@ -200,6 +200,9 @@ public class MyFrame extends Fragment {
         tvThangAm.setText(am[1]+"/"+am[2]);
 
 
+        ivNam.setVisibility(View.VISIBLE);
+        ivNu.setVisibility(View.VISIBLE);
+
         if(am[0]==1 && am[1]==1)
         {
          content="Chúc mừng năm mới. Ngày mùng 1 tết cố truyền dân tộc";
@@ -389,10 +392,16 @@ public class MyFrame extends Fragment {
         {
             content="Ngày lễ giáng sinh";
             author="Noel";
+            rlBg.setBackgroundResource(R.drawable.giangsinh);
+            ivNam.setVisibility(View.GONE);
+            ivNu.setVisibility(View.GONE);
         }else  if(ngayduong==25 && thangduong==12)
         {
             content="Giáng sinh an lành";
             author="Noel";
+            rlBg.setBackgroundResource(R.drawable.giangsinh);
+            ivNam.setVisibility(View.GONE);
+            ivNu.setVisibility(View.GONE);
         }
         else {
 
@@ -436,6 +445,9 @@ public class MyFrame extends Fragment {
                     case 3:
                         ivNam.setImageResource(R.drawable.namve);
                         break;
+                    case 4:
+                        ivNam.setImageResource(R.drawable.nambetrap);
+                        break;
                         default:
                             ivNam.setImageResource(R.drawable.namkysu);
                             break;
@@ -451,10 +463,37 @@ public class MyFrame extends Fragment {
                     case 1:
                         ivNu.setImageResource(R.drawable.nutim);
                         break;
+                    case 2:
+                        ivNu.setImageResource(R.drawable.nuaodai);
+                        break;
+                    case 3:
+                        ivNu.setImageResource(R.drawable.nudoimu);
+                        break;
+
+                    case 4:
+                        ivNu.setImageResource(R.drawable.nuaobetrap);
+                        break;
+
+                    case 5:
+                        ivNu.setImageResource(R.drawable.nudoixe);
+                        break;
+                    case 6:
+                        ivNu.setImageResource(R.drawable.nudoinon);
+                        break;
+
 
                     default:
                         ivNu.setImageResource(R.drawable.nuvanphong);
                         break;
+                }
+
+                Integer chonNamNu=rd.nextInt(4);
+                if(chonNamNu==0)
+                {
+                   ivNam.setVisibility(View.GONE);
+                }else if(chonNamNu==1)
+                {
+                    ivNu.setVisibility(View.GONE);
                 }
 
             }

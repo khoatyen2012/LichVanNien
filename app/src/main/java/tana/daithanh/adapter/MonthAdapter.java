@@ -54,10 +54,16 @@ public class MonthAdapter extends BaseAdapter {
             }
 
             String duongTMG=lstMonth.get(position).get_MonthDuong();
+
+            ImageView ivCard=(ImageView)gridView.findViewById(R.id.ivCard);
             if(duongTMG.contains("n"))
             {
                 duongTMG=duongTMG.substring(1);
-                textDuong.setTextColor(Color.parseColor("#00CC00"));
+
+                ivCard.setBackgroundResource(R.drawable.oringer_card);
+            }else
+            {
+                ivCard.setBackgroundResource(R.drawable.light_card);
             }
             textDuong.setText(duongTMG);
 

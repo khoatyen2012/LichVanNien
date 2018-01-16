@@ -5,6 +5,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:id="@+id/ivCard"
         android:layout_width="wrap_content"
         android:background="@drawable/light_card"
         android:layout_height="70dp" />
