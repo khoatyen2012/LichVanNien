@@ -1,13 +1,11 @@
 package tana.daithanh.service;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.RingtoneManager;
-import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -15,11 +13,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import tana.daithanh.lichvannien.MainActivity;
-import tana.daithanh.lichvannien.MessageTanA;
 import tana.daithanh.lichvannien.R;
-import tana.daithanh.lichvannien.ScreenShot;
-
-import static android.support.v4.app.NotificationCompat.PRIORITY_MAX;
 
 /**
  * Created by Administrator on 17/01/2018.
@@ -33,13 +27,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        Log.d(TAG, "From: " + remoteMessage.getFrom());
-        Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
-        sendNotification(remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody());
+        Log.e(TAG, "From: " + remoteMessage.getFrom());
+        Log.e(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
+        sendNotification(remoteMessage.getNotification().getBody());
     }
 
-    private void sendNotification(String messageTitle,String messageBody) {
-        Intent intent = new Intent(this, MessageTanA.class);
+    private void sendNotification(String messageBody) {
+        Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("content", messageBody);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -48,7 +42,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.homnay)
-                .setContentTitle(""+messageTitle)
+                .setContentTitle("Lịch Tân Á")
                 .setContentText(messageBody)
                 .setAutoCancel(true)
                 .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })

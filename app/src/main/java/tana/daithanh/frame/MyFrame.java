@@ -25,6 +25,7 @@ import java.util.Calendar;
 import java.util.Random;
 
 import tana.daithanh.database.DanhNgon;
+import tana.daithanh.lichvannien.MainActivity;
 import tana.daithanh.lichvannien.R;
 import tana.daithanh.thaotac.AmDuong;
 import tana.daithanh.thaotac.LunarYearTools;
@@ -62,6 +63,7 @@ public class MyFrame extends Fragment {
     Random rd=new Random();
     ImageView ivNam;
     ImageView ivNu;
+    String ThongBaoSV="";
 
 
 
@@ -503,9 +505,14 @@ public class MyFrame extends Fragment {
 
         }
 
-
-        tvCadao.setText(""+content);
-        tvAuthor.setText(""+author);
+if(ViTri==183&&ThongBaoSV!="")
+{
+    tvCadao.setText("" + ThongBaoSV);
+    tvAuthor.setText("Tân Á Đại Thành");
+}else {
+    tvCadao.setText("" + content);
+    tvAuthor.setText("" + author);
+}
 
 
         super.onResume();
@@ -534,6 +541,9 @@ public class MyFrame extends Fragment {
 
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(),"fonts/Flamenco.ttf");
         tvTitleVannien.setTypeface(type);
+
+        MainActivity activity =(MainActivity) getActivity();
+        ThongBaoSV=""+activity.ThongBaoSV;
 
 
         return view;

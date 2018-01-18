@@ -1,5 +1,6 @@
 package tana.daithanh.lichvannien;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -45,6 +46,7 @@ public class MainActivity extends FragmentActivity {
    LunarYearTools amDuong=new LunarYearTools();
 
 Boolean ok=true;
+public  String ThongBaoSV="";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -98,6 +100,8 @@ Boolean ok=true;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         datasource = new DataSourceDanhNgon(this);
         datasource.open();
@@ -172,6 +176,20 @@ if(ok) {
 //        Log.e("xam",""+a[0]+"--"+a[1]+"--"+a[2]);
 
        // mTextMessage = (TextView) findViewById(R.id.message);
+
+                if(getIntent().getExtras()!=null){
+            //do your stuff
+
+                    Intent intent = getIntent();
+                    String msg = intent.getStringExtra("content");
+                   if(msg!=null)
+                   {
+                       ThongBaoSV=""+msg;
+                   }
+        }
+
+
+
 
 
 
