@@ -388,6 +388,9 @@ public class MyFrame extends Fragment {
         {
             content="Ngày thành lập quân đội nhân dân Việt Nam";
             author="CF";
+
+            ivNam.setImageResource(R.drawable.namcongan);
+            ivNu.setVisibility(View.GONE);
         }else  if(ngayduong==24 && thangduong==12)
         {
             content="Ngày lễ giáng sinh";
@@ -528,6 +531,9 @@ public class MyFrame extends Fragment {
         rlBg=(RelativeLayout)view.findViewById(R.id.rlBg);
         ivNam=(ImageView)view.findViewById(R.id.ivNam);
         ivNu=(ImageView)view.findViewById(R.id.ivNu);
+
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(),"fonts/Flamenco.ttf");
+        tvTitleVannien.setTypeface(type);
 
 
         return view;

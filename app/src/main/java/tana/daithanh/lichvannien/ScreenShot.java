@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import tana.daithanh.database.DataSourceDanhNgon;
 
@@ -19,6 +20,7 @@ public class ScreenShot extends AppCompatActivity {
         setContentView(R.layout.activity_screen_shot);
 
         datasource = new DataSourceDanhNgon(this);
+
 
 
 

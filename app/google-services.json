@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "607471686325",
+    "firebase_url": "https://lichvanlientana.firebaseio.com",
+    "project_id": "lichvanlientana",
+    "storage_bucket": "lichvanlientana.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:607471686325:android:9220b0155e53a811",
+        "android_client_info": {
+          "package_name": "tana.daithanh.lichvannien"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "607471686325-utihjt3jjm4m52cnm07tlvd9hv841hhe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tana.daithanh.lichvannien",
+            "certificate_hash": "a5bb74282a44cfdcc9d774037cc1dafc1a802c6c"
+          }
+        },
+        {
+          "client_id": "607471686325-gn7snuih82inpdatg60g4qj5lup54rph.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9Qt2aWmxkvFNJnMOX1qrHrlWBIk68O_Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "607471686325-gn7snuih82inpdatg60g4qj5lup54rph.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -111,7 +111,7 @@ public class MyFrameMonth extends Fragment {
         slNgay = c.get(Calendar.DAY_OF_MONTH);
         thangcv=c.get(Calendar.MONTH)+1;
         namcv=c.get(Calendar.YEAR);
-        txtTitle.setText("Tháng "+thangcv+" Năm "+namcv);
+        txtTitle.setText("Th "+thangcv+" - "+namcv);
 
         lst=new ArrayList<MonthCalender>();
 
