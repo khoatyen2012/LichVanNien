@@ -36,6 +36,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <ImageView
+    android:src="@drawable/share"
+        android:layout_marginLeft="3dp"
+    android:layout_width="wrap_content"
+        android:onClick="onClickShare"
+    android:layout_below="@+id/dpDuong"
+    android:layout_height="wrap_content" />
+
+    <ImageView
+        android:src="@drawable/about"
+        android:layout_marginRight="3dp"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:onClick="OnClick_About"
+        android:layout_below="@+id/dpDuong"
+        android:layout_height="wrap_content" />
+
     <DatePicker
         android:layout_below="@+id/ivConvert"
         android:id="@+id/dpCDAm"

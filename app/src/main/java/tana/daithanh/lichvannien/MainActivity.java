@@ -2,6 +2,7 @@ package tana.daithanh.lichvannien;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -47,6 +48,7 @@ public class MainActivity extends FragmentActivity {
 
 Boolean ok=true;
 public  String ThongBaoSV="";
+    Boolean doubleBackToExitPressedOnce = false;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -71,11 +73,37 @@ public  String ThongBaoSV="";
         }
     };
 
+    /**
+     * Chia sẻ dữ liệu qua facebook
+     * @param view
+     */
 
-//    public  void  OnClick_DoiNgay(View view)
-//    {
-//        vfHome.setDisplayedChild(3);
-//    }
+    public void onClickShare(View view)
+    {
+        try {
+
+                Intent share = new Intent(android.content.Intent.ACTION_SEND);
+                share.setType("text/plain");
+                share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+
+                // Add data to the intent, the receiving app will decide
+                // what to do with it.
+                share.putExtra(Intent.EXTRA_SUBJECT, "Mon Ngon Moi Ngay");
+                share.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName());
+
+                startActivity(Intent.createChooser(share, "Chia sẻ cho bạn bè !"));
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+    }
+
+
+    public  void  OnClick_About(View view)
+    {
+        vfHome.setDisplayedChild(3);
+    }
 
     public void OnClick_HomNayThang(View view)
     {
@@ -103,90 +131,97 @@ public  String ThongBaoSV="";
 
 
 
-        datasource = new DataSourceDanhNgon(this);
-        datasource.open();
-        lstVN = new ArrayList<DanhNgon>();
+      try {
 
-        vfHome=(ViewFlipper) findViewById(R.id.viewFliper);
+          datasource = new DataSourceDanhNgon(this);
+          datasource.open();
+          lstVN = new ArrayList<DanhNgon>();
 
-        viewpagerNgay = (ViewPager) findViewById(R.id.viewpagerNgay);
-        adapterNgay = new FrameAdapter(getSupportFragmentManager(),lstVN);
-        adapterNgay.setmCount(360);
-        viewpagerNgay.setAdapter(adapterNgay);
-        viewpagerNgay.setCurrentItem(183);
+          vfHome=(ViewFlipper) findViewById(R.id.viewFliper);
 
-        viewpagerThang = (ViewPager) findViewById(R.id.viewpagerThang);
-        adapterThang = new FrameAdapterMonth(getSupportFragmentManager());
-        adapterThang.setmCount(72);
-        viewpagerThang.setAdapter(adapterThang);
-        viewpagerThang.setCurrentItem(36);
+          viewpagerNgay = (ViewPager) findViewById(R.id.viewpagerNgay);
+          adapterNgay = new FrameAdapter(getSupportFragmentManager(),lstVN);
+          adapterNgay.setmCount(360);
+          viewpagerNgay.setAdapter(adapterNgay);
+          viewpagerNgay.setCurrentItem(183);
 
-        dpDuong=(DatePicker)findViewById(R.id.dpDuong);
-        dpAm=(DatePicker)findViewById(R.id.dpCDAm);
+          viewpagerThang = (ViewPager) findViewById(R.id.viewpagerThang);
+          adapterThang = new FrameAdapterMonth(getSupportFragmentManager());
+          adapterThang.setmCount(72);
+          viewpagerThang.setAdapter(adapterThang);
+          viewpagerThang.setCurrentItem(36);
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
+          dpDuong=(DatePicker)findViewById(R.id.dpDuong);
+          dpAm=(DatePicker)findViewById(R.id.dpCDAm);
 
-        int am[]= amDuong.convertSolar2Lunar(calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.YEAR),7);
-        dpAm.init(
-                am[2],
-                am[1]-1,
-               am[0],
-                new DatePicker.OnDateChangedListener(){
+          Calendar calendar = Calendar.getInstance();
+          calendar.setTimeInMillis(System.currentTimeMillis());
 
-                    @Override
-                    public void onDateChanged(DatePicker view,
-                                              int year, int monthOfYear,int dayOfMonth) {
+          int am[]= amDuong.convertSolar2Lunar(calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.YEAR),7);
+          dpAm.init(
+                  am[2],
+                  am[1]-1,
+                  am[0],
+                  new DatePicker.OnDateChangedListener(){
 
-if(ok) {
-    ok=false;
-    int tam[] = amDuong.convertLunar2Solar(dayOfMonth, monthOfYear + 1, year, 0, 7);
-    dpDuong.updateDate(tam[2], tam[1] - 1, tam[0]);
-    ok = true;
-}
+                      @Override
+                      public void onDateChanged(DatePicker view,
+                                                int year, int monthOfYear,int dayOfMonth) {
 
-
-                    }});
-
-        dpDuong.init(
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH),
-                new DatePicker.OnDateChangedListener(){
-
-                    @Override
-                    public void onDateChanged(DatePicker view,
-                                              int year, int monthOfYear,int dayOfMonth) {
-
-                        if(ok) {
-                            ok = false;
-                          int tam[]=amDuong.convertSolar2Lunar(dayOfMonth,monthOfYear+1,year,7);
-                        dpAm.updateDate(tam[2],tam[1]-1,tam[0]);
-                            ok = true;
-                        }
-
-                    }});
+                          if(ok) {
+                              ok=false;
+                              int tam[] = amDuong.convertLunar2Solar(dayOfMonth, monthOfYear + 1, year, 0, 7);
+                              dpDuong.updateDate(tam[2], tam[1] - 1, tam[0]);
+                              ok = true;
+                          }
 
 
-        threadLoadData();
+                      }});
+
+          dpDuong.init(
+                  calendar.get(Calendar.YEAR),
+                  calendar.get(Calendar.MONTH),
+                  calendar.get(Calendar.DAY_OF_MONTH),
+                  new DatePicker.OnDateChangedListener(){
+
+                      @Override
+                      public void onDateChanged(DatePicker view,
+                                                int year, int monthOfYear,int dayOfMonth) {
+
+                          if(ok) {
+                              ok = false;
+                              int tam[]=amDuong.convertSolar2Lunar(dayOfMonth,monthOfYear+1,year,7);
+                              dpAm.updateDate(tam[2],tam[1]-1,tam[0]);
+                              ok = true;
+                          }
+
+                      }});
+
+
+          threadLoadData();
 
 //        amDuong=new AmDuong();
 //
 //        int a[]= amDuong.convertSolar2Lunar(9,9,1989,7);
 //        Log.e("xam",""+a[0]+"--"+a[1]+"--"+a[2]);
 
-       // mTextMessage = (TextView) findViewById(R.id.message);
+          // mTextMessage = (TextView) findViewById(R.id.message);
 
-                if(getIntent().getExtras()!=null){
-            //do your stuff
+          if(getIntent().getExtras()!=null){
+              //do your stuff
 
-                    Intent intent = getIntent();
-                    String msg = intent.getStringExtra("content");
-                   if(msg!=null)
-                   {
-                       ThongBaoSV=""+msg;
-                   }
-        }
+              Intent intent = getIntent();
+              String msg = intent.getStringExtra("content");
+              if(msg!=null)
+              {
+                  ThongBaoSV=""+msg;
+              }
+          }
+
+      }catch (Exception ex)
+      {
+
+      }
 
 
 
@@ -247,6 +282,26 @@ Load du lieu vao arraylist
         }
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, getString(R.string.doubleclick),
+                Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 
 }

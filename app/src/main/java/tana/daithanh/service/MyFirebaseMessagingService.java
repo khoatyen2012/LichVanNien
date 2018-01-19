@@ -41,7 +41,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 PendingIntent.FLAG_ONE_SHOT);
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.homnay)
+                .setSmallIcon(R.drawable.ic_launcher)
                 .setContentTitle("Lịch Tân Á")
                 .setContentText(messageBody)
                 .setAutoCancel(true)

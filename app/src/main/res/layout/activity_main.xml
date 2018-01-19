@@ -31,7 +31,7 @@
 
         <include
             android:id="@+id/lnOu4"
-            layout="@layout/altp_layout"
+            layout="@layout/about_layout"
             />
 
     </ViewFlipper>

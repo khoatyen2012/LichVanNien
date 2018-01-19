@@ -3,4 +3,5 @@
     <string name="title_home">Lịch Ngày</string>
     <string name="title_dashboard">Lịch Tháng</string>
     <string name="title_notifications">Tiện Ích</string>
+    <string name="doubleclick">Nhấn Back 2 lần liên tiếp để thoát !</string>
 </resources>
