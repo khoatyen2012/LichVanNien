@@ -56,7 +56,14 @@ public class MyFrameMonth extends Fragment {
     public MyFrameMonth(Integer ViTri) {
         super();
 
-        this.ViTri=ViTri;
+       try {
+
+           this.ViTri=ViTri;
+
+       }catch (Exception ex)
+       {
+
+       }
 
 
     }

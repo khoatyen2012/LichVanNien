@@ -76,8 +76,15 @@ public class MyFrame extends Fragment {
     public MyFrame(Integer ViTri,ArrayList<DanhNgon> lstVN) {
         super();
 
+      try {
+
           this.ViTri=ViTri;
-        this.lstVN=lstVN;
+          this.lstVN=lstVN;
+
+      }catch (Exception ex)
+      {
+
+      }
 
 
     }
@@ -277,6 +284,10 @@ public class MyFrame extends Fragment {
             {
                 content="Ngày thầy thuốc Việt Nam";
                 author="Lương y như từ mẫu";
+
+                ivNam.setImageResource(R.drawable.nambacsi);
+                ivNu.setVisibility(View.GONE);
+
             }else  if(ngayduong==8 && thangduong==3)
             {
                 content="Ngày quốc tế phụ nữ";
@@ -378,14 +389,26 @@ public class MyFrame extends Fragment {
             {
                 content="Ngày Nhà Giáo Việt Nam";
                 author="Bụi phấn";
+
+                ivNam.setImageResource(R.drawable.namthaygiao);
+                ivNu.setVisibility(View.GONE);
+
             }else  if(ngayduong==23 && thangduong==11)
             {
                 content="Ngày thành lập hội chữ thập đỏ Việt Nam";
                 author="Cộng đồng";
+
+                ivNam.setImageResource(R.drawable.nambacsi);
+                ivNu.setVisibility(View.GONE);
+
             }else  if(ngayduong==1 && thangduong==12)
             {
                 content="Ngày toàn thế giới chống xi-đa";
                 author="HIV AIDS";
+
+                ivNam.setImageResource(R.drawable.nambacsi);
+                ivNu.setVisibility(View.GONE);
+
             }else  if(ngayduong==19 && thangduong==12)
             {
                 content="Ngày toàn quốc kháng chiến";
