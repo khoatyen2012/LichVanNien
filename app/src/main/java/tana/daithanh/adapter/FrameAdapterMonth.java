@@ -3,6 +3,7 @@ package tana.daithanh.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import tana.daithanh.frame.MyFrameMonth;
  * Created by Manh on 1/6/2018.
  */
 
-public class FrameAdapterMonth extends FragmentPagerAdapter {
+public class FrameAdapterMonth extends FragmentStatePagerAdapter {
 
     int mCount;
 

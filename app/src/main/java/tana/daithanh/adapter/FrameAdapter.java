@@ -4,6 +4,7 @@ package tana.daithanh.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
 import tana.daithanh.database.DanhNgon;
@@ -14,7 +15,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
-public class FrameAdapter extends FragmentPagerAdapter {
+public class FrameAdapter extends FragmentStatePagerAdapter {
 
     int mCount;
     ArrayList<DanhNgon> lstVN;

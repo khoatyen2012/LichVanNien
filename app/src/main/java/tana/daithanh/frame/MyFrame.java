@@ -381,6 +381,10 @@ public class MyFrame extends Fragment {
             {
                 content="Ngày Hallowen";
                 author="Bí Ngô";
+
+                ivNu.setImageResource(R.drawable.nuhalowen);
+                ivNam.setVisibility(View.GONE);
+
             }else  if(ngayduong==9 && thangduong==11)
             {
                 content="Ngày pháp luật Việt Nam";
