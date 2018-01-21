@@ -220,14 +220,24 @@ public class MyFrame extends Fragment {
             {
                 content="Chúc mừng năm mới. Ngày mùng 1 tết cố truyền dân tộc";
                 author="Xuân đã về";
+
+                ivNam.setImageResource(R.drawable.namtetdo);
+                ivNu.setImageResource(R.drawable.nutetdo);
+
             }else  if(am[0]==2 && am[1]==1)
             {
                 content="Mùng 1 tết cha mùng 2 tết mẹ mùng 3 tết thầy";
                 author="Mùng 2 tết";
+                ivNam.setImageResource(R.drawable.nubanhtrung);
+                ivNu.setImageResource(R.drawable.namduahau);
             }else  if(am[0]==3 && am[1]==1)
             {
                 content="Mùng 3 tết thầy";
                 author="Mùng 3 tết";
+
+                ivNam.setImageResource(R.drawable.nubanhtrung);
+                ivNu.setImageResource(R.drawable.nutetdo);
+
             }else  if(am[0]==15 && am[1]==1)
             {
                 content="Ngày dằm tháng giêng";
@@ -238,8 +248,12 @@ public class MyFrame extends Fragment {
                 author="Tết hàn thực";
             }else  if(am[0]==10 && am[1]==3)
             {
-                content="Ngày dỗ tổ hùng vương";
+                content="Ngày dỗ tổ hùng vương. Vua hùng đã có công dựng nước";
                 author="Vua Hùng";
+
+                ivNam.setImageResource(R.drawable.namvuahung);
+                ivNu.setVisibility(View.GONE);
+
             }else  if(am[0]==15 && am[1]==4)
             {
                 content="Ngày lễ phật đản";
@@ -248,18 +262,27 @@ public class MyFrame extends Fragment {
             {
                 content="Ngày tết đoan ngọ";
                 author="Tết đoan ngọ";
+
+
+
             }else  if(am[0]==15 && am[1]==7)
             {
-                content="Ngày lễ vu lan";
-                author="Chức nữ";
+                content="Công cha như núi thái sơn. Nghĩa mẹ như nước trong nguồn chảy ra";
+                author="Ngày lễ vu lan";
             }else  if(am[0]==15 && am[1]==8)
             {
                 content="Ngày tết trung thu";
                 author="Chị hằng";
+                ivNam.setImageResource(R.drawable.namduahau);
+                ivNu.setVisibility(View.GONE);
             }else  if(am[0]==9 && am[1]==9)
             {
                 content="Ngày tết cửu trùng";
                 author="Diệt sâu bọ";
+
+                ivNam.setImageResource(R.drawable.dietsaubo);
+                ivNu.setVisibility(View.GONE);
+
             }else  if(am[0]==10 && am[1]==10)
             {
                 content="Ngày tết thường tân";
@@ -280,6 +303,10 @@ public class MyFrame extends Fragment {
             {
                 content="Ngày lễ tình nhân";
                 author="Valentine";
+
+                ivNu.setImageResource(R.drawable.namtinhyeu);
+                ivNam.setVisibility(View.GONE);
+
             }else  if(ngayduong==27 && thangduong==2)
             {
                 content="Ngày thầy thuốc Việt Nam";
@@ -292,6 +319,10 @@ public class MyFrame extends Fragment {
             {
                 content="Ngày quốc tế phụ nữ";
                 author="Yêu thương";
+
+                ivNam.setImageResource(R.drawable.namtinhyeu);
+                ivNu.setVisibility(View.GONE);
+
             }else  if(ngayduong==26 && thangduong==3)
             {
                 content="Ngày thành lập Đoàn TNCS Hồ Chí Minh";
@@ -304,14 +335,26 @@ public class MyFrame extends Fragment {
             {
                 content="GIẢI PHÓNG MIỀN NAM";
                 author="Giải Phóng";
+
+                ivNam.setImageResource(R.drawable.namcongan);
+                ivNu.setImageResource(R.drawable.nuhaiquan);
+
             }else  if(ngayduong==1 && thangduong==5)
             {
                 content="Ngày quốc tế lao động";
                 author="Lao động";
+
+                ivNam.setImageResource(R.drawable.namkysu);
+                ivNu.setImageResource(R.drawable.nudoixe);
+
             }else  if(ngayduong==7 && thangduong==5)
             {
                 content="Ngày chiến thắng điện biên phủ";
                 author="Đừng ngủ quên trên chiến thắng";
+
+                ivNam.setImageResource(R.drawable.namcongan);
+                ivNu.setImageResource(R.drawable.nuhaiquan);
+
             }else  if(ngayduong==13 && thangduong==5)
             {
                 content="Ngày của mẹ !";
@@ -345,6 +388,10 @@ public class MyFrame extends Fragment {
             {
                 content="Ngày thương binh liệt sĩ";
                 author="Tổ quốc ghi công";
+
+                ivNam.setImageResource(R.drawable.namcongan);
+                ivNu.setImageResource(R.drawable.nuhaiquan);
+
             }else  if(ngayduong==28 && thangduong==7)
             {
                 content="Ngày công đoàn Việt nam";
@@ -353,6 +400,10 @@ public class MyFrame extends Fragment {
             {
                 content="Ngày tổng khởi nghĩa";
                 author="Cách mạng tháng 8";
+
+                ivNam.setImageResource(R.drawable.namcongan);
+                ivNu.setImageResource(R.drawable.nuhaiquan);
+
             }else  if(ngayduong==2 && thangduong==9)
             {
                 content="Ngày quốc khánh";
@@ -361,6 +412,10 @@ public class MyFrame extends Fragment {
             {
                 content="Ngày thành lập mặt trận tổ quốc Việt nam";
                 author="Việt Nam";
+
+                ivNam.setImageResource(R.drawable.namcongan);
+                ivNu.setImageResource(R.drawable.nuhaiquan);
+
             }else  if(ngayduong==1 && thangduong==10)
             {
                 content="Ngày quốc tế người cao tuổi";
@@ -369,6 +424,10 @@ public class MyFrame extends Fragment {
             {
                 content="Ngày giải phóng Thủ Đô";
                 author="Hà Nội";
+
+                ivNam.setImageResource(R.drawable.namcongan);
+                ivNu.setImageResource(R.drawable.nuhaiquan);
+
             }else  if(ngayduong==13 && thangduong==10)
             {
                 content="Ngày doanh nhân Việt Nam";
@@ -514,7 +573,7 @@ public class MyFrame extends Fragment {
                             break;
 
                         case 5:
-                            ivNu.setImageResource(R.drawable.nudoixe);
+                            ivNu.setImageResource(R.drawable.nuvanphong);
                             break;
                         case 6:
                             ivNu.setImageResource(R.drawable.nudoinon);
@@ -522,7 +581,7 @@ public class MyFrame extends Fragment {
 
 
                         default:
-                            ivNu.setImageResource(R.drawable.nuvanphong);
+                            ivNu.setImageResource(R.drawable.nudoixe);
                             break;
                     }
 
