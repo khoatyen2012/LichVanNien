@@ -520,7 +520,7 @@ public class MyFrame extends Fragment {
                         rlBg.setBackgroundResource(R.drawable.nentuyet);
                     }else if(chon==3)
                     {
-                        rlBg.setBackgroundResource(R.drawable.nenxanh);
+                        rlBg.setBackgroundResource(R.drawable.nenvang);
                     }else
                     {
                         rlBg.setBackgroundResource(R.drawable.nennang);
