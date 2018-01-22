@@ -4,14 +4,52 @@
     android:background="@drawable/nennang"
     android:layout_height="match_parent">
 
+
+
+
     <TextView
+        android:layout_marginBottom="20dp"
+        android:layout_above="@+id/tvTamThe"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:textStyle="bold"
+        android:textColor="@android:color/black"
         android:textAlignment="center"
         android:fontFamily="serif"
-        android:text="Author: Ban Kiểm Soát Tập Đoàn Tân Á Đại Thành"
+        android:text="Bản quyền: Ban Kiểm Soát Tập Đoàn Tân Á Đại Thành"
         android:textSize="20dp"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:layout_above="@+id/ivSlolo"
+        android:id="@+id/tvTamThe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="TÂM THẾ VỮNG VÀNG, TẦM CAO TỎA SÁNG"
+        android:textAlignment="center"
+android:layout_marginBottom="40dp"
+        android:textSize="14dp"
+        android:textColor="@android:color/black"
+
+        android:textStyle="italic" />
+
+
+    <ImageView
+        android:id="@+id/ivSlolo"
+        android:layout_width="wrap_content"
+        android:layout_centerVertical="true"
+        android:background="@drawable/sologen"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_marginTop="50dp"
+        android:id="@+id/ivFooter"
+    android:layout_below="@+id/ivSlolo"
+        android:layout_width="match_parent"
+        android:layout_centerVertical="true"
+        android:background="@drawable/bieutuongnammoi"
         android:layout_height="wrap_content" />
 
 

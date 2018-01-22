@@ -3,22 +3,25 @@
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-
+    android:background="@drawable/nennang"
     tools:context="tana.daithanh.lichvannien.MainActivity"
     android:layout_height="match_parent">
 
+
+
     <RelativeLayout
-        android:background="#0099FF"
+
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp">
         <TextView
+            android:background="@drawable/buttontitle"
             android:id="@+id/txtTitle"
             android:layout_centerInParent="true"
             android:fontFamily="serif"
             android:text="Tháng 01 năm 2018"
             android:textColor="@android:color/white"
-            android:textSize="30dp"
+            android:textSize="25dp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -26,18 +29,17 @@
 
     <RelativeLayout
         android:layout_weight="2"
-android:background="@drawable/nentuyet"
+
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/ibToDayMonth"
             android:layout_centerHorizontal="true"
             android:layout_above="@+id/llThu"
 android:onClick="OnClick_HomNayThang"
-android:layout_marginBottom="5dp"
-      android:background="@drawable/logo"
-
+android:layout_marginBottom="3dp"
+      android:src="@drawable/logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -46,17 +48,20 @@ android:layout_marginBottom="5dp"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:background="#0099FF"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/button"
             android:layout_height="wrap_content">
 
 
             <TextView
                 android:text="CN"
                 android:layout_weight="1"
-                android:textColor="#FF4500"
-                android:layout_marginLeft="15dp"
+                android:textColor="#ea4a4a"
+
                 android:textStyle="bold"
                 android:layout_width="0dp"
+                android:gravity="center"
                 android:textSize="20dp"
                 android:layout_height="wrap_content" />
 
@@ -65,8 +70,9 @@ android:layout_marginBottom="5dp"
                 android:text="T2"
                 android:textSize="20dp"
                 android:layout_weight="1"
-                android:textColor="@color/origon"
+                android:textColor="@android:color/black"
                 android:textStyle="bold"
+                android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
@@ -74,7 +80,8 @@ android:layout_marginBottom="5dp"
                 android:text="T3"
                 android:layout_weight="1"
                 android:textSize="20dp"
-                android:textColor="@color/origon"
+                android:gravity="center"
+                android:textColor="@android:color/black"
                 android:textStyle="bold"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
@@ -83,8 +90,9 @@ android:layout_marginBottom="5dp"
             <TextView
                 android:text="T4"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:layout_width="0dp"
-                android:textColor="@color/origon"
+                android:textColor="@android:color/black"
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:layout_height="wrap_content" />
@@ -92,9 +100,10 @@ android:layout_marginBottom="5dp"
 
             <TextView
                 android:text="T5"
+                android:gravity="center"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:textColor="@color/origon"
+                android:textColor="@android:color/black"
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:layout_height="wrap_content" />
@@ -102,21 +111,24 @@ android:layout_marginBottom="5dp"
 
             <TextView
                 android:text="T6"
+                android:gravity="center"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:textStyle="bold"
-                android:textColor="@color/origon"
+                android:textColor="@android:color/black"
                 android:textSize="20dp"
                 android:layout_height="wrap_content" />
 
 
             <TextView
                 android:text="T7"
+                android:gravity="center"
                 android:layout_weight="1"
-                android:textColor="@color/origon"
+                android:textColor="@android:color/black"
                 android:textStyle="bold"
                 android:layout_width="0dp"
                 android:textSize="20dp"
+
                 android:layout_height="wrap_content" />
 
 
@@ -137,7 +149,7 @@ android:layout_marginBottom="5dp"
 
         <GridView
             android:id="@+id/gvMonth"
-android:background="@drawable/nennang"
+
             android:verticalSpacing="1dp"
             android:horizontalSpacing="1dp"
             android:stretchMode="columnWidth"

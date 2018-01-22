@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class MyFrameMonth extends Fragment {
     Integer namcv;
     Integer ViTri;
     TextView txtTitle;
-    ImageButton ibToDayMonth;
+    ImageView ibToDayMonth;
    // AmDuong amDuong=new AmDuong();
     LunarYearTools amDuong=new LunarYearTools();
     public MyFrameMonth()
@@ -76,7 +77,7 @@ public class MyFrameMonth extends Fragment {
 
          context=container.getContext();
          txtTitle=(TextView)view.findViewById(R.id.txtTitle);
-         ibToDayMonth=(ImageButton)view.findViewById(R.id.ibToDayMonth);
+         ibToDayMonth=(ImageView)view.findViewById(R.id.ibToDayMonth);
          gridView=(GridView)view.findViewById(R.id.gvMonth);
 
      }catch (Exception ex)
@@ -110,18 +111,22 @@ public class MyFrameMonth extends Fragment {
          if(ViTri==36) {
 
 
-             ibToDayMonth.setBackgroundResource(R.drawable.logo);
+             ibToDayMonth.setImageResource(R.drawable.logo);
 
          }else
          {
-             ibToDayMonth.setBackgroundResource(R.drawable.homnay);
+             ibToDayMonth.setImageResource(R.drawable.homnay);
              int tam=ViTri-36;
              c.add(Calendar.MONTH,tam);
          }
          slNgay = c.get(Calendar.DAY_OF_MONTH);
          thangcv=c.get(Calendar.MONTH)+1;
          namcv=c.get(Calendar.YEAR);
-         txtTitle.setText("Th "+thangcv+" - "+namcv);
+         if(thangcv<10) {
+             txtTitle.setText("0" + thangcv + " - " + namcv);
+         }else {
+             txtTitle.setText("" + thangcv + " - " + namcv);
+         }
 
          lst=new ArrayList<MonthCalender>();
 

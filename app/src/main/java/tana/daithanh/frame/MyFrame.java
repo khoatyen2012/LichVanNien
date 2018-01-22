@@ -507,7 +507,7 @@ public class MyFrame extends Fragment {
                 {
 
 
-                    Integer chon=am[0]*am[1];
+                    Integer chon=am[0]+(am[1]*31);
                     content=""+lstVN.get(chon).getContent();
                     author=""+lstVN.get(chon).getAuthor();
 
