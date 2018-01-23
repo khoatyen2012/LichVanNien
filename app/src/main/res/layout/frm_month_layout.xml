@@ -18,8 +18,8 @@
             android:background="@drawable/buttontitle"
             android:id="@+id/txtTitle"
             android:layout_centerInParent="true"
-            android:fontFamily="serif"
-            android:text="Tháng 01 năm 2018"
+
+            android:text="01 - 2018"
             android:textColor="@android:color/white"
             android:textSize="25dp"
             android:textStyle="bold"
