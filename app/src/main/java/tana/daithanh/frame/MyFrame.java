@@ -7,14 +7,9 @@ import android.os.Bundle;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.webkit.WebSettings.LayoutAlgorithm;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -27,7 +22,6 @@ import java.util.Random;
 import tana.daithanh.database.DanhNgon;
 import tana.daithanh.lichvannien.MainActivity;
 import tana.daithanh.lichvannien.R;
-import tana.daithanh.thaotac.AmDuong;
 import tana.daithanh.thaotac.LunarYearTools;
 
 /**

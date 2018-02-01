@@ -6,25 +6,19 @@ import android.os.Bundle;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.LinkedList;
-import java.util.List;
 
 import tana.daithanh.adapter.MonthAdapter;
-import tana.daithanh.lichvannien.MainActivity;
 import tana.daithanh.lichvannien.R;
 import tana.daithanh.mode.MonthCalender;
-import tana.daithanh.thaotac.AmDuong;
 import tana.daithanh.thaotac.LunarYearTools;
 
 /**

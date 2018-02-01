@@ -22,7 +22,7 @@
 
 
     <TextView
-        android:layout_above="@+id/ivSlolo"
+
         android:id="@+id/tvTamThe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,21 +32,24 @@
 android:layout_marginBottom="40dp"
         android:textSize="14dp"
         android:textColor="@android:color/black"
-
+android:layout_centerInParent="true"
         android:textStyle="italic" />
 
-
     <ImageView
-        android:id="@+id/ivSlolo"
+        android:layout_above="@+id/ivFooter"
+        android:src="@drawable/share"
+        android:layout_marginLeft="3dp"
         android:layout_width="wrap_content"
-        android:layout_centerVertical="true"
-        android:background="@drawable/sologen"
+        android:onClick="onClickShare"
+
         android:layout_height="wrap_content" />
+
 
     <ImageView
         android:layout_marginTop="50dp"
         android:id="@+id/ivFooter"
-    android:layout_below="@+id/ivSlolo"
+  android:layout_alignParentBottom="true"
+        android:layout_marginBottom="90dp"
         android:layout_width="match_parent"
         android:layout_centerVertical="true"
         android:background="@drawable/bieutuongnammoi"

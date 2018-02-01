@@ -37,10 +37,10 @@
         android:layout_height="wrap_content" />
 
     <ImageView
-    android:src="@drawable/share"
+    android:src="@drawable/thenao"
         android:layout_marginLeft="3dp"
     android:layout_width="wrap_content"
-        android:onClick="onClickShare"
+        android:onClick="onClickALTP"
     android:layout_below="@+id/dpDuong"
     android:layout_height="wrap_content" />
 

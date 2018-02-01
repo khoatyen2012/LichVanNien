@@ -5,15 +5,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.TextView;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -24,8 +20,8 @@ import tana.daithanh.adapter.FrameAdapter;
 
 import tana.daithanh.adapter.FrameAdapterMonth;
 import tana.daithanh.database.DanhNgon;
+import tana.daithanh.database.DataSourceALTP;
 import tana.daithanh.database.DataSourceDanhNgon;
-import tana.daithanh.thaotac.AmDuong;
 import tana.daithanh.thaotac.LunarYearTools;
 
 public class MainActivity extends FragmentActivity {
@@ -39,6 +35,7 @@ public class MainActivity extends FragmentActivity {
 
     ViewFlipper vfHome;
     private DataSourceDanhNgon datasource;
+    private DataSourceALTP dataaltp;
    //AmDuong amDuong;
    private ArrayList<DanhNgon> lstVN;
 
@@ -59,10 +56,12 @@ public  String ThongBaoSV="";
                 case R.id.navigation_home:
                    // mTextMessage.setText(R.string.title_home);
                     vfHome.setDisplayedChild(0);
+                    viewpagerNgay.setCurrentItem(183);
                     return true;
                 case R.id.navigation_dashboard:
                    // mTextMessage.setText(R.string.title_dashboard);
                     vfHome.setDisplayedChild(1);
+                    viewpagerThang.setCurrentItem(36);
                     return true;
                 case R.id.navigation_notifications:
                    // mTextMessage.setText(R.string.title_notifications);
@@ -117,6 +116,12 @@ public  String ThongBaoSV="";
         viewpagerNgay.setCurrentItem(183);
     }
 
+    public  void  onClickALTP(View view)
+    {
+        Intent myIten=new Intent(MainActivity.this,AiLaTrieuPhu.class);
+        startActivity(myIten);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -135,6 +140,9 @@ public  String ThongBaoSV="";
 
           datasource = new DataSourceDanhNgon(this);
           datasource.open();
+          dataaltp=new DataSourceALTP(this);
+
+
           lstVN = new ArrayList<DanhNgon>();
 
           vfHome=(ViewFlipper) findViewById(R.id.viewFliper);
