@@ -87,7 +87,7 @@ public  String ThongBaoSV="";
 
                 // Add data to the intent, the receiving app will decide
                 // what to do with it.
-                share.putExtra(Intent.EXTRA_SUBJECT, "Mon Ngon Moi Ngay");
+                share.putExtra(Intent.EXTRA_SUBJECT, "Lịch Vạn Niên");
                 share.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName());
 
                 startActivity(Intent.createChooser(share, "Chia sẻ cho bạn bè !"));
@@ -118,8 +118,25 @@ public  String ThongBaoSV="";
 
     public  void  onClickALTP(View view)
     {
-        Intent myIten=new Intent(MainActivity.this,AiLaTrieuPhu.class);
-        startActivity(myIten);
+//        Intent myIten=new Intent(MainActivity.this,AiLaTrieuPhu.class);
+//        startActivity(myIten);
+
+        try {
+
+            Intent share = new Intent(android.content.Intent.ACTION_SEND);
+            share.setType("text/plain");
+            share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+
+            // Add data to the intent, the receiving app will decide
+            // what to do with it.
+            share.putExtra(Intent.EXTRA_SUBJECT, "Lịch Vạn Niên");
+            share.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName());
+
+            startActivity(Intent.createChooser(share, "Chia sẻ cho bạn bè !"));
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
     }
 
     @Override

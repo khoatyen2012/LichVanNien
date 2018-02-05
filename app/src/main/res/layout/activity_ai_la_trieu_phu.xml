@@ -14,8 +14,12 @@
             layout="@layout/altp_home" />
 
         <include
-            android:id="@+id/lnOu1"
+            android:id="@+id/lnOu2"
             layout="@layout/altp_ingame" />
+
+        <include
+            android:id="@+id/lnOu3"
+            layout="@layout/sha_altp" />
 
 
 

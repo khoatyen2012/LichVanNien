@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class DataSourceALTP {
     private SQLiteDatabase database;
-    private MySQLiteHelper dbHelper;
+    private MySQLiteHelperALTP dbHelper;
     private String[] allColumns = {
             "question",
             "_id",
@@ -28,9 +28,10 @@ public class DataSourceALTP {
             "truecase"};
 
     public DataSourceALTP(Context context) {
-        dbHelper = new MySQLiteHelper(context);
+        dbHelper = new MySQLiteHelperALTP(context);
         try {
             dbHelper.createDataBase();
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -40,6 +41,7 @@ public class DataSourceALTP {
 
     public void open() throws SQLException {
         database = dbHelper.getWritableDatabase();
+
     }
 
     public void close() {
@@ -52,13 +54,14 @@ public class DataSourceALTP {
     // Lấy tất cả dữ liệu
     public ArrayList<Object> getAllNews() {
 
+
         ArrayList<Object> news = new ArrayList<Object>();
 
         Cursor cursor = database.query("Question", allColumns,
                 null, null, null, null, "_id");
 
-
         cursor.moveToFirst();
+
 
         while (!cursor.isAfterLast()) {
             Question n = cursorToNews(cursor);

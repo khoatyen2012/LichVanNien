@@ -538,10 +538,10 @@ public class MyFrame extends Fragment {
                             ivNam.setImageResource(R.drawable.namve);
                             break;
                         case 4:
-                            ivNam.setImageResource(R.drawable.nambetrap);
+                            ivNam.setImageResource(R.drawable.namkysu);
                             break;
                         default:
-                            ivNam.setImageResource(R.drawable.namkysu);
+                            ivNam.setImageResource(R.drawable.nambetrap);
                             break;
                     }
 

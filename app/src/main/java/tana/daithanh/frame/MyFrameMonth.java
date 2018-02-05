@@ -90,7 +90,7 @@ public class MyFrameMonth extends Fragment {
      try {
          c = Calendar.getInstance();
          int slNgay;
-         thangduong=c.get(Calendar.MONTH)+1;
+         thangduong=c.get(Calendar.MONTH);
          ngayhomnay=0;
 
          if(ViTri==36) {
