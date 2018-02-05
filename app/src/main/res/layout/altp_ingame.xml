@@ -53,6 +53,16 @@
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
+        <TextView
+            android:id="@+id/tvQuestion"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:textSize="17dp"
+            android:text="Đêm nay (5/2), toàn miền Bắc tiếp tục chìm trong giá rét với nền nhiệt về đêm dưới 10 độ C, vùng núi cao nhiệt độ chỉ dưới 3 độ C, có băng giá. Ngày mai trời tiếp tục rét, không có nắng"
+            android:textColor="#ffffff"/>
+
     </RelativeLayout>
 
     <RelativeLayout
