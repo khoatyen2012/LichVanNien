@@ -48,19 +48,19 @@
     <RelativeLayout
         android:layout_weight="3"
         android:background="@drawable/question"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
         <TextView
             android:id="@+id/tvQuestion"
-
+android:layout_centerHorizontal="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:textSize="17dp"
-            android:text="Đêm nay (5/2), toàn miền Bắc tiếp tục chìm trong giá rét với nền nhiệt về đêm dưới 10 độ C, vùng núi cao nhiệt độ chỉ dưới 3 độ C, có băng giá. Ngày mai trời tiếp tục rét, không có nắng"
+            android:text="Câu 1: Đêm nay (5/2), toàn miền Bắc tiếp tục chìm trong giá rét với nền nhiệt về đêm dưới 10 độ C, vùng núi cao nhiệt độ chỉ dưới 3 độ C, có băng giá. Ngày mai trời tiếp tục rét, không có nắng"
             android:textColor="#ffffff"/>
 
     </RelativeLayout>
@@ -112,48 +112,56 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
+            <TextView
+                android:paddingTop="6dp"
                 android:id="@+id/btA"
+          android:textAlignment="center"
                 android:text="A: Nhật Bản"
                 android:textColor="@android:color/white"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                android:fontFamily="sans-serif"
+                android:onClick="onClickBtA"
                 android:background="@drawable/answer_panel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <Button
+            <TextView
+                android:paddingTop="6dp"
                 android:id="@+id/btB"
                 android:text="B: Nhật Bản"
+                android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                android:fontFamily="sans-serif"
+                android:onClick="onClickBtB"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/answer_panel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <Button
+            <TextView
+                android:paddingTop="6dp"
                 android:id="@+id/btC"
                 android:text="C: Nhật Bản"
+                android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                android:fontFamily="sans-serif"
+                android:onClick="onClickBtC"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/answer_panel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <Button
+            <TextView
+                android:paddingTop="6dp"
                 android:id="@+id/btD"
                 android:text="D: Nhật Bản"
                 android:textColor="@android:color/white"
                 android:textSize="20dp"
+                android:textAlignment="center"
                 android:textStyle="bold"
-                android:fontFamily="sans-serif"
+                android:onClick="onClickBtD"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/answer_panel"
                 android:layout_width="wrap_content"
