@@ -1,13 +1,20 @@
 package tana.daithanh.lichvannien;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -34,6 +41,8 @@ public class AiLaTrieuPhu extends Activity {
     TextView btDad;
     private int mCaseTrue = 0;
     private int mSelect = 0;
+    ImageView ivLaiVanSam;
+    final Animation animation = new AlphaAnimation(1, 0);
 
 
 
@@ -48,11 +57,17 @@ public class AiLaTrieuPhu extends Activity {
         btDab=(TextView)findViewById(R.id.btB);
         btDac=(TextView)findViewById(R.id.btC);
         btDad=(TextView)findViewById(R.id.btD);
+        ivLaiVanSam=(ImageView)findViewById(R.id.ivLaiVanSam);
 
         datasource = new DataSourceALTP(this);
         datasource.open();
         lstVN = new ArrayList<Question>();
         player = new MediaPlayer();
+
+        animation.setDuration(500); // duration - half a second
+        animation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
+        animation.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
+        animation.setRepeatMode(Animation.REVERSE);
 
         threadLoadData();
 
@@ -66,6 +81,8 @@ public class AiLaTrieuPhu extends Activity {
                 mSelect=1;
                 doCallSound("da.mp3");
                 btDaa.setBackgroundResource(R.drawable.answer_panel_select);
+                ivLaiVanSam.setImageResource(R.drawable.suyluan);
+                handler.postDelayed(myDuaRa, 3700);
             }
         } catch (Exception ex) {
 
@@ -79,6 +96,8 @@ public class AiLaTrieuPhu extends Activity {
                 mSelect=2;
                 doCallSound("db.mp3");
                 btDab.setBackgroundResource(R.drawable.answer_panel_select);
+                ivLaiVanSam.setImageResource(R.drawable.suyluan);
+                handler.postDelayed(myDuaRa, 3700);
             }
         } catch (Exception ex) {
 
@@ -92,6 +111,8 @@ public class AiLaTrieuPhu extends Activity {
                 mSelect=3;
                 doCallSound("dc.mp3");
                 btDac.setBackgroundResource(R.drawable.answer_panel_select);
+                ivLaiVanSam.setImageResource(R.drawable.suyluan);
+                handler.postDelayed(myDuaRa, 3700);
             }
         } catch (Exception ex) {
 
@@ -105,7 +126,274 @@ public class AiLaTrieuPhu extends Activity {
                 mSelect=4;
                 doCallSound("dd.mp3");
                 btDad.setBackgroundResource(R.drawable.answer_panel_select);
+                ivLaiVanSam.setImageResource(R.drawable.suyluan);
+                handler.postDelayed(myDuaRa, 3700);
             }
+        } catch (Exception ex) {
+
+        }
+    }
+
+    Runnable myDuaRa = new Runnable() {
+        @Override
+        public void run() {
+            Random rd = new Random();
+            int ckNow = rd.nextInt(4);
+            if (ckNow != 0) {
+                doCallSound("now1.mp3");
+            } else {
+                doCallSound("now2.mp3");
+            }
+            handler.postDelayed(myDapAn, 3000);
+        }
+    };
+
+    Runnable myDapAn = new Runnable() {
+        @Override
+        public void run() {
+            handler.removeCallbacks(myDuaRa);
+            xuly();
+        }
+    };
+
+    /*
+   Xu ly dung hay sai
+    */
+    void xuly() {
+        handler.removeCallbacks(myDapAn);
+        if (mCaseTrue == mSelect) {
+
+            ivLaiVanSam.setImageResource(R.drawable.traloidung);
+
+
+
+            level++;
+
+            if (mSelect == 1) {
+                doCallSound("true_a.mp3");
+                btDaa.setBackgroundResource(R.drawable.answer_panel_true);
+                btDaa.startAnimation(animation);
+
+
+            } else if (mSelect == 2) {
+                doCallSound("true_b.mp3");
+                btDab.setBackgroundResource(R.drawable.answer_panel_true);
+                btDab.startAnimation(animation);
+            } else if (mSelect == 3) {
+                doCallSound("true_c.mp3");
+                btDac.setBackgroundResource(R.drawable.answer_panel_true);
+                btDac.startAnimation(animation);
+            } else if (mSelect == 4) {
+                doCallSound("true_d.mp3");
+                btDad.setBackgroundResource(R.drawable.answer_panel_true);
+                btDad.startAnimation(animation);
+            }
+            if (level == 11 || level == 15 || level == 16) {
+                handler.postDelayed(myBeforDungNhapNhay, 4000);
+            } else {
+                handler.postDelayed(myDungNhapNhay, 4000);
+            }
+
+
+        } else {
+            ivLaiVanSam.setImageResource(R.drawable.traloisai);
+
+
+            if (mCaseTrue == 1) {
+                doCallSound("lose_a.mp3");
+                btDaa.setBackgroundResource(R.drawable.answer_panel_true);
+                btDaa.startAnimation(animation);
+            } else if (mCaseTrue == 2) {
+                doCallSound("lose_b.mp3");
+                btDab.setBackgroundResource(R.drawable.answer_panel_true);
+                btDab.startAnimation(animation);
+            } else if (mCaseTrue == 3) {
+                doCallSound("lose_c.mp3");
+                btDac.setBackgroundResource(R.drawable.answer_panel_true);
+                btDac.startAnimation(animation);
+            } else if (mCaseTrue == 4) {
+                doCallSound("lose_d.mp3");
+                btDad.setBackgroundResource(R.drawable.answer_panel_true);
+                btDad.startAnimation(animation);
+            }
+
+
+            if (mSelect == 1) {
+
+                btDaa.setBackgroundResource(R.drawable.answer_panel_false);
+                btDaa.startAnimation(animation);
+            } else if (mSelect == 2) {
+
+                btDab.setBackgroundResource(R.drawable.answer_panel_false);
+                btDab.startAnimation(animation);
+            } else if (mSelect == 3) {
+
+                btDac.setBackgroundResource(R.drawable.answer_panel_false);
+                btDac.startAnimation(animation);
+            } else if (mSelect == 4) {
+
+                btDad.setBackgroundResource(R.drawable.answer_panel_false);
+                btDad.startAnimation(animation);
+            }
+
+            handler.postDelayed(myDungNhapNhay, 4000);
+
+        }
+    }
+
+    Runnable myBeforDungNhapNhay = new Runnable() {
+        @Override
+        public void run() {
+
+            handler.removeCallbacks(myBeforDungNhapNhay);
+            if (level == 11) {
+                doCallSound("pass_good.mp3");
+            } else if (level == 15) {
+                doCallSound("pass_14.mp3");
+            } else if (level == 16) {
+                doCallSound("pass_15.mp3");
+                mSelect = 0;
+                level = 1;
+            }
+            handler.postDelayed(myDungNhapNhay, 10000);
+        }
+    };
+
+    Runnable myDungNhapNhay = new Runnable() {
+        @Override
+        public void run() {
+
+            doStopNhapNhay();
+            if (mCaseTrue == mSelect) {
+                subget();
+            } else {
+                if (mSelect == 0) {
+                    doCallSound("pass_good.mp3");
+                    handler.postDelayed(myKetThuc, 8000);
+                } else {
+                    doRestartGame();
+                }
+            }
+        }
+    };
+
+    Runnable myKetThuc = new Runnable() {
+        @Override
+        public void run() {
+            handler.removeCallbacks(myKetThuc);
+
+            doRestartGame();
+        }
+    };
+
+    /*
+Thiet lap lai game
+*/
+    void doRestartGame() {
+        try {
+
+
+            Random rd=new Random();
+            int chon=rd.nextInt(2);
+            if(chon==0) {
+
+
+            }
+
+
+
+            AlertDialog.Builder  builder=    new AlertDialog.Builder(this)
+                    .setTitle("" + getString(R.string.app_name))
+                    .setMessage("" + getString(R.string.app_name))
+                    .setIcon(R.drawable.thenao)
+
+                    .setPositiveButton(R.string.app_name, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                            onClickShare();
+                            onClickShowBackNull(1);
+                            level = 1;
+                        }
+                    })
+                    .setNegativeButton(R.string.app_name, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // do nothing
+                            doCallSound("tambiet.mp3");
+                            onClickShowBackLeft(1);
+
+                            level = 1;
+                        }
+                    })
+                    .setCancelable(false)
+                    ;
+
+
+            AlertDialog alert = builder.create();
+            alert.show();
+
+            ((Button)alert.findViewById(android.R.id.button1)).setBackgroundResource(R.drawable.altp);
+            ((Button)alert.findViewById(android.R.id.button1)).setTextColor(getResources().getColor(android.R.color.white));
+
+            ((Button)alert.findViewById(android.R.id.button2)).setBackgroundResource(R.drawable.altp);
+            ((Button)alert.findViewById(android.R.id.button2)).setTextColor(getResources().getColor(android.R.color.white));
+
+
+
+            doSetDefault();
+
+
+        } catch (Exception ex) {
+
+        }
+    }
+
+    private void doSetDefault() {
+        mSelect = 0;
+//        ivNamMuoi.setImageResource(R.drawable.nammuoi);
+//        ivNamMuoi.setEnabled(true);
+//        ivHoiKhanGia.setImageResource(R.drawable.hoikhangia);
+//        ivHoiKhanGia.setEnabled(true);
+//        ivNguoiThan.setImageResource(R.drawable.nguoithan);
+//        ivNguoiThan.setEnabled(true);
+//        ivDoiCauHoi.setImageResource(R.drawable.doicauhoi);
+//        ivDoiCauHoi.setEnabled(true);
+
+    }
+
+    public void onClickShare() {
+
+        try {
+
+            Intent share = new Intent(android.content.Intent.ACTION_SEND);
+            share.setType("text/plain");
+            share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+
+            // Add data to the intent, the receiving app will decide
+            // what to do with it.
+            share.putExtra(Intent.EXTRA_SUBJECT, "Bao Dan Tri voi Ai La Trieu Phu");
+            share.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName());
+
+            startActivity(Intent.createChooser(share, "Share link!"));
+        } catch (Exception ex) {
+
+        }
+    }
+
+    /*
+Dung nhap nhay
+*/
+    void doStopNhapNhay() {
+        try {
+            handler.removeCallbacks(myDungNhapNhay);
+            btDaa.clearAnimation();
+            btDab.clearAnimation();
+            btDac.clearAnimation();
+            btDad.clearAnimation();
+            btDaa.setBackgroundResource(R.drawable.answer_panel);
+            btDab.setBackgroundResource(R.drawable.answer_panel);
+            btDac.setBackgroundResource(R.drawable.answer_panel);
+            btDad.setBackgroundResource(R.drawable.answer_panel);
+//            mSelect = 0;
         } catch (Exception ex) {
 
         }
@@ -359,6 +647,12 @@ Chuyen layout voi hieu ung tu ben trai bay sang
         } catch (Exception ex) {
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
 
