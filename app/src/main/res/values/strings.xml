@@ -4,4 +4,9 @@
     <string name="title_dashboard">Lịch Tháng</string>
     <string name="title_notifications">Tiện Ích</string>
     <string name="doubleclick">Nhấn Back 2 lần liên tiếp để thoát !</string>
+    <string name="title_dungcuoc">Dừng cuộc chơi</string>
+    <string name="content_dungcuoc">Bạn đã phải dừng cuộc chơi </string>
+    <string name="tiep">Tiếp</string>
+    <string name="dung">Dừng</string>
+    <string name="chiase">.</string>
 </resources>

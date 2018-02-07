@@ -44,6 +44,9 @@ public class AiLaTrieuPhu extends Activity {
     ImageView ivLaiVanSam;
     final Animation animation = new AlphaAnimation(1, 0);
 
+    private int mNamMuoi = 0;
+    ImageView ivNamMuoi;
+
 
 
     @Override
@@ -58,6 +61,7 @@ public class AiLaTrieuPhu extends Activity {
         btDac=(TextView)findViewById(R.id.btC);
         btDad=(TextView)findViewById(R.id.btD);
         ivLaiVanSam=(ImageView)findViewById(R.id.ivLaiVanSam);
+        ivNamMuoi=(ImageView) findViewById(R.id.ivNamMuoi);
 
         datasource = new DataSourceALTP(this);
         datasource.open();
@@ -70,6 +74,111 @@ public class AiLaTrieuPhu extends Activity {
         animation.setRepeatMode(Animation.REVERSE);
 
         threadLoadData();
+
+    }
+
+    /*
+View 50/50
+*/
+    public void onClickNamMuoi(View view) {
+        try {
+            if (mSelect == 0) {
+                doCallSound("nammuoi.mp3");
+                mSelect = 5;
+                ivNamMuoi.setImageResource(R.drawable.nammuoi2);
+                ivNamMuoi.setEnabled(false);
+                handler.postDelayed(myLoaiBo, 4000);
+            }
+        } catch (Exception ex) {
+
+        }
+    }
+
+    /*
+run loai bo
+*/
+    Runnable myLoaiBo = new Runnable() {
+        @Override
+        public void run() {
+
+            myLoaiBo();
+        }
+    };
+
+    /*
+50/50
+*/
+    void myLoaiBo() {
+        handler.removeCallbacks(myLoaiBo);
+        ArrayList<Integer> lstTMG = new ArrayList<Integer>();
+        if (mCaseTrue == 1) {
+            lstTMG.add(2);
+            lstTMG.add(3);
+            lstTMG.add(4);
+        } else if (mCaseTrue == 2) {
+            lstTMG.add(1);
+            lstTMG.add(3);
+            lstTMG.add(4);
+        } else if (mCaseTrue == 3) {
+            lstTMG.add(2);
+            lstTMG.add(1);
+            lstTMG.add(4);
+        } else if (mCaseTrue == 4) {
+            lstTMG.add(2);
+            lstTMG.add(3);
+            lstTMG.add(1);
+        }
+
+        Random rd = new Random();
+        int chon = rd.nextInt(lstTMG.size());
+        int loai = lstTMG.get(chon);
+        lstTMG.remove(chon);
+
+        int chon1 = rd.nextInt(lstTMG.size());
+        int loai1 = lstTMG.get(chon1);
+        lstTMG.remove(chon1);
+
+
+        switch (loai) {
+            case 1: {
+                btDaa.setText("");
+                break;
+            }
+            case 2: {
+                btDab.setText("");
+                break;
+            }
+            case 3: {
+                btDac.setText("");
+                break;
+            }
+            case 4: {
+                btDad.setText("");
+                break;
+            }
+        }
+
+        switch (loai1) {
+            case 1: {
+                btDaa.setText("");
+                break;
+            }
+            case 2: {
+                btDab.setText("");
+                break;
+            }
+            case 3: {
+                btDac.setText("");
+                break;
+            }
+            case 4: {
+                btDad.setText("");
+                break;
+            }
+        }
+        mSelect = 0;
+        mNamMuoi = lstTMG.get(0);
+
 
     }
 
@@ -274,6 +383,7 @@ public class AiLaTrieuPhu extends Activity {
                     doRestartGame();
                 }
             }
+            mSelect = 0;
         }
     };
 
@@ -288,40 +398,34 @@ public class AiLaTrieuPhu extends Activity {
 
     /*
 Thiet lap lai game
-*/
+ */
     void doRestartGame() {
         try {
 
 
-            Random rd=new Random();
-            int chon=rd.nextInt(2);
-            if(chon==0) {
-
-
-            }
 
 
 
             AlertDialog.Builder  builder=    new AlertDialog.Builder(this)
-                    .setTitle("" + getString(R.string.app_name))
-                    .setMessage("" + getString(R.string.app_name))
+                    .setTitle("" + getString(R.string.title_dungcuoc))
+                    .setMessage("" + getString(R.string.content_dungcuoc))
                     .setIcon(R.drawable.thenao)
 
-                    .setPositiveButton(R.string.app_name, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // continue with delete
-                            onClickShare();
-                            onClickShowBackNull(1);
-                            level = 1;
-                        }
-                    })
-                    .setNegativeButton(R.string.app_name, new DialogInterface.OnClickListener() {
+
+                    .setNegativeButton(R.string.chiase, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // do nothing
-                            doCallSound("tambiet.mp3");
-                            onClickShowBackLeft(1);
+                            onClickShare();
+                            onClickShowBackNull(0);
+                        }
+                    }).setNeutralButton(R.string.dung, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // do nothing
 
-                            level = 1;
+
+                            doCallSound("tambiet.mp3");
+                            onClickShowBackLeft(0);
+
                         }
                     })
                     .setCancelable(false)
@@ -331,13 +435,13 @@ Thiet lap lai game
             AlertDialog alert = builder.create();
             alert.show();
 
-            ((Button)alert.findViewById(android.R.id.button1)).setBackgroundResource(R.drawable.altp);
-            ((Button)alert.findViewById(android.R.id.button1)).setTextColor(getResources().getColor(android.R.color.white));
 
-            ((Button)alert.findViewById(android.R.id.button2)).setBackgroundResource(R.drawable.altp);
+
+            ((Button)alert.findViewById(android.R.id.button2)).setBackgroundResource(R.drawable.share);
             ((Button)alert.findViewById(android.R.id.button2)).setTextColor(getResources().getColor(android.R.color.white));
 
-
+            ((Button)alert.findViewById(android.R.id.button3)).setBackgroundResource(R.drawable.dialog);
+            ((Button)alert.findViewById(android.R.id.button3)).setTextColor(getResources().getColor(android.R.color.white));
 
             doSetDefault();
 
@@ -349,6 +453,7 @@ Thiet lap lai game
 
     private void doSetDefault() {
         mSelect = 0;
+        level=1;
 //        ivNamMuoi.setImageResource(R.drawable.nammuoi);
 //        ivNamMuoi.setEnabled(true);
 //        ivHoiKhanGia.setImageResource(R.drawable.hoikhangia);
