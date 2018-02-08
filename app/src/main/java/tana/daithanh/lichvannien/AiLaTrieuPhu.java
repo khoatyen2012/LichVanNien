@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +16,7 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -46,6 +48,26 @@ public class AiLaTrieuPhu extends Activity {
 
     private int mNamMuoi = 0;
     ImageView ivNamMuoi;
+    ImageView ivKhanGia;
+
+    TextView tvPA;
+    TextView tvPB;
+    TextView tvPC;
+    TextView tvPD;
+
+    Button btPA;
+    Button btPB;
+    Button btPC;
+    Button btPD;
+
+    private ImageView ivNguoiThan;
+    TextView tvDetailCall;
+    ImageView ivDoiCauHoi;
+    TextView tvTime;
+
+    private DemNguocRunnable mDemnguocRun;
+    private Handler mDemnguocHandler;
+    private int mTime = 91;
 
 
 
@@ -62,6 +84,27 @@ public class AiLaTrieuPhu extends Activity {
         btDad=(TextView)findViewById(R.id.btD);
         ivLaiVanSam=(ImageView)findViewById(R.id.ivLaiVanSam);
         ivNamMuoi=(ImageView) findViewById(R.id.ivNamMuoi);
+        ivKhanGia=(ImageView)findViewById(R.id.ivKhanGia);
+        ivNguoiThan = (ImageView) findViewById(R.id.ivNguoiThan);
+
+        tvPA = (TextView) findViewById(R.id.tvPA);
+        tvPB = (TextView) findViewById(R.id.tvPB);
+        tvPC = (TextView) findViewById(R.id.tvPC);
+        tvPD = (TextView) findViewById(R.id.tvPD);
+
+        btPA = (Button) findViewById(R.id.btPA);
+        btPB = (Button) findViewById(R.id.btPB);
+        btPC = (Button) findViewById(R.id.btPC);
+        btPD = (Button) findViewById(R.id.btPD);
+
+        tvDetailCall = (TextView) findViewById(R.id.tvDetailCall);
+        ivDoiCauHoi = (ImageView) findViewById(R.id.ivDoiCauHoi);
+        tvTime=(TextView) findViewById(R.id.tvTimes);
+
+        mDemnguocHandler = new Handler();
+        mDemnguocRun = new DemNguocRunnable();
+
+
 
         datasource = new DataSourceALTP(this);
         datasource.open();
@@ -74,6 +117,408 @@ public class AiLaTrieuPhu extends Activity {
         animation.setRepeatMode(Animation.REVERSE);
 
         threadLoadData();
+
+    }
+
+
+    /*
+    Show dem nguoc
+     */
+    private void showDemNguoc() {
+        try {
+            mTime = 91;
+            mDemnguocHandler.removeCallbacks(mDemnguocRun);
+            mDemnguocHandler.postDelayed(mDemnguocRun, 1000);
+        } catch (Exception ex) {
+
+        }
+    }
+
+    /*
+    Tao class dem nguoc
+     */
+    private class DemNguocRunnable implements Runnable {
+
+        @Override
+        public void run() {
+            // TODO Auto-generated method stub
+            handleDemnguoc();
+        }
+    }
+
+    /*
+    Tao hander dem nguoc
+     */
+    private void handleDemnguoc() {
+
+        try {
+            if(mSelect==0||mSelect == 5) {
+                mTime--;
+            }else
+            {
+                mDemnguocHandler.removeCallbacks(mDemnguocRun);
+            }
+
+            if (mTime < 0) {
+
+
+                mDemnguocHandler.removeCallbacks(mDemnguocRun);
+                tvTime.setTextColor(Color.parseColor("#FFFFFF"));
+                doCallSound("hetgio.mp3");
+                level = 1;
+                doRestartGame();
+
+
+            } else {
+                if (mTime <= 10) {
+                    tvTime.setTextColor(Color.RED);
+                } else {
+                    tvTime.setTextColor(Color.parseColor("#FFFFFF"));
+                }
+                tvTime.setText(mTime + " .");
+
+                mDemnguocHandler.postDelayed(mDemnguocRun, 1000);
+            }
+        } catch (Exception ex) {
+
+        }
+    }
+
+    public void onClickDoiCauHoi(View view) {
+        try {
+            if (mSelect == 0) {
+                ivDoiCauHoi.setImageResource(R.drawable.doicauhoi2);
+                ivDoiCauHoi.setEnabled(false);
+                subget();
+            }
+        } catch (Exception ex) {
+
+        }
+    }
+
+    /*
+  show hoi nguoi than
+   */
+    public void onClickHoiNguoiThan(View view) {
+        try {
+            if (mSelect == 0) {
+                mSelect = 5;
+                doCallSound("goinguoithan.mp3");
+                ivNguoiThan.setImageResource(R.drawable.nguoithan2);
+                ivNguoiThan.setEnabled(false);
+                handler.postDelayed(myNguoiThan, 3000);
+            }
+        } catch (Exception ex) {
+
+        }
+    }
+
+    /*
+    run nguoi than
+     */
+    Runnable myNguoiThan = new Runnable() {
+        @Override
+        public void run() {
+            handler.removeCallbacks(myNguoiThan);
+            onClickShowBackNull(4);
+        }
+    };
+
+
+    public void onClickCall1(View view) {
+        try {
+            doNguoiThan("" + view.getContentDescription());
+        } catch (Exception ex) {
+
+        }
+
+    }
+
+    /*
+Nguoi than phan hoi
+*/
+    void doNguoiThan(String name) {
+        String dnt = "";
+        Random rd = new Random();
+        int chon;
+        if (level <= 5) {
+            chon = rd.nextInt(10);
+        } else if (level <= 10) {
+            chon = rd.nextInt(6);
+        } else {
+            chon = rd.nextInt(4);
+        }
+        if (chon != 0) {
+            if (mCaseTrue == 1) {
+                dnt = "A";
+            } else if (mCaseTrue == 2) {
+                dnt = "B";
+            } else if (mCaseTrue == 3) {
+                dnt = "C";
+            } else {
+                dnt = "D";
+            }
+        } else {
+
+            if (mNamMuoi == 0) {
+                int fRd = rd.nextInt(4);
+                if (fRd == 0) {
+                    dnt = "A";
+                } else if (fRd == 1) {
+                    dnt = "B";
+                } else if (fRd == 2) {
+                    dnt = "C";
+                } else {
+                    dnt = "D";
+                }
+            } else {
+                if (mNamMuoi == 1) {
+                    dnt = "A";
+                } else if (mNamMuoi == 2) {
+                    dnt = "B";
+                } else if (mNamMuoi == 3) {
+                    dnt = "C";
+                } else {
+                    dnt = "D";
+                }
+            }
+        }
+        String mCall = "";
+        int callType = rd.nextInt(4);
+        if (callType == 0) {
+            mCall = "" + getString(R.string.call1);
+        } else if (callType == 1) {
+            mCall = "" + getString(R.string.call2);
+        } else if (callType == 2) {
+            mCall = "" + getString(R.string.call3);
+        } else {
+            mCall = "" + getString(R.string.call4);
+        }
+        tvDetailCall.setText(name + ":" + mCall + " " + dnt);
+        onClickShowBackNull(5);
+    }
+
+    /*
+  show play game
+   */
+    public void onClickShowPlayGame(View view) {
+        try {
+            onClickShowBackNull(1);
+            mSelect = 0;
+        } catch (Exception ex) {
+
+        }
+    }
+
+
+    /*
+View hoi y kien khan gia
+ */
+    public void onClickHoiYKien(View view) {
+        try {
+            if (mSelect == 0) {
+                doCallSound("khangia.mp3");
+                mSelect = 5;
+                ivKhanGia.setImageResource(R.drawable.hoikhangia1);
+                ivKhanGia.setEnabled(false);
+                handler.postDelayed(myKhanGia, 6100);
+            }
+        } catch (Exception ex) {
+
+        }
+    }
+
+    /*
+    Run khan gia
+     */
+    Runnable myKhanGia = new Runnable() {
+        @Override
+        public void run() {
+
+            doKhanGia();
+        }
+    };
+
+    /*
+Khan gia
+ */
+    void doKhanGia() {
+        handler.removeCallbacks(myKhanGia);
+        onClickShowBackNull(3);
+        int a = 0, b = 0, c = 0, d = 0;
+        Random rd = new Random();
+        int chon;
+        if (level <= 5) {
+            chon = rd.nextInt(10);
+        } else if (level <= 10) {
+            chon = rd.nextInt(7);
+        } else {
+            chon = rd.nextInt(5);
+        }
+
+        if (mNamMuoi == 0) {
+            if (mCaseTrue == 1) {
+                if (chon != 0) {
+                    a = rd.nextInt(35) + 40;
+                    b = rd.nextInt(101 - a);
+                    c = rd.nextInt(101 - (a + b));
+                    d = 100 - (a + b + c);
+
+                } else {
+                    a = rd.nextInt(101);
+                    b = rd.nextInt(101 - a);
+                    c = rd.nextInt(101 - (a + b));
+                    d = 100 - (a + b + c);
+                }
+            } else if (mCaseTrue == 2) {
+                if (chon != 0) {
+                    b = rd.nextInt(35) + 40;
+                    a = rd.nextInt(101 - b);
+                    c = rd.nextInt(101 - (a + b));
+                    d = 101 - (a + b + c);
+
+                } else {
+                    a = rd.nextInt(101);
+                    b = rd.nextInt(101 - a);
+                    c = rd.nextInt(101 - (a + b));
+                    d = 101 - (a + b + c);
+                }
+            } else if (mCaseTrue == 3) {
+                if (chon != 0) {
+                    c = rd.nextInt(35) + 40;
+                    b = rd.nextInt(101 - c);
+                    a = rd.nextInt(101 - (c + b));
+                    d = 101 - (a + b + c);
+
+                } else {
+                    a = rd.nextInt(101);
+                    b = rd.nextInt(101 - a);
+                    c = rd.nextInt(101 - (a + b));
+                    d = 101 - (a + b + c);
+                }
+            } else if (mCaseTrue == 4) {
+                if (chon != 0) {
+                    d = rd.nextInt(35) + 40;
+                    b = rd.nextInt(101 - d);
+                    c = rd.nextInt(101 - (d + b));
+                    a = 101 - (d + b + c);
+
+                } else {
+                    a = rd.nextInt(101);
+                    b = rd.nextInt(101 - a);
+                    c = rd.nextInt(101 - (a + b));
+                    d = 101 - (a + b + c);
+                }
+            }
+        } else {
+
+            switch (mCaseTrue) {
+                case 1: {
+                    if (chon != 0) {
+                        a = rd.nextInt(35) + 60;
+                    } else {
+                        a = rd.nextInt(55);
+                    }
+
+
+                    if (mNamMuoi == 2) {
+                        b = 101 - a;
+                    } else if (mNamMuoi == 3) {
+                        c = 101 - a;
+                    } else {
+                        d = 101 - a;
+                    }
+                    break;
+                }
+                case 2: {
+                    if (chon != 0) {
+                        b = rd.nextInt(35) + 60;
+                    } else {
+                        b = rd.nextInt(55);
+                    }
+
+                    if (mNamMuoi == 1) {
+                        a = 101 - b;
+                    } else if (mNamMuoi == 3) {
+                        c = 101 - b;
+                    } else {
+                        d = 101 - b;
+                    }
+                    break;
+                }
+                case 3: {
+                    if (chon != 0) {
+                        c = rd.nextInt(35) + 60;
+                    } else {
+                        c = rd.nextInt(55);
+                    }
+
+
+                    if (mNamMuoi == 2) {
+                        b = 101 - c;
+                    } else if (mNamMuoi == 1) {
+                        a = 101 - c;
+                    } else {
+                        d = 101 - c;
+                    }
+                    break;
+                }
+                case 4: {
+                    if (chon != 0) {
+                        d = rd.nextInt(35) + 60;
+                    } else {
+                        d = rd.nextInt(55);
+                    }
+
+
+                    if (mNamMuoi == 2) {
+                        b = 101 - d;
+                    } else if (mNamMuoi == 3) {
+                        c = 101 - d;
+                    } else if (mNamMuoi == 1) {
+                        a = 101 - d;
+                    }
+                    break;
+                }
+            }
+        }
+        tvPA.setText("" + a + "%");
+        tvPB.setText("" + b + "%");
+        tvPC.setText("" + c + "%");
+        tvPD.setText("" + d + "%");
+
+
+        int tmgW = a * 7;
+
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(140, tmgW);
+        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        params.rightMargin += 50;
+        params.leftMargin += 100;
+        params.bottomMargin += 60;
+        btPA.setLayoutParams(params);
+
+        tmgW = b * 7;
+        RelativeLayout.LayoutParams paramsB = new RelativeLayout.LayoutParams(140, tmgW);
+        paramsB.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        paramsB.leftMargin += 290;
+        paramsB.bottomMargin += 60;
+        btPB.setLayoutParams(paramsB);
+
+        tmgW = c * 7;
+        RelativeLayout.LayoutParams paramsC = new RelativeLayout.LayoutParams(140, tmgW);
+        paramsC.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        paramsC.leftMargin += 480;
+        paramsC.bottomMargin += 60;
+        btPC.setLayoutParams(paramsC);
+
+
+        tmgW = d * 7;
+        RelativeLayout.LayoutParams paramsD = new RelativeLayout.LayoutParams(140, tmgW);
+        paramsD.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        paramsD.leftMargin += 670;
+        paramsD.bottomMargin += 60;
+        btPD.setLayoutParams(paramsD);
+
 
     }
 
@@ -454,14 +899,14 @@ Thiet lap lai game
     private void doSetDefault() {
         mSelect = 0;
         level=1;
-//        ivNamMuoi.setImageResource(R.drawable.nammuoi);
-//        ivNamMuoi.setEnabled(true);
-//        ivHoiKhanGia.setImageResource(R.drawable.hoikhangia);
-//        ivHoiKhanGia.setEnabled(true);
-//        ivNguoiThan.setImageResource(R.drawable.nguoithan);
-//        ivNguoiThan.setEnabled(true);
-//        ivDoiCauHoi.setImageResource(R.drawable.doicauhoi);
-//        ivDoiCauHoi.setEnabled(true);
+        ivNamMuoi.setImageResource(R.drawable.nammuoi);
+        ivNamMuoi.setEnabled(true);
+        ivKhanGia.setImageResource(R.drawable.hoikhangia);
+        ivKhanGia.setEnabled(true);
+        ivNguoiThan.setImageResource(R.drawable.nguoithan);
+        ivNguoiThan.setEnabled(true);
+        ivDoiCauHoi.setImageResource(R.drawable.doicauhoi);
+        ivDoiCauHoi.setEnabled(true);
 
     }
 
@@ -513,9 +958,9 @@ Dung nhap nhay
     void subget() {
 
         try {
-            //showDemNguoc();
+            showDemNguoc();
 
-           // ivLaiVanSam.setImageResource(R.drawable.hoi);
+            ivLaiVanSam.setImageResource(R.drawable.hoi);
             if (level == 1) {
 
                 doCallSound("hoi1.mp3");

@@ -9,4 +9,16 @@
     <string name="tiep">Tiếp</string>
     <string name="dung">Dừng</string>
     <string name="chiase">.</string>
+    <string name="a">Bạn thân</string>
+    <string name="b">Bạn đểu</string>
+    <string name="c">Đồng nghiệp</string>
+    <string name="d">Người nhà</string>
+    <string name="e">Hàng xóm</string>
+    <string name="f">Bồ bịch</string>
+    <string name="immom">Bạn muốn gọi điện cho ai ?</string>
+    <string name="call1">Hình như là đáp án  </string>
+    <string name="call2">Không nhầm thì là đáp án  </string>
+    <string name="call3">Chắc là đáp án  </string>
+    <string name="call4">Chính xác là đáp án   </string>
+
 </resources>

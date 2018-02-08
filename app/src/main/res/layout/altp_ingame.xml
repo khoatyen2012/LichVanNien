@@ -16,6 +16,7 @@
             android:id="@+id/ivNguoiThan"
             android:layout_weight="1"
             android:src="@drawable/nguoithan"
+            android:onClick="onClickHoiNguoiThan"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
@@ -30,6 +31,7 @@
         <ImageView
             android:id="@+id/ivKhanGia"
             android:src="@drawable/hoikhangia"
+            android:onClick="onClickHoiYKien"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
@@ -37,6 +39,7 @@
         <ImageView
             android:id="@+id/ivDoiCauHoi"
             android:src="@drawable/doicauhoi"
+            android:onClick="onClickDoiCauHoi"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
