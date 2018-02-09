@@ -118,8 +118,16 @@ public  String ThongBaoSV="";
 
     public  void  onClickALTP(View view)
     {
-        Intent myIten=new Intent(MainActivity.this,AiLaTrieuPhu.class);
-        startActivity(myIten);
+        try
+        {
+            Intent myIten=new Intent(MainActivity.this,AiLaTrieuPhu.class);
+            startActivity(myIten);
+           // finish();
+        }catch (Exception ex)
+        {
+
+        }
+
 
 
     }

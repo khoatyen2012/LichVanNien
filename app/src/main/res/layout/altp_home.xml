@@ -51,6 +51,7 @@ android:text="Ai Là Triệu Phú"
             android:textSize="20dp"
             android:textColor="@android:color/white"
 android:layout_marginTop="20dp"
+            android:onClick="onClickVanNien"
             android:background="@drawable/answer_panel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

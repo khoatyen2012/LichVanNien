@@ -910,6 +910,19 @@ Thiet lap lai game
 
     }
 
+    public void  onClickVanNien(View view)
+    {
+        try {
+//            Intent myIten=new Intent(AiLaTrieuPhu.this,MainActivity.class);
+//            startActivity(myIten);
+            finish();
+        }catch (Exception ex)
+        {
+
+        }
+
+    }
+
     public void onClickShare() {
 
         try {
@@ -1069,6 +1082,8 @@ run loai bo
         doCallSound("batdauvaogame.mp3");
     }
 
+
+
     /*
 Phat am thanh
 */
@@ -1201,8 +1216,9 @@ Chuyen layout voi hieu ung tu ben trai bay sang
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         finish();
+        super.onBackPressed();
+
     }
 
 
