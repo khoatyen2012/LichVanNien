@@ -20,5 +20,20 @@
     <string name="call2">Không nhầm thì là đáp án  </string>
     <string name="call3">Chắc là đáp án  </string>
     <string name="call4">Chính xác là đáp án   </string>
+    <string name="cai1">1:200</string>
+    <string name="cai2">2:400</string>
+    <string name="cai3">3:600</string>
+    <string name="cai4">4:1000</string>
+    <string name="cai5">5:2000</string>
+    <string name="cai6">6:3000</string>
+    <string name="cai7">7:6.000</string>
+    <string name="cai8">8:10.000</string>
+    <string name="cai9">9:14.000</string>
+    <string name="cai10">10:22.000</string>
+    <string name="cai11">11:30.000</string>
+    <string name="cai12">12:40.000</string>
+    <string name="cai13">13:60.000</string>
+    <string name="cai14">14:85.000</string>
+    <string name="cai15">15:150.000</string>
 
 </resources>

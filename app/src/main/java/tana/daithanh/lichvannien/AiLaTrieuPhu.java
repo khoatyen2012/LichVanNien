@@ -36,6 +36,7 @@ public class AiLaTrieuPhu extends Activity {
     boolean alowMP3 = false;
     Handler handler = new Handler();
     private int level = 1;
+    private int nextlevel = 1;
     TextView tvQuestion;
     TextView btDaa;
     TextView btDab;
@@ -69,6 +70,22 @@ public class AiLaTrieuPhu extends Activity {
     private Handler mDemnguocHandler;
     private int mTime = 91;
 
+    TextView tvan1;
+    TextView tvan2;
+    TextView tvan3;
+    TextView tvan4;
+    TextView tvan5;
+    TextView tvan6;
+    TextView tvan7;
+    TextView tvan8;
+    TextView tvan9;
+    TextView tvan10;
+    TextView tvan11;
+    TextView tvan12;
+    TextView tvan13;
+    TextView tvan14;
+    TextView tvan15;
+
 
 
     @Override
@@ -100,6 +117,22 @@ public class AiLaTrieuPhu extends Activity {
         tvDetailCall = (TextView) findViewById(R.id.tvDetailCall);
         ivDoiCauHoi = (ImageView) findViewById(R.id.ivDoiCauHoi);
         tvTime=(TextView) findViewById(R.id.tvTimes);
+
+        tvan1 = (TextView) findViewById(R.id.tvan1);
+        tvan2 = (TextView) findViewById(R.id.tvan2);
+        tvan3 = (TextView) findViewById(R.id.tvan3);
+        tvan4 = (TextView) findViewById(R.id.tvan4);
+        tvan5 = (TextView) findViewById(R.id.tvan5);
+        tvan6 = (TextView) findViewById(R.id.tvan6);
+        tvan7 = (TextView) findViewById(R.id.tvan7);
+        tvan8 = (TextView) findViewById(R.id.tvan8);
+        tvan9 = (TextView) findViewById(R.id.tvan9);
+        tvan10 = (TextView) findViewById(R.id.tvan10);
+        tvan11 = (TextView) findViewById(R.id.tvan11);
+        tvan12 = (TextView) findViewById(R.id.tvan12);
+        tvan13 = (TextView) findViewById(R.id.tvan13);
+        tvan14 = (TextView) findViewById(R.id.tvan14);
+        tvan15 = (TextView) findViewById(R.id.tvan15);
 
         mDemnguocHandler = new Handler();
         mDemnguocRun = new DemNguocRunnable();
@@ -745,7 +778,7 @@ run loai bo
             if (level == 11 || level == 15 || level == 16) {
                 handler.postDelayed(myBeforDungNhapNhay, 4000);
             } else {
-                handler.postDelayed(myDungNhapNhay, 4000);
+                handler.postDelayed(myLevel, 4000);
             }
 
 
@@ -809,14 +842,14 @@ run loai bo
                 mSelect = 0;
                 level = 1;
             }
-            handler.postDelayed(myDungNhapNhay, 10000);
+            handler.postDelayed(myLevel, 10000);
         }
     };
 
     Runnable myDungNhapNhay = new Runnable() {
         @Override
         public void run() {
-
+            onClickShowBackNull(1);
             doStopNhapNhay();
             if (mCaseTrue == mSelect) {
                 subget();
@@ -831,6 +864,34 @@ run loai bo
             mSelect = 0;
         }
     };
+
+    Runnable myLevel = new Runnable() {
+        @Override
+        public void run() {
+            handler.removeCallbacks(myLevel);
+            onClickShowBackNull(6);
+            handler.postDelayed(myDungNhapNhay, 4000);
+        }
+    };
+
+    void doDefaultBackGround()
+    {
+        tvan1.setBackgroundResource(R.drawable.komau);
+        tvan2.setBackgroundResource(R.drawable.komau);
+        tvan3.setBackgroundResource(R.drawable.komau);
+        tvan4.setBackgroundResource(R.drawable.komau);
+        tvan5.setBackgroundColor(Color.parseColor("#339900"));
+        tvan6.setBackgroundResource(R.drawable.komau);
+        tvan7.setBackgroundResource(R.drawable.komau);
+        tvan8.setBackgroundResource(R.drawable.komau);
+        tvan9.setBackgroundResource(R.drawable.komau);
+        tvan10.setBackgroundColor(Color.parseColor("#339900"));
+        tvan11.setBackgroundResource(R.drawable.komau);
+        tvan12.setBackgroundResource(R.drawable.komau);
+        tvan13.setBackgroundResource(R.drawable.komau);
+        tvan14.setBackgroundResource(R.drawable.komau);
+        tvan15.setBackgroundColor(Color.parseColor("#339900"));
+    }
 
     Runnable myKetThuc = new Runnable() {
         @Override
