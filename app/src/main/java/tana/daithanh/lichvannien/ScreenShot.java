@@ -16,7 +16,7 @@ public class ScreenShot extends AppCompatActivity {
 
     private DataSourceDanhNgon datasource;
     private DataSourceALTP dataaltp;
-    int trangthai=0;
+   // int trangthai=0;
     Handler handler = new Handler();
     ImageView ivKySu;
     Random rd=new Random();
@@ -53,18 +53,19 @@ public class ScreenShot extends AppCompatActivity {
 
             Intent myIten=new Intent(ScreenShot.this,MainActivity.class);
             startActivity(myIten);
+            finish();
         }
     };
 
     @Override
     protected void onResume() {
-        if(trangthai==0)
-        {
-            trangthai++;
-        }else
-        {
-            finish();
-        }
+//        if(trangthai==0)
+//        {
+//            trangthai++;
+//        }else
+//        {
+//            finish();
+//        }
         super.onResume();
     }
 }

@@ -93,65 +93,74 @@ public class AiLaTrieuPhu extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ai_la_trieu_phu);
 
-        viewFlipper =(ViewFlipper) findViewById(R.id.vfALTP);
-        tvQuestion=(TextView) findViewById(R.id.tvQuestion);
-        btDaa=(TextView)findViewById(R.id.btA);
-        btDab=(TextView)findViewById(R.id.btB);
-        btDac=(TextView)findViewById(R.id.btC);
-        btDad=(TextView)findViewById(R.id.btD);
-        ivLaiVanSam=(ImageView)findViewById(R.id.ivLaiVanSam);
-        ivNamMuoi=(ImageView) findViewById(R.id.ivNamMuoi);
-        ivKhanGia=(ImageView)findViewById(R.id.ivKhanGia);
-        ivNguoiThan = (ImageView) findViewById(R.id.ivNguoiThan);
+        try {
 
-        tvPA = (TextView) findViewById(R.id.tvPA);
-        tvPB = (TextView) findViewById(R.id.tvPB);
-        tvPC = (TextView) findViewById(R.id.tvPC);
-        tvPD = (TextView) findViewById(R.id.tvPD);
+            viewFlipper =(ViewFlipper) findViewById(R.id.vfALTP);
+            tvQuestion=(TextView) findViewById(R.id.tvQuestion);
+            btDaa=(TextView)findViewById(R.id.btA);
+            btDab=(TextView)findViewById(R.id.btB);
+            btDac=(TextView)findViewById(R.id.btC);
+            btDad=(TextView)findViewById(R.id.btD);
+            ivLaiVanSam=(ImageView)findViewById(R.id.ivLaiVanSam);
+            ivNamMuoi=(ImageView) findViewById(R.id.ivNamMuoi);
+            ivKhanGia=(ImageView)findViewById(R.id.ivKhanGia);
+            ivNguoiThan = (ImageView) findViewById(R.id.ivNguoiThan);
 
-        btPA = (Button) findViewById(R.id.btPA);
-        btPB = (Button) findViewById(R.id.btPB);
-        btPC = (Button) findViewById(R.id.btPC);
-        btPD = (Button) findViewById(R.id.btPD);
+            tvPA = (TextView) findViewById(R.id.tvPA);
+            tvPB = (TextView) findViewById(R.id.tvPB);
+            tvPC = (TextView) findViewById(R.id.tvPC);
+            tvPD = (TextView) findViewById(R.id.tvPD);
 
-        tvDetailCall = (TextView) findViewById(R.id.tvDetailCall);
-        ivDoiCauHoi = (ImageView) findViewById(R.id.ivDoiCauHoi);
-        tvTime=(TextView) findViewById(R.id.tvTimes);
+            btPA = (Button) findViewById(R.id.btPA);
+            btPB = (Button) findViewById(R.id.btPB);
+            btPC = (Button) findViewById(R.id.btPC);
+            btPD = (Button) findViewById(R.id.btPD);
 
-        tvan1 = (TextView) findViewById(R.id.tvan1);
-        tvan2 = (TextView) findViewById(R.id.tvan2);
-        tvan3 = (TextView) findViewById(R.id.tvan3);
-        tvan4 = (TextView) findViewById(R.id.tvan4);
-        tvan5 = (TextView) findViewById(R.id.tvan5);
-        tvan6 = (TextView) findViewById(R.id.tvan6);
-        tvan7 = (TextView) findViewById(R.id.tvan7);
-        tvan8 = (TextView) findViewById(R.id.tvan8);
-        tvan9 = (TextView) findViewById(R.id.tvan9);
-        tvan10 = (TextView) findViewById(R.id.tvan10);
-        tvan11 = (TextView) findViewById(R.id.tvan11);
-        tvan12 = (TextView) findViewById(R.id.tvan12);
-        tvan13 = (TextView) findViewById(R.id.tvan13);
-        tvan14 = (TextView) findViewById(R.id.tvan14);
-        tvan15 = (TextView) findViewById(R.id.tvan15);
+            tvDetailCall = (TextView) findViewById(R.id.tvDetailCall);
+            ivDoiCauHoi = (ImageView) findViewById(R.id.ivDoiCauHoi);
+            tvTime=(TextView) findViewById(R.id.tvTimes);
 
-        mDemnguocHandler = new Handler();
-        mDemnguocRun = new DemNguocRunnable();
+            tvan1 = (TextView) findViewById(R.id.tvan1);
+            tvan2 = (TextView) findViewById(R.id.tvan2);
+            tvan3 = (TextView) findViewById(R.id.tvan3);
+            tvan4 = (TextView) findViewById(R.id.tvan4);
+            tvan5 = (TextView) findViewById(R.id.tvan5);
+            tvan6 = (TextView) findViewById(R.id.tvan6);
+            tvan7 = (TextView) findViewById(R.id.tvan7);
+            tvan8 = (TextView) findViewById(R.id.tvan8);
+            tvan9 = (TextView) findViewById(R.id.tvan9);
+            tvan10 = (TextView) findViewById(R.id.tvan10);
+            tvan11 = (TextView) findViewById(R.id.tvan11);
+            tvan12 = (TextView) findViewById(R.id.tvan12);
+            tvan13 = (TextView) findViewById(R.id.tvan13);
+            tvan14 = (TextView) findViewById(R.id.tvan14);
+            tvan15 = (TextView) findViewById(R.id.tvan15);
+
+            mDemnguocHandler = new Handler();
+            mDemnguocRun = new DemNguocRunnable();
 
 
 
-        datasource = new DataSourceALTP(this);
-        datasource.open();
-        lstVN = new ArrayList<Question>();
-        player = new MediaPlayer();
+            datasource = new DataSourceALTP(this);
+            datasource.open();
+            lstVN = new ArrayList<Question>();
+            player = new MediaPlayer();
 
-        animation.setDuration(500); // duration - half a second
-        animation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
-        animation.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
-        animation.setRepeatMode(Animation.REVERSE);
+            animation.setDuration(500); // duration - half a second
+            animation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
+            animation.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
+            animation.setRepeatMode(Animation.REVERSE);
+
+        }catch (Exception ex)
+        {
+
+        }
 
         threadLoadData();
 
     }
+
+
 
 
     /*
@@ -208,7 +217,7 @@ public class AiLaTrieuPhu extends Activity {
                 } else {
                     tvTime.setTextColor(Color.parseColor("#FFFFFF"));
                 }
-                tvTime.setText(mTime + " .");
+                tvTime.setText(mTime + "'");
 
                 mDemnguocHandler.postDelayed(mDemnguocRun, 1000);
             }
@@ -840,7 +849,7 @@ run loai bo
             } else if (level == 16) {
                 doCallSound("pass_15.mp3");
                 mSelect = 0;
-                level = 1;
+
             }
             handler.postDelayed(myLevel, 10000);
         }
@@ -870,7 +879,16 @@ run loai bo
         public void run() {
             handler.removeCallbacks(myLevel);
             onClickShowBackNull(6);
-            handler.postDelayed(myDungNhapNhay, 4000);
+            handler.postDelayed(nextlevl, 1000);
+        }
+    };
+
+    Runnable nextlevl = new Runnable() {
+        @Override
+        public void run() {
+            handler.removeCallbacks(nextlevl);
+            doRank(level-1);
+            handler.postDelayed(myDungNhapNhay, 1200);
         }
     };
 
@@ -950,6 +968,7 @@ Thiet lap lai game
             ((Button)alert.findViewById(android.R.id.button3)).setTextColor(getResources().getColor(android.R.color.white));
 
             doSetDefault();
+            doDefaultBackGround();
 
 
         } catch (Exception ex) {
@@ -969,12 +988,13 @@ Thiet lap lai game
         ivDoiCauHoi.setImageResource(R.drawable.doicauhoi);
         ivDoiCauHoi.setEnabled(true);
 
+
     }
 
     public void  onClickVanNien(View view)
     {
         try {
-//            Intent myIten=new Intent(AiLaTrieuPhu.this,MainActivity.class);
+//            Intent myIten=new Intent(AiLaTrieuPhu.this,ScreenShot.class);
 //            startActivity(myIten);
             finish();
         }catch (Exception ex)
@@ -1089,12 +1109,83 @@ Dung nhap nhay
             btDac.setText("C: " + lstTMG.get(k).getCasec());
             btDad.setText("D: " + lstTMG.get(k).getCased());
             mCaseTrue = Integer.parseInt(lstTMG.get(k).getTruecase());
-//            mNamMuoi = 0;
+            mNamMuoi = 0;
 //            doRank(level);
         } catch (Exception ex) {
 
         }
 
+    }
+
+    /*
+Tang hang cau hoi sau moi lan tyra loi dung
+*/
+    void doRank(int lv) {
+        doDefaultBackGround();
+        switch (lv) {
+
+            case 1: {
+                tvan1.setBackgroundColor(Color.parseColor("#008080"));
+                break;
+            }
+            case 2: {
+                tvan2.setBackgroundColor(Color.parseColor("#008080"));
+                break;
+            }
+            case 3: {
+                tvan3.setBackgroundColor(Color.parseColor("#008080"));
+                break;
+            }
+            case 4: {
+                tvan4.setBackgroundColor(Color.parseColor("#008080"));
+                break;
+            }
+            case 5: {
+                tvan5.setBackgroundColor(Color.parseColor("#008080"));
+                break;
+            }
+            case 6: {
+                tvan6.setBackgroundColor(Color.parseColor("#008080"));
+                break;
+            }
+            case 7: {
+                tvan7.setBackgroundColor(Color.parseColor("#008080"));
+                break;
+            }
+            case 8: {
+                tvan8.setBackgroundColor(Color.parseColor("#008080"));
+                break;
+            }
+            case 9: {
+                tvan9.setBackgroundColor(Color.parseColor("#008080"));
+                break;
+            }
+            case 10: {
+                tvan10.setBackgroundColor(Color.parseColor("#008080"));
+                break;
+            }
+            case 11: {
+                tvan11.setBackgroundColor(Color.parseColor("#008080"));
+                break;
+            }
+            case 12: {
+                tvan12.setBackgroundColor(Color.parseColor("#008080"));
+                break;
+            }
+            case 13: {
+                tvan13.setBackgroundColor(Color.parseColor("#008080"));
+                break;
+            }
+            case 14: {
+                tvan14.setBackgroundColor(Color.parseColor("#008080"));
+                break;
+            }
+            case 15: {
+                tvan15.setBackgroundColor(Color.parseColor("#008080"));
+                level = 1;
+                break;
+            }
+        }
     }
 
 
@@ -1127,7 +1218,7 @@ run loai bo
         player.stop();
         player.reset();
         alowMP3 = false;
-        // finish();
+         finish();
 
         super.onPause();
     }
@@ -1277,8 +1368,14 @@ Chuyen layout voi hieu ung tu ben trai bay sang
 
     @Override
     public void onBackPressed() {
-        finish();
-        super.onBackPressed();
+//        try {
+//            finish();
+//        }catch (Exception ex)
+//        {
+//
+//        }
+
+        //super.onBackPressed();
 
     }
 
