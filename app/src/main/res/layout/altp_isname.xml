@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+android:background="@drawable/nenvang"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:text="Nhập họ và tên của bạn ?"
+        android:textSize="20dp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_above="@+id/etName"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:layout_marginTop="30dp"
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="30dp"
+        android:layout_height="wrap_content" />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_below="@+id/etName"
+    android:layout_marginTop="30dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:background="@drawable/answer_panel"
+        android:text="Cancel"
+        android:textSize="20dp"
+        android:onClick="onClickCancel"
+        android:textColor="@android:color/white"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:text="OK"
+        android:textColor="@android:color/white"
+        android:textSize="20dp"
+        android:onClick="onClickOk"
+        android:background="@drawable/answer_panel"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
+
+</RelativeLayout>

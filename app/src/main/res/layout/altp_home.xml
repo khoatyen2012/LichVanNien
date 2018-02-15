@@ -46,15 +46,27 @@ android:text="Ai Là Triệu Phú"
             android:layout_height="wrap_content" />
 
         <Button
-            android:text="Lịch Vạn Niên"
+            android:text="Xếp Hạng"
             android:textStyle="bold"
             android:textSize="20dp"
             android:textColor="@android:color/white"
 android:layout_marginTop="20dp"
+            android:onClick="onClickMyName"
+            android:background="@drawable/answer_panel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:text="Lịch Vạn Niên"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="20dp"
             android:onClick="onClickVanNien"
             android:background="@drawable/answer_panel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
 
     </LinearLayout>
 

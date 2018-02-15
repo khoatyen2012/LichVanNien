@@ -2,19 +2,24 @@ package tana.daithanh.lichvannien;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Color;
 import android.media.MediaPlayer;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,6 +30,8 @@ import java.util.Random;
 
 import tana.daithanh.database.DataSourceALTP;
 import tana.daithanh.database.Question;
+
+
 
 public class AiLaTrieuPhu extends Activity {
 
@@ -68,7 +75,14 @@ public class AiLaTrieuPhu extends Activity {
 
     private DemNguocRunnable mDemnguocRun;
     private Handler mDemnguocHandler;
-    private int mTime = 91;
+    private int mTime = 81;
+
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
+    int mMax = 0;
+    int mMaxTime = 0;
+    String mName="";
+    String mac;
 
     TextView tvan1;
     TextView tvan2;
@@ -85,6 +99,12 @@ public class AiLaTrieuPhu extends Activity {
     TextView tvan13;
     TextView tvan14;
     TextView tvan15;
+    EditText etMyName;
+    TextView tvMyName;
+    TextView tvMyLevel;
+    TextView tvMyTop;
+
+    //Firebase myFirebaseRef;
 
 
 
@@ -136,6 +156,24 @@ public class AiLaTrieuPhu extends Activity {
             tvan14 = (TextView) findViewById(R.id.tvan14);
             tvan15 = (TextView) findViewById(R.id.tvan15);
 
+            etMyName=(EditText)findViewById(R.id.etName);
+            tvMyName=(TextView)findViewById(R.id.tvMyName);
+            tvMyLevel=(TextView)findViewById(R.id.tvLevel);
+            tvMyTop=(TextView)findViewById(R.id.tvTop);
+
+
+            pref = getApplicationContext().getSharedPreferences("trieuphumobile", 0);// 0 - là chế độ private
+            editor = pref.edit();
+            mac=pref.getString("macclick","");
+            if(mac.equals(""))
+            {
+                String android_id = Settings.Secure.getString(this.getContentResolver(),
+                        Settings.Secure.ANDROID_ID);
+                editor.putString("macclick", android_id);
+                editor.commit();
+            }
+
+
             mDemnguocHandler = new Handler();
             mDemnguocRun = new DemNguocRunnable();
 
@@ -151,13 +189,50 @@ public class AiLaTrieuPhu extends Activity {
             animation.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
             animation.setRepeatMode(Animation.REVERSE);
 
+            threadLoadData();
+
         }catch (Exception ex)
         {
 
         }
 
-        threadLoadData();
 
+
+    }
+
+    public void onClickMyName(View view)
+    {
+        onClickShowBackNull(7);
+        mName=pref.getString("myname","");
+        if(!mName.equals(""))
+        {
+            etMyName.setText(""+mName);
+        }
+
+    }
+    public void onClickCancel(View view)
+    {
+        onClickShowBackNull(0);
+    }
+
+    public void onClickOk(View view)
+    {
+
+        mName=""+etMyName.getText().toString().trim();
+        if(!mName.equals("")) {
+
+            mMax = pref.getInt("maxlevel", 0);
+            mMaxTime=pref.getInt("maxtime",81);
+
+
+
+            editor.putString("myname", mName);
+            editor.commit();
+            tvMyName.setText(""+mName);
+            tvMyLevel.setText("Câu : "+mMax);
+
+            onClickShowBackNull(8);
+        }
     }
 
 
@@ -168,7 +243,7 @@ public class AiLaTrieuPhu extends Activity {
      */
     private void showDemNguoc() {
         try {
-            mTime = 91;
+            mTime = 81;
             mDemnguocHandler.removeCallbacks(mDemnguocRun);
             mDemnguocHandler.postDelayed(mDemnguocRun, 1000);
         } catch (Exception ex) {
@@ -761,7 +836,16 @@ run loai bo
 
             ivLaiVanSam.setImageResource(R.drawable.traloidung);
 
+            mMax = pref.getInt("maxlevel", 0);
+            if (level > mMax) {
 
+                editor.putInt("maxlevel", level);
+                editor.commit();
+
+                editor.putInt("maxtime",81-mTime);
+                editor.commit();
+
+            }
 
             level++;
 
@@ -969,6 +1053,7 @@ Thiet lap lai game
 
             doSetDefault();
             doDefaultBackGround();
+            mDemnguocHandler.removeCallbacks(mDemnguocRun);
 
 
         } catch (Exception ex) {

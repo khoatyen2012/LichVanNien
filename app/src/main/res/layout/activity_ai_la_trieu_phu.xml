@@ -37,6 +37,14 @@
             android:id="@+id/lnOu7"
             layout="@layout/level_altp" />
 
+        <include
+            android:id="@+id/lnOu8"
+            layout="@layout/altp_isname" />
+
+        <include
+            android:id="@+id/lnOu9"
+            layout="@layout/altp_rank" />
+
     </ViewFlipper>
 
 </RelativeLayout>
