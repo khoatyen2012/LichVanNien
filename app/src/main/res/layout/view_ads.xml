@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/nennang"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvTitleAds"
+      android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:text="Quảng cáo tự nguyện"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:layout_marginBottom="50dp"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:id="@+id/tvContenAd"
+android:layout_below="@+id/tvTitleAds"
+        android:text="@string/content_ads"
+        android:textStyle="normal"
+        android:textSize="20dp"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/tvContenAd"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <Button
+        android:layout_weight="1"
+        android:layout_width="0dp"
+            android:text="Lúc khác"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:onClick="OnClick_About"
+        android:background="@drawable/answer_panel_true"
+        android:layout_height="wrap_content" />
+
+        <Button
+            android:text="Ủng hộ ngay"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:onClick="onClickUngHoNgay"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:background="@drawable/answer_panel_true"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -7,28 +7,32 @@ package tana.daithanh.mode;
 public class UserAltp {
 
 
-    String id="";
-    String name="";
-    Integer level;
-    Integer time;
-    Integer year;
 
-    public UserAltp(String id,String name,Integer level,Integer time,Integer year)
+
+    String mac="";
+    String name="";
+    Integer level=0;
+    Integer time=81;
+    Integer year=2018;
+
+    public String getMac() {
+        return mac;
+    }
+
+    public void setMac(String mac) {
+        this.mac = mac;
+    }
+
+    public UserAltp(String mac,String name,Integer level,Integer time,Integer year)
     {
-        this.id=id;
+        this.mac=mac;
         this.name=name;
         this.level=level;
         this.time=time;
         this.year=year;
     }
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
     public String getName() {
         return name;
     }

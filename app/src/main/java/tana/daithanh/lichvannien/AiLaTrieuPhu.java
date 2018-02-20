@@ -21,16 +21,28 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
 
+import tana.daithanh.adapter.RankAdapter;
 import tana.daithanh.database.DataSourceALTP;
 import tana.daithanh.database.Question;
-
+import tana.daithanh.mode.UserAltp;
 
 
 public class AiLaTrieuPhu extends Activity {
@@ -103,8 +115,20 @@ public class AiLaTrieuPhu extends Activity {
     TextView tvMyName;
     TextView tvMyLevel;
     TextView tvMyTop;
+    ProgressBar progressBar;
+    Integer year=2018;
 
-    //Firebase myFirebaseRef;
+
+
+
+    ListView lvRank;
+    RankAdapter adapter;
+    private ArrayList<UserAltp> lstClickUser;
+
+
+    private DatabaseReference mDatabase;
+
+
 
 
 
@@ -160,6 +184,14 @@ public class AiLaTrieuPhu extends Activity {
             tvMyName=(TextView)findViewById(R.id.tvMyName);
             tvMyLevel=(TextView)findViewById(R.id.tvLevel);
             tvMyTop=(TextView)findViewById(R.id.tvTop);
+            progressBar=(ProgressBar) findViewById(R.id.progressBar);
+
+            lvRank=(ListView)findViewById(R.id.lvRank);
+            lstClickUser=new ArrayList<UserAltp>();
+
+            adapter=new RankAdapter(this,R.id.list_item,lstClickUser);
+            lvRank.setAdapter(adapter);
+
 
 
             pref = getApplicationContext().getSharedPreferences("trieuphumobile", 0);// 0 - là chế độ private
@@ -172,6 +204,9 @@ public class AiLaTrieuPhu extends Activity {
                 editor.putString("macclick", android_id);
                 editor.commit();
             }
+
+            Calendar calendar = Calendar.getInstance();
+            year = calendar.get(Calendar.YEAR);
 
 
             mDemnguocHandler = new Handler();
@@ -188,6 +223,16 @@ public class AiLaTrieuPhu extends Activity {
             animation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
             animation.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
             animation.setRepeatMode(Animation.REVERSE);
+
+
+
+
+
+            mDatabase = FirebaseDatabase.getInstance().getReference();
+
+
+
+
 
             threadLoadData();
 
@@ -221,6 +266,8 @@ public class AiLaTrieuPhu extends Activity {
         mName=""+etMyName.getText().toString().trim();
         if(!mName.equals("")) {
 
+
+
             mMax = pref.getInt("maxlevel", 0);
             mMaxTime=pref.getInt("maxtime",81);
 
@@ -230,13 +277,67 @@ public class AiLaTrieuPhu extends Activity {
             editor.commit();
             tvMyName.setText(""+mName);
             tvMyLevel.setText("Câu : "+mMax);
+            writeNewUser();
 
             onClickShowBackNull(8);
+
+            if(lstClickUser.size()<=0) {
+
+                mDatabase.child("users").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        lstClickUser.clear();
+                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+
+
+                            int myYear = Integer.parseInt(postSnapshot.child("year").getValue().toString());
+                            if (myYear == year) {
+                                UserAltp userAltp = new UserAltp("" + postSnapshot.getKey(), "" + postSnapshot.child("name").getValue(), Integer.parseInt(postSnapshot.child("level").getValue().toString()), Integer.parseInt(postSnapshot.child("time").getValue().toString()), year);
+
+                                lstClickUser.add(userAltp);
+                                if (lstClickUser.size() > 1) {
+                                    Collections.sort(lstClickUser, new Comparator<UserAltp>() {
+                                        public int compare(UserAltp s1, UserAltp s2) {
+                                            if (s2.getLevel() == s1.getLevel()) {
+                                                return s1.getTime() - s2.getTime();
+                                            } else {
+                                                return s2.getLevel() - s1.getLevel();
+                                            }
+                                        }
+                                    });
+
+
+                                }
+                                adapter.notifyDataSetChanged();
+                                progressBar.setVisibility(View.GONE);
+                            }
+                        }
+                        if (lstClickUser.size() > 0) {
+                            for (int i = 0; i < lstClickUser.size(); i++) {
+                                if (lstClickUser.get(i).getMac().equals("" + mac)) {
+                                    tvMyTop.setText("Top " + (i + 1));
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
         }
     }
 
 
+    private void writeNewUser() {
+        UserAltp user=new UserAltp(mac,mName,mMax,mMaxTime,year);
 
+        mDatabase.child("users").child(mac).setValue(user);
+    }
 
     /*
     Show dem nguoc
@@ -282,7 +383,7 @@ public class AiLaTrieuPhu extends Activity {
                 mDemnguocHandler.removeCallbacks(mDemnguocRun);
                 tvTime.setTextColor(Color.parseColor("#FFFFFF"));
                 doCallSound("hetgio.mp3");
-                level = 1;
+level=1;
                 doRestartGame();
 
 
@@ -1004,6 +1105,8 @@ run loai bo
         }
     };
 
+
+
     /*
 Thiet lap lai game
  */
@@ -1102,7 +1205,7 @@ Thiet lap lai game
             share.putExtra(Intent.EXTRA_SUBJECT, "Bao Dan Tri voi Ai La Trieu Phu");
             share.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName());
 
-            startActivity(Intent.createChooser(share, "Share link!"));
+            startActivity(Intent.createChooser(share, "Giới thiệu ứng dụng này cho bạn bè !"));
         } catch (Exception ex) {
 
         }
@@ -1303,10 +1406,12 @@ run loai bo
         player.stop();
         player.reset();
         alowMP3 = false;
-         finish();
+        // finish();
 
         super.onPause();
     }
+
+
 
     /**
      * Called when returning to the activity

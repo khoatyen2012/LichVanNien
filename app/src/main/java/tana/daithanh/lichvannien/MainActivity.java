@@ -1,10 +1,12 @@
 package tana.daithanh.lichvannien;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
@@ -12,6 +14,12 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -47,6 +55,9 @@ Boolean ok=true;
 public  String ThongBaoSV="";
     Boolean doubleBackToExitPressedOnce = false;
 
+    private DatabaseReference mDatabase;
+    String linkad="";
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -72,6 +83,44 @@ public  String ThongBaoSV="";
         }
     };
 
+    public void onClickUngHoNgay(View view) {
+
+        if(!linkad.equals(""))
+        {
+            doRate(linkad);
+        }
+    }
+
+    public void onClickViewAd(View view)
+    {
+        if(linkad.equals("")) {
+            mDatabase.child("ads").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    linkad = dataSnapshot.getValue().toString().trim();
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
+        vfHome.setDisplayedChild(4);
+    }
+
+    void doRate(String pRate)
+    {
+        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri
+                .parse(""+pRate));
+        startActivity(myIntent);
+    }
+
+    public void onClickRate(View view)
+    {
+        doRate("https://play.google.com/store/apps/details?id="+ getApplicationContext().getPackageName());
+    }
     /**
      * Chia sẻ dữ liệu qua facebook
      * @param view
@@ -90,7 +139,7 @@ public  String ThongBaoSV="";
                 share.putExtra(Intent.EXTRA_SUBJECT, "Lịch Vạn Niên");
                 share.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName());
 
-                startActivity(Intent.createChooser(share, "Chia sẻ cho bạn bè !"));
+                startActivity(Intent.createChooser(share, "Giới thiệu ứng dụng này cho bạn bè !"));
 
         } catch (Exception e) {
             // TODO: handle exception
@@ -217,6 +266,8 @@ public  String ThongBaoSV="";
 
 
           threadLoadData();
+
+          mDatabase = FirebaseDatabase.getInstance().getReference();
 
 //        amDuong=new AmDuong();
 //

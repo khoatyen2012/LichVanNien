@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "607471686325-dlsb5p2qvd3bk68s066cqtbq71q3uaef.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tana.daithanh.lichvannien",
+            "certificate_hash": "93fd9b7bec99de0482d6a8d47adf8ab3edb9e317"
+          }
+        },
+        {
           "client_id": "607471686325-utihjt3jjm4m52cnm07tlvd9hv841hhe.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
