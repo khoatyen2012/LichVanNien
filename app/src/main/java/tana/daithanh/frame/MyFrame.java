@@ -549,8 +549,8 @@ public class MyFrame extends Fragment {
                     }
 
 
-                    Integer chonNam=rd.nextInt(11);
-                    Integer chonNu=rd.nextInt(11);
+                    Integer chonNam=rd.nextInt(13);
+                    Integer chonNu=rd.nextInt(13);
                     switch (chonNam)
                     {
                         case 0:
@@ -576,6 +576,9 @@ public class MyFrame extends Fragment {
                             break;
                         case 7:
                             ivNam.setImageResource(R.drawable.namdothuphap);
+                            break;
+                        case 8:
+                            ivNam.setImageResource(R.drawable.namdoanhnhan);
                             break;
                         default:
                             ivNam.setImageResource(R.drawable.nambetrap);
