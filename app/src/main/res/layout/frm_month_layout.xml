@@ -11,37 +11,58 @@
 
     <RelativeLayout
 
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:layout_width="match_parent"
         android:layout_height="0dp">
         <TextView
             android:background="@drawable/buttontitle"
             android:id="@+id/txtTitle"
-            android:layout_centerInParent="true"
-
+            android:layout_centerHorizontal="true"
+android:layout_marginTop="6dp"
             android:text="01 - 2018"
             android:textColor="@android:color/white"
             android:textSize="25dp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginTop="7dp"
+            android:id="@+id/ibToDayMonth"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/txtTitle"
+            android:onClick="OnClick_HomNayThang"
+            android:layout_marginBottom="3dp"
+            android:src="@drawable/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_width="40dp"
+            android:src="@drawable/namdothuphap"
+            android:layout_height="80dp" />
+
+
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="40dp"
+            android:src="@drawable/namxanhthuphap"
+            android:layout_height="100dp" />
+
+
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_weight="2"
+        android:layout_weight="1"
 
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
-        <ImageView
-            android:id="@+id/ibToDayMonth"
-            android:layout_centerHorizontal="true"
-            android:layout_above="@+id/llThu"
-android:onClick="OnClick_HomNayThang"
-android:layout_marginBottom="3dp"
-      android:src="@drawable/logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+
 
         <LinearLayout
            android:id="@+id/llThu"
