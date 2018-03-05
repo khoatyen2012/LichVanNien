@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,32 +91,47 @@ public class MyFrameMonth extends Fragment {
      try {
          c = Calendar.getInstance();
          int slNgay;
-         thangduong=c.get(Calendar.MONTH);
+        // thangduong=c.get(Calendar.MONTH);
          ngayhomnay=0;
+
+
 
          if(ViTri==36) {
              ngayhomnay = c.get(Calendar.DAY_OF_MONTH);
 
          }
 
-         c.set(Calendar.DAY_OF_MONTH, 1);
-         c.add(Calendar.MONTH, thangduong);
-         c.add(Calendar.DAY_OF_MONTH, -1);
+//         c.set(Calendar.DAY_OF_MONTH, 1);
+//         c.add(Calendar.MONTH, thangduong);
+//         c.add(Calendar.DAY_OF_MONTH, -1);
+
+
 
          if(ViTri==36) {
 
 
              ibToDayMonth.setImageResource(R.drawable.logo);
+             c.add(Calendar.MONTH,1);
 
          }else
          {
              ibToDayMonth.setImageResource(R.drawable.homnay);
              int tam=ViTri-36;
-             c.add(Calendar.MONTH,tam);
+             c.add(Calendar.MONTH,tam+1);
          }
-         slNgay = c.get(Calendar.DAY_OF_MONTH);
-         thangcv=c.get(Calendar.MONTH)+1;
+
+
+
+         thangcv=c.get(Calendar.MONTH);
          namcv=c.get(Calendar.YEAR);
+
+         c.set(Calendar.DAY_OF_MONTH, 1);
+         c.add(Calendar.DAY_OF_MONTH, -1);
+
+         slNgay = c.get(Calendar.DAY_OF_MONTH);
+
+
+
          if(thangcv<10) {
              txtTitle.setText("0" + thangcv + " - " + namcv);
          }else {
@@ -158,7 +174,7 @@ public class MyFrameMonth extends Fragment {
          monthAdapter=new MonthAdapter(context,lst);
 
 
-         //int ddd[]=amDuong.convertLunar2Solar(10,8,1989,0,7);
+
 
 
          gridView.setAdapter(monthAdapter);
