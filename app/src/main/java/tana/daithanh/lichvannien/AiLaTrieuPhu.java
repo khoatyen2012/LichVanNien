@@ -27,6 +27,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -129,7 +133,9 @@ public class AiLaTrieuPhu extends Activity {
     private DatabaseReference mDatabase;
 
 
-
+    private AdView mAdView;
+    private AdView mAdView1;
+    private InterstitialAd mInterstitialAd;
 
 
     @Override
@@ -138,6 +144,17 @@ public class AiLaTrieuPhu extends Activity {
         setContentView(R.layout.activity_ai_la_trieu_phu);
 
         try {
+
+            MobileAds.initialize(this, ""+getResources().getString(R.string.app_id));
+            mAdView = findViewById(R.id.adView);
+            mAdView1 = findViewById(R.id.adView1);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+            mAdView1.loadAd(adRequest);
+
+            mInterstitialAd = new InterstitialAd(this);
+            mInterstitialAd.setAdUnitId(""+getString(R.string.inapp_id));
+            mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
             viewFlipper =(ViewFlipper) findViewById(R.id.vfALTP);
             tvQuestion=(TextView) findViewById(R.id.tvQuestion);
@@ -1136,6 +1153,12 @@ Thiet lap lai game
 
                             doCallSound("tambiet.mp3");
                             onClickShowBackLeft(0);
+
+                            if (mInterstitialAd.isLoaded()) {
+                                mInterstitialAd.show();
+                            } else {
+                                Log.d("TAG", "The interstitial wasn't loaded yet.");
+                            }
 
                         }
                     })

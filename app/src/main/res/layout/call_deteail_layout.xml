@@ -3,13 +3,25 @@
     android:background="@drawable/bg_milestone"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_id">
+    </com.google.android.gms.ads.AdView>
+
     <ImageView
 
         android:id="@+id/ivDetailCall"
         android:layout_width="wrap_content"
         android:contentDescription="@string/app_name"
         android:src="@drawable/noibat"
-        android:layout_marginTop="50dp"
+       android:layout_above="@+id/tvDetailCall"
+        android:layout_marginBottom="20dp"
         android:layout_marginLeft="5dp"
         android:layout_height="wrap_content" />
 

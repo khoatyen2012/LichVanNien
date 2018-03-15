@@ -36,5 +36,8 @@
     <string name="cai13">13:60.000</string>
     <string name="cai14">14:85.000</string>
     <string name="cai15">15:150.000</string>
+    <string name="app_id">ca-app-pub-2577061470072962~7195556179</string>
+    <string name="banner_id">ca-app-pub-2577061470072962/4050518085</string>
+    <string name="inapp_id">ca-app-pub-2577061470072962/2577654314</string>
 
 </resources>

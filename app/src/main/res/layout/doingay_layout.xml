@@ -4,8 +4,20 @@
     android:background="@drawable/nennang"
     android:layout_height="match_parent">
 
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_id">
+    </com.google.android.gms.ads.AdView>
+
     <TextView
-        android:layout_marginTop="5dp"
+        android:layout_below="@+id/adView"
+        android:layout_marginTop="4dp"
         android:id="@+id/tvCDuong"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
@@ -67,7 +79,7 @@
 
     <TextView
         android:layout_below="@+id/dpCDAm"
-        android:layout_marginTop="5dp"
+
         android:id="@+id/tvCAm"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"

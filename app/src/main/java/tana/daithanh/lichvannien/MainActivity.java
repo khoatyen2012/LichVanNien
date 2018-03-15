@@ -15,6 +15,10 @@ import android.support.v4.view.ViewPager;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Random;
 
 import tana.daithanh.adapter.FrameAdapter;
 
@@ -58,6 +63,10 @@ public  String ThongBaoSV="";
     private DatabaseReference mDatabase;
     String linkad="";
 
+    private AdView mAdView;
+    private AdView mAdView1;
+    private InterstitialAd mInterstitialAd;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -85,9 +94,19 @@ public  String ThongBaoSV="";
 
     public void onClickUngHoNgay(View view) {
 
-        if(!linkad.equals(""))
+        Random r = new Random();
+        int i1 = r.nextInt(10);
+        if(i1>0)
         {
-            doRate(linkad);
+            if (mInterstitialAd.isLoaded()) {
+                mInterstitialAd.show();
+            } else {
+                Log.d("TAG", "The interstitial wasn't loaded yet.");
+            }
+        }else {
+            if (!linkad.equals("")) {
+                doRate(linkad);
+            }
         }
     }
 
@@ -196,6 +215,16 @@ public  String ThongBaoSV="";
 
 
       try {
+          MobileAds.initialize(this, ""+getResources().getString(R.string.app_id));
+          mAdView = findViewById(R.id.adView);
+          mAdView1 = findViewById(R.id.adView1);
+          AdRequest adRequest = new AdRequest.Builder().build();
+          mAdView.loadAd(adRequest);
+          mAdView1.loadAd(adRequest);
+
+          mInterstitialAd = new InterstitialAd(this);
+          mInterstitialAd.setAdUnitId(""+getString(R.string.inapp_id));
+          mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
           datasource = new DataSourceDanhNgon(this);
           datasource.open();
@@ -286,6 +315,8 @@ public  String ThongBaoSV="";
                   ThongBaoSV=""+msg;
               }
           }
+
+
 
       }catch (Exception ex)
       {

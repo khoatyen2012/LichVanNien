@@ -58,6 +58,9 @@ public class MyFrame extends Fragment {
     ImageView ivNam;
     ImageView ivNu;
     String ThongBaoSV="";
+    TextView tvTitleGio;
+    TextView tvTitleNgay;
+    TextView tvTitleThanh;
 
 
 
@@ -680,8 +683,16 @@ public class MyFrame extends Fragment {
          ivNam=(ImageView)view.findViewById(R.id.ivNam);
          ivNu=(ImageView)view.findViewById(R.id.ivNu);
 
+          tvTitleGio=(TextView)view.findViewById(R.id.tvTitleGio);
+          tvTitleNgay=(TextView)view.findViewById(R.id.tvTitleNgay);
+          tvTitleThanh=(TextView)view.findViewById(R.id.tvTitleThanh);
+
+
          Typeface type = Typeface.createFromAsset(getActivity().getAssets(),"fonts/Flamenco.ttf");
          tvTitleVannien.setTypeface(type);
+         tvTitleGio.setTypeface(type);
+         tvTitleNgay.setTypeface(type);
+         tvTitleThanh.setTypeface(type);
 
          MainActivity activity =(MainActivity) getActivity();
          ThongBaoSV=""+activity.ThongBaoSV;
