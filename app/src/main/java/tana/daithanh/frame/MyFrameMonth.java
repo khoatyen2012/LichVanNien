@@ -130,7 +130,10 @@ public class MyFrameMonth extends Fragment {
 
          slNgay = c.get(Calendar.DAY_OF_MONTH);
 
-
+          if(thangcv==0)
+          {
+              thangcv=12;
+          }
 
          if(thangcv<10) {
              txtTitle.setText("0" + thangcv + " - " + namcv);
