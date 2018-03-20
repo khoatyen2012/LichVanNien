@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/nennang"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tvCode"
+   android:layout_above="@id/etCode"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:text="Nhập mã code để tiếp tục ?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:layout_marginTop="30dp"
+        android:layout_centerInParent="true"
+        android:id="@+id/etCode"
+        android:hint="Code"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_below="@+id/etCode"
+        android:layout_width="wrap_content"
+        android:src="@drawable/answer_panel_true"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
