@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Lịch Tân Á</string>
     <string name="title_home">Lịch Ngày</string>
+    <string name="hoigui">Bạn có chắc chắn muốn gửi câu trả lời</string>
+    <string name="ok">Đồng Ý</string>
+    <string name="huy">Không</string>
     <string name="title_dashboard">Lịch Tháng</string>
     <string name="title_notifications">Tiện Ích</string>
     <string name="doubleclick">Nhấn Back 2 lần liên tiếp để thoát !</string>
