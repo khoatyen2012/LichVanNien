@@ -17,6 +17,8 @@
         android:layout_height="wrap_content" />
 
     <EditText
+
+        android:inputType="textPersonName"
         android:layout_marginTop="30dp"
         android:layout_centerInParent="true"
         android:id="@+id/etCode"
@@ -26,10 +28,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <ImageView
+    <Button
+        android:text="Tiếp Tục"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:onClick="onClickCode"
+        android:fontFamily="sans-serif"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
         android:layout_below="@+id/etCode"
         android:layout_width="wrap_content"
-        android:src="@drawable/answer_panel_true"
+        android:background="@drawable/answer_panel_true"
         android:layout_height="wrap_content" />
 
 </RelativeLayout>
