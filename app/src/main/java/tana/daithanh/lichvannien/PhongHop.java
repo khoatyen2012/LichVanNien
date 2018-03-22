@@ -17,6 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 import tana.daithanh.adapter.HopAdapter;
@@ -33,6 +39,10 @@ public class PhongHop extends Activity {
     Button btGuiHop;
     CheckConection online;
     TextView tvThongBao;
+
+    private DatabaseReference mDatabase;
+    String mKeyCode;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +152,7 @@ public class PhongHop extends Activity {
                         }
 
                         viewFlipper.setDisplayedChild(0);
+                        tvThongBao.setText("");
                         Toast.makeText(PhongHop.this,"Bạn đã gửi câu trả lời thành công !",Toast.LENGTH_SHORT).show();
 
                     }
@@ -178,8 +189,37 @@ public class PhongHop extends Activity {
 
         if(online.checkMobileInternetConn()) {
             tvThongBao.setText("");
-            threadLoadData();
-            viewFlipper.setDisplayedChild(1);
+
+
+            mDatabase = FirebaseDatabase.getInstance().getReference();
+            mDatabase.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    Boolean ok=false;
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                        if((""+postSnapshot.getKey()).trim().toLowerCase().equals((""+etCode.getText()).trim().toLowerCase()))
+                        {
+                            ok=true;
+                            mKeyCode=(""+etCode.getText()).trim().toLowerCase();
+                            threadLoadData();
+                            viewFlipper.setDisplayedChild(1);
+                            break;
+                        }
+                    }
+                    if(ok==false) {
+                        tvThongBao.setText("Mã code không tồn tại!");
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
         }else
         {
             tvThongBao.setText("Cần kết nối Internet để tiếp tục !");
