@@ -3,6 +3,7 @@ package tana.daithanh.lichvannien;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,6 +43,7 @@ public class PhongHop extends Activity {
 
     private DatabaseReference mDatabase;
     String mKeyCode;
+    Handler handler = new Handler();
 
 
     @Override
@@ -89,12 +91,29 @@ public class PhongHop extends Activity {
 
                     lst=new ArrayList<Object>();
 
+                    mDatabase.child(""+mKeyCode).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    for(int i=0;i<4;i++)
-                    {
-                        QuestionHop qa=new QuestionHop("Xem quảng cáo ủng hộ chúng tôi. Ứng dụng này hoàn toàn miễn phí.","");
-                        lst.add(qa);
-                    }
+                            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+
+                                QuestionHop qa=new QuestionHop(postSnapshot.getKey()+"."+postSnapshot.getValue(),"");
+                                lst.add(qa);
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+//                    for(int i=0;i<4;i++)
+//                    {
+//                        QuestionHop qa=new QuestionHop("Xem quảng cáo ủng hộ chúng tôi. Ứng dụng này hoàn toàn miễn phí.","");
+//                        lst.add(qa);
+//                    }
 
                     runOnUiThread(NotifyDataToListView);
 
@@ -117,6 +136,7 @@ public class PhongHop extends Activity {
             lvHop.setAdapter(adapter);
             adapter.setListView(lst);
             btGuiHop.setVisibility(View.VISIBLE);
+            viewFlipper.setDisplayedChild(2);
         }
     };
 
@@ -200,10 +220,11 @@ public class PhongHop extends Activity {
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                         if((""+postSnapshot.getKey()).trim().toLowerCase().equals((""+etCode.getText()).trim().toLowerCase()))
                         {
-                            ok=true;
-                            mKeyCode=(""+etCode.getText()).trim().toLowerCase();
-                            threadLoadData();
                             viewFlipper.setDisplayedChild(1);
+                            ok=true;
+                            mKeyCode=(""+postSnapshot.getKey()).trim();
+                            handler.postDelayed(myLoadData, 1000);
+
                             break;
                         }
                     }
@@ -225,6 +246,14 @@ public class PhongHop extends Activity {
             tvThongBao.setText("Cần kết nối Internet để tiếp tục !");
         }
     }
+
+    Runnable myLoadData = new Runnable() {
+        @Override
+        public void run() {
+            handler.removeCallbacks(myLoadData);
+            threadLoadData();
+        }
+    };
 
     public void onClickQuayLai(View view)
     {
