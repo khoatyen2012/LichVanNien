@@ -136,6 +136,12 @@ public  String ThongBaoSV="";
         startActivity(myIntent);
     }
 
+    public void onClickPhongHop(View view)
+    {
+        Intent myIntent=new Intent(MainActivity.this,PhongHop.class);
+        startActivity(myIntent);
+    }
+
     public void onClickRate(View view)
     {
         doRate("https://play.google.com/store/apps/details?id="+ getApplicationContext().getPackageName());

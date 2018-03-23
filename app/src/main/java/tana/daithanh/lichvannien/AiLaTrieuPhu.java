@@ -218,6 +218,7 @@ public class AiLaTrieuPhu extends Activity {
             {
                 String android_id = Settings.Secure.getString(this.getContentResolver(),
                         Settings.Secure.ANDROID_ID);
+                mac=android_id;
                 editor.putString("macclick", android_id);
                 editor.commit();
             }
@@ -308,8 +309,7 @@ public class AiLaTrieuPhu extends Activity {
                         for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
 
-                            int myYear = Integer.parseInt(postSnapshot.child("year").getValue().toString());
-                            if (myYear == year) {
+
                                 UserAltp userAltp = new UserAltp("" + postSnapshot.getKey(), "" + postSnapshot.child("name").getValue(), Integer.parseInt(postSnapshot.child("level").getValue().toString()), Integer.parseInt(postSnapshot.child("time").getValue().toString()), year);
 
                                 lstClickUser.add(userAltp);
@@ -328,7 +328,7 @@ public class AiLaTrieuPhu extends Activity {
                                 }
                                 adapter.notifyDataSetChanged();
                                 progressBar.setVisibility(View.GONE);
-                            }
+
                         }
                         if (lstClickUser.size() > 0) {
                             for (int i = 0; i < lstClickUser.size(); i++) {

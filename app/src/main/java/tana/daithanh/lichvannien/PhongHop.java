@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,6 +45,7 @@ public class PhongHop extends Activity {
     private DatabaseReference mDatabase;
     String mKeyCode;
     Handler handler = new Handler();
+    String android_id;
 
 
     @Override
@@ -60,7 +62,8 @@ public class PhongHop extends Activity {
         tvThongBao.setText("");
 
         lst=new ArrayList<Object>();
-
+        android_id = Settings.Secure.getString(this.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
 
 
 //        etCode.setOnKeyListener(new View.OnKeyListener() {
@@ -97,9 +100,15 @@ public class PhongHop extends Activity {
 
                             for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
-                                QuestionHop qa=new QuestionHop(postSnapshot.getKey()+"."+postSnapshot.getValue(),"");
-                                lst.add(qa);
+                                if(postSnapshot.getKey().trim().toLowerCase().equals("answers")==false)
+                                {
+                                    QuestionHop qa=new QuestionHop(postSnapshot.getKey()+"."+postSnapshot.getValue(),"");
+                                    lst.add(qa);
+                                }
+
                             }
+                            runOnUiThread(NotifyDataToListView);
+                            mDatabase.child(""+mKeyCode).removeEventListener(this);
 
                         }
 
@@ -115,7 +124,8 @@ public class PhongHop extends Activity {
 //                        lst.add(qa);
 //                    }
 
-                    runOnUiThread(NotifyDataToListView);
+
+
 
                 } catch (Exception e) {
                     //Log.e("Mon:", "kk"+e);
@@ -168,11 +178,12 @@ public class PhongHop extends Activity {
                                 tam = "" + iET.getText();
                             }
                             ((QuestionHop)lst.get(i)).setAnswers(tam);
-
+                            mDatabase.child(mKeyCode).child("Answers").child(""+(i+1)).child("TA:"+android_id).setValue(""+tam);
                         }
 
                         viewFlipper.setDisplayedChild(0);
                         tvThongBao.setText("");
+                        etCode.setText("");
                         Toast.makeText(PhongHop.this,"Bạn đã gửi câu trả lời thành công !",Toast.LENGTH_SHORT).show();
 
                     }
@@ -224,7 +235,7 @@ public class PhongHop extends Activity {
                             ok=true;
                             mKeyCode=(""+postSnapshot.getKey()).trim();
                             handler.postDelayed(myLoadData, 1000);
-
+                            mDatabase.removeEventListener(this);
                             break;
                         }
                     }
