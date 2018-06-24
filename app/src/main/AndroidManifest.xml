@@ -54,10 +54,6 @@
             android:name=".AiLaTrieuPhu"
             android:screenOrientation="portrait"></activity>
 
-        <activity android:name=".PhongHop" android:screenOrientation="portrait">
-
-
-        </activity>
     </application>
 
 </manifest>
