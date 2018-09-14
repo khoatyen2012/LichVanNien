@@ -50,9 +50,7 @@
             </intent-filter>
         </service>
 
-        <activity
-            android:name=".AiLaTrieuPhu"
-            android:screenOrientation="portrait"></activity>
+
 
     </application>
 

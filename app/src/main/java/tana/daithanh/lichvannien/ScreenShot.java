@@ -9,13 +9,13 @@ import android.widget.ImageView;
 
 import java.util.Random;
 
-import tana.daithanh.database.DataSourceALTP;
+
 import tana.daithanh.database.DataSourceDanhNgon;
 
 public class ScreenShot extends AppCompatActivity {
 
     private DataSourceDanhNgon datasource;
-    private DataSourceALTP dataaltp;
+
    // int trangthai=0;
     Handler handler = new Handler();
     ImageView ivKySu;
@@ -25,6 +25,8 @@ public class ScreenShot extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_shot);
+        try
+        {
         ivKySu=(ImageView)findViewById(R.id.ivKySu);
 
         Integer chon=rd.nextInt(2);
@@ -34,12 +36,16 @@ public class ScreenShot extends AppCompatActivity {
         }
 
         datasource = new DataSourceDanhNgon(this);
-        dataaltp=new DataSourceALTP(this);
+
 
 
 
 
         handler.postDelayed(myLoad, 1300);
+        }catch (Exception ex)
+        {
+
+        }
 
 
     }

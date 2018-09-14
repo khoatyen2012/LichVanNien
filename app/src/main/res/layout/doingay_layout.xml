@@ -48,6 +48,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <ImageView
+        android:src="@drawable/thenao"
+        android:layout_marginRight="3dp"
+        android:layout_width="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:onClick="onClickALTP"
+        android:layout_below="@+id/dpDuong"
+        android:layout_height="wrap_content" />
 
 
     <ImageView

@@ -552,8 +552,8 @@ public class MyFrame extends Fragment {
                     }
 
 
-                    Integer chonNam=rd.nextInt(13);
-                    Integer chonNu=rd.nextInt(13);
+                    Integer chonNam=rd.nextInt(16);
+                    Integer chonNu=rd.nextInt(16);
                     switch (chonNam)
                     {
                         case 0:
@@ -582,6 +582,27 @@ public class MyFrame extends Fragment {
                             break;
                         case 8:
                             ivNam.setImageResource(R.drawable.namdoanhnhan);
+                            break;
+                        case 9:
+                            ivNam.setImageResource(R.drawable.nunhayday);
+                            break;
+                        case 10:
+                            ivNam.setImageResource(R.drawable.nunhayloco);
+                            break;
+                        case 11:
+                            ivNam.setImageResource(R.drawable.namnhochoang);
+                            break;
+                        case 12:
+                            ivNam.setImageResource(R.drawable.namongphoc);
+                            break;
+                        case 13:
+                            ivNam.setImageResource(R.drawable.namthandong);
+                            break;
+                        case 14:
+                            ivNam.setImageResource(R.drawable.nusuueonum);
+                            break;
+                        case 15:
+                            ivNu.setImageResource(R.drawable.namdaurach);
                             break;
                         default:
                             ivNam.setImageResource(R.drawable.nambetrap);
@@ -623,7 +644,22 @@ public class MyFrame extends Fragment {
                         case 8:
                             ivNu.setImageResource(R.drawable.namxanhthuphap);
                             break;
+                        case 9:
+                            ivNu.setImageResource(R.drawable.nambatuat);
+                            break;
 
+                        case 10:
+                            ivNu.setImageResource(R.drawable.namcameo);
+                            break;
+                        case 11:
+                            ivNu.setImageResource(R.drawable.namongphoc1);
+                            break;
+                        case 12:
+                            ivNu.setImageResource(R.drawable.namtrap);
+                            break;
+                        case 13:
+                            ivNu.setImageResource(R.drawable.nusuueo);
+                            break;
                         default:
                             ivNu.setImageResource(R.drawable.nudoixe);
                             break;

@@ -1,6 +1,8 @@
 package tana.daithanh.lichvannien;
 
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -33,7 +35,7 @@ import tana.daithanh.adapter.FrameAdapter;
 
 import tana.daithanh.adapter.FrameAdapterMonth;
 import tana.daithanh.database.DanhNgon;
-import tana.daithanh.database.DataSourceALTP;
+
 import tana.daithanh.database.DataSourceDanhNgon;
 import tana.daithanh.thaotac.LunarYearTools;
 
@@ -48,7 +50,7 @@ public class MainActivity extends FragmentActivity {
 
     ViewFlipper vfHome;
     private DataSourceDanhNgon datasource;
-    private DataSourceALTP dataaltp;
+
    //AmDuong amDuong;
    private ArrayList<DanhNgon> lstVN;
 
@@ -64,8 +66,10 @@ public  String ThongBaoSV="";
     String linkad="";
 
     private AdView mAdView;
-    private AdView mAdView1;
+
     private InterstitialAd mInterstitialAd;
+
+    MediaPlayer player;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -75,17 +79,38 @@ public  String ThongBaoSV="";
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                    // mTextMessage.setText(R.string.title_home);
-                    vfHome.setDisplayedChild(0);
-                    viewpagerNgay.setCurrentItem(183);
+                    try {
+                        vfHome.setDisplayedChild(0);
+                        viewpagerNgay.setCurrentItem(183);
+                        doCallSound("chamnuoc.ogg");
+                    }catch (Exception ex)
+                    {
+
+                    }
                     return true;
                 case R.id.navigation_dashboard:
                    // mTextMessage.setText(R.string.title_dashboard);
+                    try
+                    {
                     vfHome.setDisplayedChild(1);
                     viewpagerThang.setCurrentItem(36);
+                    doCallSound("chamnuoc.ogg");
+                    }catch (Exception ex)
+                    {
+
+                    }
                     return true;
                 case R.id.navigation_notifications:
                    // mTextMessage.setText(R.string.title_notifications);
+                    try
+                    {
                     vfHome.setDisplayedChild(2);
+                    doCallSound("chamnuoc.ogg");
+                    mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                    }catch (Exception ex)
+                    {
+
+                    }
                     return true;
             }
             return false;
@@ -94,24 +119,22 @@ public  String ThongBaoSV="";
 
     public void onClickUngHoNgay(View view) {
 
-        Random r = new Random();
-        int i1 = r.nextInt(10);
-        if(i1>0)
-        {
-            if (mInterstitialAd.isLoaded()) {
-                mInterstitialAd.show();
-            } else {
-                Log.d("TAG", "The interstitial wasn't loaded yet.");
-            }
-        }else {
-            if (!linkad.equals("")) {
-                doRate(linkad);
-            }
+try
+{
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
         }
+}catch (Exception ex) {
+
+}
     }
 
     public void onClickViewAd(View view)
     {
+        try
+        {
         if(linkad.equals("")) {
             mDatabase.child("ads").addValueEventListener(new ValueEventListener() {
                 @Override
@@ -127,7 +150,51 @@ public  String ThongBaoSV="";
             });
         }
         vfHome.setDisplayedChild(4);
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        }catch (Exception ex)
+        {
+
+        }
     }
+
+    /**
+     * Called when leaving the activity
+     */
+    @Override
+    public void onPause() {
+
+        player.stop();
+        player.reset();
+
+        super.onPause();
+    }
+
+    /*
+Phat am thanh
+*/
+    void doCallSound(String mp3) {
+
+
+            AssetFileDescriptor afd;
+
+            try {
+                afd = getAssets().openFd("" + mp3);
+                player.stop();
+                player.reset();
+                player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+                afd.close();
+                player.prepare();
+
+
+            } catch (Exception ex) {
+
+            }
+
+            player.start();
+
+
+    }
+
 
     void doRate(String pRate)
     {
@@ -140,7 +207,13 @@ public  String ThongBaoSV="";
 
     public void onClickRate(View view)
     {
+        try
+        {
         doRate("https://play.google.com/store/apps/details?id="+ getApplicationContext().getPackageName());
+        }catch (Exception ex)
+        {
+
+        }
     }
     /**
      * Chia sẻ dữ liệu qua facebook
@@ -171,28 +244,52 @@ public  String ThongBaoSV="";
 
     public  void  OnClick_About(View view)
     {
+        try
+        {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
         vfHome.setDisplayedChild(3);
+        }catch (Exception ex)
+        {
+
+        }
+
     }
 
     public void OnClick_HomNayThang(View view)
     {
 
+        try
+        {
         viewpagerThang.setCurrentItem(36);
+        }catch (Exception ex)
+        {
+
+        }
     }
 
     public void OnClick_HomNay(View view)
     {
-
+try
+{
         viewpagerNgay.setCurrentItem(183);
+}catch (Exception ex)
+{
+
+}
     }
 
     public  void  onClickALTP(View view)
     {
         try
         {
-            Intent myIten=new Intent(MainActivity.this,AiLaTrieuPhu.class);
-            startActivity(myIten);
-           // finish();
+            //Intent myIten=new Intent(MainActivity.this,AiLaTrieuPhu.class);
+            //startActivity(myIten);
+            doRate("https://play.google.com/store/apps/details?id=ai.la.trieu.phu.altp.tieng");
+
         }catch (Exception ex)
         {
 
@@ -205,8 +302,14 @@ public  String ThongBaoSV="";
     @Override
     protected void onResume() {
         super.onResume();
+        try
+        {
         viewpagerThang.setCurrentItem(36);
         viewpagerNgay.setCurrentItem(183);
+        }catch (Exception ex)
+        {
+
+        }
     }
 
     @Override
@@ -219,10 +322,10 @@ public  String ThongBaoSV="";
       try {
           MobileAds.initialize(this, ""+getResources().getString(R.string.app_id));
           mAdView = findViewById(R.id.adView);
-          mAdView1 = findViewById(R.id.adView1);
+
           AdRequest adRequest = new AdRequest.Builder().build();
           mAdView.loadAd(adRequest);
-          mAdView1.loadAd(adRequest);
+
 
           mInterstitialAd = new InterstitialAd(this);
           mInterstitialAd.setAdUnitId(""+getString(R.string.inapp_id));
@@ -230,12 +333,13 @@ public  String ThongBaoSV="";
 
           datasource = new DataSourceDanhNgon(this);
           datasource.open();
-          dataaltp=new DataSourceALTP(this);
+
 
 
           lstVN = new ArrayList<DanhNgon>();
 
           vfHome=(ViewFlipper) findViewById(R.id.viewFliper);
+          player = new MediaPlayer();
 
           viewpagerNgay = (ViewPager) findViewById(R.id.viewpagerNgay);
           adapterNgay = new FrameAdapter(getSupportFragmentManager(),lstVN);
@@ -392,6 +496,8 @@ Load du lieu vao arraylist
             super.onBackPressed();
             return;
         }
+        try
+        {
 
         this.doubleBackToExitPressedOnce = true;
         Toast.makeText(this, getString(R.string.doubleclick),
@@ -404,6 +510,10 @@ Load du lieu vao arraylist
                 doubleBackToExitPressedOnce = false;
             }
         }, 2000);
+        }catch (Exception ex)
+        {
+
+        }
     }
 
 }
