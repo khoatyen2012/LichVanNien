@@ -288,7 +288,7 @@ try
         {
             //Intent myIten=new Intent(MainActivity.this,AiLaTrieuPhu.class);
             //startActivity(myIten);
-            doRate("https://play.google.com/store/apps/details?id=ai.la.trieu.phu.altp.tieng");
+            doRate("https://play.google.com/store/apps/details?id=hoixoay.hoingu.dapxoay");
 
         }catch (Exception ex)
         {
